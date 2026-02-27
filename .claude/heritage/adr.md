@@ -14,6 +14,13 @@
 - **fixture-single-source**: When 3+ stories share the same data, centralize in **fixtures**/. Inline mocks = O(N) maintenance
 - **composition-recipe-doc**: Container component slot architecture + state patterns must be documented in DesignGuide. More valuable than code
 
+## AI Integration
+
+- **llms-txt-auto-gen**: llms.txt and llms-full.txt auto-generated from component .md files via `pnpm generate:llms`. Manual authoring = sync drift
+- **three-tier-ai-consumption**: llms.txt (index, ~2K tokens) + Storybook MCP (real-time query) + component .md (deep context). Each tier serves different AI consumers
+- **skills-mcp-complement**: Skills = internal workflow orchestration (few hundred tokens). MCP = external data access standard (thousands of tokens). Not interchangeable
+- **storybook-mcp-experimental**: @storybook/addon-mcp is experimental. llms.txt provides stable fallback. Both channels maintained
+
 ## Strategy
 
 - **ship-loop-harness**: Don't perfect the harness first. Evolve it within the shipping loop. Perfect preparation = time delay risk

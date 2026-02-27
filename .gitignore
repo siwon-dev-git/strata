@@ -30,3 +30,6 @@ blob-report/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Research output (working files)
+output/

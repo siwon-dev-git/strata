@@ -1,0 +1,103 @@
+# Strata Design System
+
+> React 19 + TypeScript 5.9 + Tailwind CSS v4.2 + Radix UI headless design system.
+> 57 components across 4 categories (primitives, layout, disclosure, feedback).
+> 3-layer OKLch design tokens: primitives → semantic → component. Dark/light theme.
+
+## Getting Started
+
+- [README](README.md): Installation, quick start, and project overview
+- [CLAUDE.md](CLAUDE.md): AI development conventions and skill commands
+
+## Design Tokens
+
+- [Layer 1: Primitives](src/tokens/layer1-primitive.css): OKLch color scales, spacing, typography, radius. Prefix `--sp-*`
+- [Layer 2: Semantic](src/tokens/layer2-semantic.css): Intent-based aliases (`--surface-*`, `--fg-*`, `--border-*`, `--color-*`)
+- [Layer 3: Component](src/tokens/layer3-component.css): Component-scoped overrides (`--btn-*`, `--dialog-*`, `--menu-*`)
+
+## Primitives (34)
+
+- [AspectRatio](src/components/primitives/AspectRatio/AspectRatio.md): Maintains a fixed width-to-height ratio for its child content.
+- [Avatar](src/components/primitives/Avatar/Avatar.md): Displays a user image or initials fallback in a circular badge.
+- [AvatarGroup](src/components/primitives/AvatarGroup/AvatarGroup.md): Stacks multiple Avatar components with overlap and an optional overflow counter.
+- [Badge](src/components/primitives/Badge/Badge.md): Renders a small inline label for status, category, or count.
+- [Breadcrumb](src/components/primitives/Breadcrumb/Breadcrumb.md): Renders a navigational breadcrumb trail with links, separators, and a current page indicator.
+- [Button](src/components/primitives/Button/Button.md): Primary interactive element for triggering actions, with variant styling and loading state.
+- [Card](src/components/primitives/Card/Card.md): Container component for grouping related content with optional header and footer sections.
+- [Checkbox](src/components/primitives/Checkbox/Checkbox.md): Binary toggle input built on Radix Checkbox with custom styling and check indicator.
+- [Code](src/components/primitives/Code/Code.md): Inline code snippet with monospace font and subtle background.
+- [DataList](src/components/primitives/DataList/DataList.md): Displays key-value pairs in a structured two-column definition list layout.
+- [Divider](src/components/primitives/Divider/Divider.md): Visual separator line between content sections, horizontal or vertical.
+- [FormField](src/components/primitives/FormField/FormField.md): Wraps a form control with a label, optional description, and error message.
+- [Heading](src/components/primitives/Heading/Heading.md): Semantic heading element (h1-h6) with level-based typography presets.
+- [Icon](src/components/primitives/Icon/Icon.md): Base SVG icon wrapper and factory for 61 named icon components.
+- [Input](src/components/primitives/Input/Input.md): Text input field with size variants, error state, and optional prefix/suffix adornments via InputGroup.
+- [Kbd](src/components/primitives/Kbd/Kbd.md): Renders a keyboard shortcut key in a styled inline badge.
+- [Label](src/components/primitives/Label/Label.md): Accessible form label built on Radix Label with peer-disabled styling.
+- [Pagination](src/components/primitives/Pagination/Pagination.md): Compound navigation component for paging through content.
+- [ProgressBar](src/components/primitives/ProgressBar/ProgressBar.md): Displays a horizontal bar indicating progress toward completion.
+- [RadioGroup](src/components/primitives/RadioGroup/RadioGroup.md): Compound radio button group for single-option selection.
+- [ScrollArea](src/components/primitives/ScrollArea/ScrollArea.md): Compound scrollable container with custom-styled scrollbars.
+- [Select](src/components/primitives/Select/Select.md): Compound dropdown select for choosing a single value from a list.
+- [Separator](src/components/primitives/Separator/Separator.md): Visual divider between content sections, horizontal or vertical.
+- [Slider](src/components/primitives/Slider/Slider.md): Range input for selecting numeric values along a track.
+- [Spinner](src/components/primitives/Spinner/Spinner.md): Animated loading indicator using an SVG spinner.
+- [StatusDot](src/components/primitives/StatusDot/StatusDot.md): Small colored circle indicating presence or availability status.
+- [Switch](src/components/primitives/Switch/Switch.md): Toggle switch for binary on/off states.
+- [Table](src/components/primitives/Table/Table.md): Compound HTML table with consistent styling for data display.
+- [Text](src/components/primitives/Text/Text.md): Polymorphic typography component for rendering text with consistent size, weight, and color.
+- [Textarea](src/components/primitives/Textarea/Textarea.md): Multi-line text input field with size and error variants.
+- [ToggleGroup](src/components/primitives/ToggleGroup/ToggleGroup.md): Compound toggle button group for selecting one or multiple options.
+- [Toolbar](src/components/primitives/Toolbar/Toolbar.md): Compound horizontal toolbar for grouping actions and toggles.
+- [Truncate](src/components/primitives/Truncate/Truncate.md): Clamps text overflow to a specified number of lines with ellipsis.
+- [VisuallyHidden](src/components/primitives/VisuallyHidden/VisuallyHidden.md): Hides content visually while keeping it accessible to screen readers.
+
+## Layout (5)
+
+- [AppShell](src/components/layout/AppShell/AppShell.md): Full-viewport flex container that frames the entire application layout.
+- [Container](src/components/layout/Container/Container.md): Centered, max-width-constrained content wrapper with horizontal padding.
+- [Sidebar](src/components/layout/Sidebar/Sidebar.md): Collapsible vertical navigation panel with grouped sections and interactive items.
+- [Stack](src/components/layout/Stack/Stack.md): Flexbox layout primitive for arranging children in a row or column with controlled spacing and alignment.
+- [TopBar](src/components/layout/TopBar/TopBar.md): Fixed-height horizontal header bar for application-level navigation and actions.
+
+## Disclosure (13)
+
+- [Accordion](src/components/disclosure/Accordion/Accordion.md): Vertically stacked collapsible sections powered by Radix Accordion primitive.
+- [AlertDialog](src/components/disclosure/AlertDialog/AlertDialog.md): Modal confirmation dialog for destructive or irreversible actions, with required user acknowledgment.
+- [Collapsible](src/components/disclosure/Collapsible/Collapsible.md): Simple show/hide toggle container powered by Radix Collapsible primitive.
+- [ContextMenu](src/components/disclosure/ContextMenu/ContextMenu.md): Right-click context menu with items, labels, and separators, using shared menu token system.
+- [Dialog](src/components/disclosure/Dialog/Dialog.md): General-purpose modal dialog with structured header, body, and footer sections.
+- [DropdownMenu](src/components/disclosure/DropdownMenu/DropdownMenu.md): Click-triggered dropdown menu with items, labels, and separators, using shared menu token system.
+- [HoverCard](src/components/disclosure/HoverCard/HoverCard.md): Hover-triggered floating card for previewing content without clicking.
+- [Menubar](src/components/disclosure/Menubar/Menubar.md): Horizontal menu bar with multiple dropdown menus, suitable for application-level menus.
+- [NavigationMenu](src/components/disclosure/NavigationMenu/NavigationMenu.md): Site-level navigation with trigger-activated content panels and link items.
+- [Popover](src/components/disclosure/Popover/Popover.md): Click-triggered floating panel for forms, filters, or supplementary content.
+- [Sheet](src/components/disclosure/Sheet/Sheet.md): Slide-out panel (drawer) anchored to any viewport edge, built on Radix Dialog.
+- [Tabs](src/components/disclosure/Tabs/Tabs.md): Tabbed interface for switching between content panels within the same context.
+- [Tooltip](src/components/disclosure/Tooltip/Tooltip.md): Hover-triggered informational label that appears near the target element.
+
+## Feedback (5)
+
+- [Alert](src/components/feedback/Alert/Alert.md): Inline status message with variant-driven severity and optional dismiss action.
+- [Callout](src/components/feedback/Callout/Callout.md): Contextual highlight block with optional icon, title, and body content.
+- [EmptyState](src/components/feedback/EmptyState/EmptyState.md): Centered placeholder for empty data views with icon, message, and call-to-action slot.
+- [Skeleton](src/components/feedback/Skeleton/Skeleton.md): Animated loading placeholder with shape variants for content shimmer effects.
+- [Toast](src/components/feedback/Toast/Toast.md): Transient notification system built on Radix Toast primitive with timed auto-dismiss.
+
+## Demo Applications (11)
+
+- [character-chat](src/demos/character-chat/): Reference implementation
+- [discord](src/demos/discord/): Reference implementation
+- [figma](src/demos/figma/): Reference implementation
+- [github](src/demos/github/): Reference implementation
+- [linear](src/demos/linear/): Reference implementation
+- [notion](src/demos/notion/): Reference implementation
+- [slack](src/demos/slack/): Reference implementation
+- [spotify](src/demos/spotify/): Reference implementation
+- [trello](src/demos/trello/): Reference implementation
+- [twitter](src/demos/twitter/): Reference implementation
+- [vscode](src/demos/vscode/): Reference implementation
+
+## Utilities
+
+- [cn()](src/lib/utils.ts): Class merging utility using clsx + tailwind-merge

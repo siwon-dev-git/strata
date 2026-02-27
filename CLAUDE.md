@@ -24,12 +24,22 @@ Code comments and commits in English.
 - text → BUILD 1 cycle (quest)
 - number N → MAINTAIN N cycles
 
+`/commit [pr] [merge]` — Commit with convention.
+
+- (no args) → Analyze + commit by domain
+- `pr` → Commit + create PR
+- `pr merge` → Commit + PR + merge when CI green
+
+`/research [topic]` — Evidence-based research with falsification loops.
+
 ## Structure
 
 ```
 src/components/{primitives|layout|disclosure|feedback}/
 src/tokens/     — 3-layer CSS custom properties
-src/demos/      — 10 reference implementations
+src/demos/      — 11 reference implementations
+src/icons/      — 61 SVG icon components
+scripts/        — Build utilities (llms.txt generation)
 ```
 
 ## Conventions
@@ -38,6 +48,12 @@ src/demos/      — 10 reference implementations
 - Components: Radix UI headless + Tailwind styling, `cn()` for class merging
 - Testing: Vitest + Testing Library, `play()` functions for behavioral tests
 - Token reuse: shared token groups across related components (e.g. `--menu-*`, `--checkbox-*`)
+
+## AI Integration
+
+- `llms.txt` / `llms-full.txt` — AI-readable component index (auto-generated via `pnpm generate:llms`)
+- Storybook MCP — `@storybook/addon-mcp` exposes component manifest at `http://localhost:6007/mcp`
+- Before UI development, query Storybook MCP for existing component APIs
 
 ## Verification
 
