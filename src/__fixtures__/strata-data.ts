@@ -1398,8 +1398,7 @@ export const CHAT_CHARACTERS: ChatCharacter[] = [
     avatar: '🔮',
     color: 'bg-cyan-500',
     tagline: 'Mysterious oracle',
-    greeting:
-      'I have been expecting you. Ask, and the echoes shall answer.',
+    greeting: 'I have been expecting you. Ask, and the echoes shall answer.',
     lastMessage: 'The answer lies within the question',
     lastMessageTime: '1d',
   },
@@ -1478,8 +1477,7 @@ export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
     {
       id: 'k4',
       role: 'user',
-      content:
-        'OK that makes sense. But what about constraints? Like extends?',
+      content: 'OK that makes sense. But what about constraints? Like extends?',
       timestamp: '2:02 PM',
     },
     {
@@ -1500,8 +1498,7 @@ export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
     {
       id: 's2',
       role: 'user',
-      content:
-        "I've been feeling overwhelmed with too many things to learn.",
+      content: "I've been feeling overwhelmed with too many things to learn.",
       timestamp: '8:01 AM',
     },
     {
@@ -1549,8 +1546,7 @@ export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
     {
       id: 'n4',
       role: 'user',
-      content:
-        'Fair point. But the coding part will definitely be automated.',
+      content: 'Fair point. But the coding part will definitely be automated.',
       timestamp: '6:02 PM',
     },
     {
@@ -1592,7 +1588,7 @@ export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
       id: 'p5',
       role: 'character',
       content:
-        "Try a softer gradient there between your heading and body weights. Inter for UI, with 500 weight for labels and 600 for headings. Numbers should use tabular figures — nothing looks worse than a dashboard where the digits dance around. Monospace for transaction amounts, proportional for everything else.",
+        'Try a softer gradient there between your heading and body weights. Inter for UI, with 500 weight for labels and 600 for headings. Numbers should use tabular figures — nothing looks worse than a dashboard where the digits dance around. Monospace for transaction amounts, proportional for everything else.',
       timestamp: '11:02 AM',
     },
   ],
@@ -1600,8 +1596,7 @@ export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
     {
       id: 'e1',
       role: 'character',
-      content:
-        'I have been expecting you. Ask, and the echoes shall answer.',
+      content: 'I have been expecting you. Ask, and the echoes shall answer.',
       timestamp: '11:30 PM',
     },
     {

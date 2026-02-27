@@ -6,7 +6,14 @@ import {
   type ChatMessage,
 } from '@/__fixtures__/strata-data';
 import { cn } from '@/lib/utils';
-import { Text, Input, Button, IconArrowUp, IconSmile, IconMoreHorizontal } from '@/components/primitives';
+import {
+  Text,
+  Input,
+  Button,
+  IconArrowUp,
+  IconSmile,
+  IconMoreHorizontal,
+} from '@/components/primitives';
 import { TopBar, Stack } from '@/components/layout';
 
 export function CharacterChatDemo() {
@@ -35,7 +42,11 @@ export function CharacterChatDemo() {
 
         {/* Search */}
         <div className="p-3">
-          <Input size="sm" placeholder="Search characters..." className="rounded-lg" />
+          <Input
+            size="sm"
+            placeholder="Search characters..."
+            className="rounded-lg"
+          />
         </div>
 
         {/* Character list */}
@@ -55,7 +66,12 @@ export function CharacterChatDemo() {
       <div className="flex min-w-0 flex-1 flex-col bg-surface-base">
         {/* Chat header */}
         <TopBar>
-          <Stack direction="row" gap={3} align="center" className="flex-1 min-w-0">
+          <Stack
+            direction="row"
+            gap={3}
+            align="center"
+            className="flex-1 min-w-0"
+          >
             <span
               className={cn(
                 'flex h-9 w-9 items-center justify-center rounded-full text-lg',
@@ -104,11 +120,7 @@ export function CharacterChatDemo() {
 
             {/* Message bubbles */}
             {messages.map((msg) => (
-              <MessageBubble
-                key={msg.id}
-                message={msg}
-                character={active}
-              />
+              <MessageBubble key={msg.id} message={msg} character={active} />
             ))}
           </div>
         </div>
@@ -162,9 +174,7 @@ function CharacterItem({
       onClick={onClick}
       className={cn(
         'flex w-full items-center gap-3 px-4 py-3 text-left transition-colors',
-        active
-          ? 'bg-interactive-subtle'
-          : 'hover:bg-surface-raised',
+        active ? 'bg-interactive-subtle' : 'hover:bg-surface-raised',
       )}
     >
       <span
@@ -208,9 +218,7 @@ function MessageBubble({
   const isUser = message.role === 'user';
 
   return (
-    <div
-      className={cn('flex gap-3', isUser && 'flex-row-reverse')}
-    >
+    <div className={cn('flex gap-3', isUser && 'flex-row-reverse')}>
       {/* Avatar */}
       {!isUser && (
         <span
