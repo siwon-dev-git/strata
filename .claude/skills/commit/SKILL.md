@@ -1,7 +1,7 @@
 ---
 name: commit
 description: Commit with convention. Use when committing changes — enforces type/scope/subject format and PR workflow.
-user_invocable: true
+user-invokable: true
 ---
 
 # Commit — Strata Commit Convention
