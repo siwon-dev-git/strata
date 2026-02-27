@@ -10,6 +10,7 @@ import { SpotifyDemo } from '@/demos/spotify/SpotifyDemo';
 import { TwitterDemo } from '@/demos/twitter/TwitterDemo';
 import { TrelloDemo } from '@/demos/trello/TrelloDemo';
 import { VSCodeDemo } from '@/demos/vscode/VSCodeDemo';
+import { CharacterChatDemo } from '@/demos/character-chat/CharacterChatDemo';
 
 const meta = {
   title: 'Demos',
@@ -67,5 +68,10 @@ export const VSCode: Story = {
 
 export const Trello: Story = {
   render: () => <TrelloDemo />,
+  parameters: { layout: 'fullscreen' },
+};
+
+export const CharacterChat: Story = {
+  render: () => <CharacterChatDemo />,
   parameters: { layout: 'fullscreen' },
 };
