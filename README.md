@@ -8,7 +8,8 @@ A modern design system built with React 19, Radix UI, and Tailwind CSS v4.
 - **Radix UI Headless** — 27 accessible, composable primitives
 - **Dark Mode** — First-class dark mode via `data-theme` + `dark` class
 - **57 Components** — Primitives, layout, disclosure, and feedback
-- **10 Demo Apps** — Linear, Slack, Twitter, Notion, Spotify, GitHub, Discord, Figma, VS Code, Trello
+- **11 Demo Apps** — Linear, Slack, Twitter, Notion, Spotify, GitHub, Discord, Figma, VS Code, Trello, Character Chat
+- **AI-Ready** — llms.txt, Storybook MCP, and structured component docs for AI tools
 
 ## Quick Start
 
@@ -62,14 +63,31 @@ pnpm test:ci        # Run tests once
 pnpm typecheck      # TypeScript check (tsc -b)
 pnpm format         # Format with Prettier
 pnpm lint           # ESLint check
+pnpm generate:llms  # Regenerate llms.txt + llms-full.txt
 ```
 
-## Claude Code Integration
+## AI Integration
 
-This project includes `.claude/` configuration for AI-assisted development:
+Strata is designed for AI-assisted development and consumption:
 
-- `/convention [target]` — Strata File Convention. Tier-based component structure analysis and scaffolding
+| Channel       | File                             | Purpose                                               |
+| ------------- | -------------------------------- | ----------------------------------------------------- |
+| llms.txt      | [`llms.txt`](llms.txt)           | Lightweight component index (~2K tokens) for AI tools |
+| llms-full.txt | [`llms-full.txt`](llms-full.txt) | Full documentation (~15K tokens) for large-context AI |
+| Storybook MCP | `http://localhost:6007/mcp`      | Real-time component API queries via MCP protocol      |
+| Component .md | `src/components/*/*.md`          | Structured docs (Role, Tier, Tokens, Constraints)     |
+
+**For AI tool users** (Cursor, Windsurf, ChatGPT, Claude):
+
+- Reference `llms.txt` for component discovery
+- Reference `llms-full.txt` for detailed implementation guidance
+
+**For Claude Code**:
+
+- `/convention [target]` — Tier-based component structure analysis and scaffolding
 - `/sprint [quest]` — Sprint build cycle with automated review, testing, and heritage tracking
+- `/commit [pr] [merge]` — Conventional commit with optional PR workflow
+- `/research [topic]` — Evidence-based research with falsification loops
 
 See [CLAUDE.md](CLAUDE.md) for details.
 

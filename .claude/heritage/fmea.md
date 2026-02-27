@@ -22,6 +22,11 @@
 - **ghost-dependency**: Dependency declared in package.json with 0 imports. Verify at least 1 import on install
 - **build-render-mismatch**: tsc pass ≠ runtime correct. Only storybook build verifies rendering
 
+## AI
+
+- **llms-txt-stale**: llms.txt not regenerated after component add/remove → AI tools see outdated index. Run `pnpm generate:llms` after component changes
+- **mcp-addon-breaking**: @storybook/addon-mcp API may change (experimental). Pin version, test on upgrade. llms.txt = stable fallback
+
 ## Tooling
 
 - **npx-pnpm-passthrough**: `pnpm script -- --flag` passes `--` directly to vitest, flag misinterpreted as file filter. Use dedicated scripts
