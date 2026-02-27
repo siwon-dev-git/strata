@@ -26,27 +26,28 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 
 ## Types
 
-| Type | When |
-|------|------|
-| `feat` | New feature or component |
-| `fix` | Bug fix |
-| `refactor` | Code change that neither fixes nor adds |
-| `docs` | Documentation only (.md, comments, stories) |
-| `style` | Formatting (Prettier, whitespace, semicolons) |
-| `test` | Adding or updating tests |
-| `chore` | Build, CI, tooling, dependencies |
-| `perf` | Performance improvement |
+| Type       | When                                          |
+| ---------- | --------------------------------------------- |
+| `feat`     | New feature or component                      |
+| `fix`      | Bug fix                                       |
+| `refactor` | Code change that neither fixes nor adds       |
+| `docs`     | Documentation only (.md, comments, stories)   |
+| `style`    | Formatting (Prettier, whitespace, semicolons) |
+| `test`     | Adding or updating tests                      |
+| `chore`    | Build, CI, tooling, dependencies              |
+| `perf`     | Performance improvement                       |
 
 ## Scope
 
 Optional. Component or area name in lowercase:
+
 - Component: `button`, `dialog`, `tokens`
 - Area: `ci`, `storybook`, `deps`
 
 ## Rules
 
 1. **Subject**: imperative mood, lowercase, no period, max 72 chars
-2. **Body**: explain *why* not *what*. Wrap at 80 chars. Optional for trivial changes
+2. **Body**: explain _why_ not _what_. Wrap at 80 chars. Optional for trivial changes
 3. **Co-Authored-By**: required trailer when AI-assisted
 4. **One logical change per commit**. Split by domain when batching multiple changes
 5. **Branch format**: `<type>/<short-description>` (e.g. `feat/rich-stories`, `fix/dialog-a11y`)
