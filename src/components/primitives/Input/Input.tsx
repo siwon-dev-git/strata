@@ -1,0 +1,80 @@
+import type { ComponentPropsWithRef, ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+
+/* ------------------------------------------------------------------ */
+/*  Input                                                              */
+/* ------------------------------------------------------------------ */
+
+const SIZE_MAP = {
+  sm: 'h-7 text-xs px-2',
+  md: 'h-9 text-sm px-3',
+  lg: 'h-11 text-base px-4',
+} as const;
+
+type InputSize = keyof typeof SIZE_MAP;
+
+interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
+  size?: InputSize;
+  error?: boolean;
+}
+
+export function Input({
+  size = 'md',
+  error = false,
+  className,
+  ref,
+  ...props
+}: InputProps) {
+  return (
+    <input
+      ref={ref}
+      className={cn(
+        'w-full rounded-[--input-radius]',
+        'bg-[--input-bg] text-[--input-fg] border border-[--input-border]',
+        'placeholder:text-[--input-placeholder]',
+        'transition-colors duration-150',
+        'focus:outline-none focus:ring-2 focus:ring-[--input-ring] focus:border-[--input-border-focus]',
+        'disabled:pointer-events-none disabled:opacity-40',
+        error && 'border-[--input-border-error]',
+        SIZE_MAP[size],
+        className,
+      )}
+      aria-invalid={error || undefined}
+      {...props}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  InputGroup                                                         */
+/* ------------------------------------------------------------------ */
+
+interface InputGroupProps {
+  children: ReactNode;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  className?: string;
+}
+
+export function InputGroup({
+  children,
+  prefix,
+  suffix,
+  className,
+}: InputGroupProps) {
+  return (
+    <div className={cn('relative flex items-center', className)}>
+      {prefix && (
+        <span className="pointer-events-none absolute left-3 flex items-center text-fg-muted">
+          {prefix}
+        </span>
+      )}
+      {children}
+      {suffix && (
+        <span className="pointer-events-none absolute right-3 flex items-center text-fg-muted">
+          {suffix}
+        </span>
+      )}
+    </div>
+  );
+}

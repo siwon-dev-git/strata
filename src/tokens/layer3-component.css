@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════════
+   Layer 3: Component Tokens
+   Component-specific aliases of Layer 2 semantic tokens.
+   Override these to reskin individual components without
+   touching semantic or primitive layers.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Button ────────────────────────────────────────────────── */
+  --btn-solid-bg: var(--color-interactive);
+  --btn-solid-bg-hover: var(--color-interactive-hover);
+  --btn-solid-fg: var(--color-interactive-fg);
+  --btn-ghost-bg-hover: var(--color-interactive-subtle);
+  --btn-ghost-fg: var(--fg-default);
+  --btn-outline-border: var(--border-default);
+  --btn-outline-hover: var(--border-interactive);
+  --btn-danger-bg: var(--color-danger);
+  --btn-danger-bg-hover: var(--color-danger-hover);
+  --btn-danger-fg: var(--color-danger-fg);
+  --btn-radius: var(--sp-radius-md);
+
+  /* ── Input ─────────────────────────────────────────────────── */
+  --input-bg: var(--surface-inset);
+  --input-border: var(--border-default);
+  --input-border-focus: var(--border-interactive);
+  --input-border-error: var(--border-danger);
+  --input-fg: var(--fg-default);
+  --input-placeholder: var(--fg-subtle);
+  --input-radius: var(--sp-radius-md);
+  --input-ring: oklch(0.62 0.21 260 / 25%);
+
+  /* ── Badge ─────────────────────────────────────────────────── */
+  --badge-radius: var(--sp-radius-full);
+
+  /* ── Avatar ────────────────────────────────────────────────── */
+  --avatar-radius: var(--sp-radius-full);
+  --avatar-bg: var(--color-interactive-subtle);
+  --avatar-fg: var(--color-interactive);
+
+  /* ── Sidebar ───────────────────────────────────────────────── */
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 0px;
+  --sidebar-bg: var(--surface-raised);
+  --sidebar-border: var(--border-subtle);
+  --sidebar-item-hover: var(--color-interactive-subtle);
+  --sidebar-item-active-bg: var(--color-interactive-subtle);
+  --sidebar-item-active-fg: var(--color-interactive);
+
+  /* ── TopBar ────────────────────────────────────────────────── */
+  --topbar-height: 48px;
+  --topbar-bg: var(--surface-raised);
+  --topbar-border: var(--border-subtle);
+
+  /* ── Dialog ────────────────────────────────────────────────── */
+  --dialog-bg: var(--surface-overlay);
+  --dialog-border: var(--border-subtle);
+  --dialog-radius: var(--sp-radius-xl);
+  --dialog-shadow: var(--shadow-lg);
+  --overlay-bg: oklch(0 0 0 / 50%);
+
+  /* ── Tooltip ───────────────────────────────────────────────── */
+  --tooltip-bg: var(--sp-gray-800);
+  --tooltip-fg: var(--sp-gray-50);
+  --tooltip-radius: var(--sp-radius-sm);
+
+  /* ── Tabs ──────────────────────────────────────────────────── */
+  --tabs-border: var(--border-subtle);
+  --tabs-trigger-fg: var(--fg-muted);
+  --tabs-active-fg: var(--fg-default);
+  --tabs-active-border: var(--color-interactive);
+  --tabs-hover-bg: var(--color-interactive-subtle);
+
+  /* ── DropdownMenu ──────────────────────────────────────────── */
+  --menu-bg: var(--surface-overlay);
+  --menu-border: var(--border-subtle);
+  --menu-radius: var(--sp-radius-lg);
+  --menu-item-hover: var(--color-interactive-subtle);
+  --menu-item-fg: var(--fg-default);
+  --menu-shadow: var(--shadow-md);
+
+  /* ── Switch ──────────────────────────────────────────────── */
+  --switch-bg: var(--sp-gray-600);
+  --switch-bg-checked: var(--color-interactive);
+  --switch-thumb: var(--sp-gray-50);
+
+  /* ── Slider ──────────────────────────────────────────────── */
+  --slider-track: var(--sp-gray-700);
+  --slider-range: var(--color-interactive);
+  --slider-thumb: var(--sp-gray-50);
+
+  /* ── ProgressBar ─────────────────────────────────────────── */
+  --progress-track: var(--sp-gray-700);
+  --progress-bar: var(--color-interactive);
+
+  /* ── Card ────────────────────────────────────────────────── */
+  --card-bg: var(--surface-raised);
+  --card-bg-hover: var(--surface-overlay);
+  --card-border: var(--border-subtle);
+  --card-border-hover: var(--border-default);
+  --card-radius: var(--sp-radius-lg);
+
+  /* ── Checkbox ──────────────────────────────────────────── */
+  --checkbox-bg: transparent;
+  --checkbox-bg-checked: var(--color-interactive);
+  --checkbox-border: var(--border-default);
+  --checkbox-border-checked: var(--color-interactive);
+  --checkbox-fg: var(--sp-gray-50);
+  --checkbox-radius: var(--sp-radius-sm);
+
+  /* ── Select ────────────────────────────────────────────── */
+  --select-bg: var(--surface-inset);
+  --select-border: var(--border-default);
+  --select-border-focus: var(--border-interactive);
+  --select-fg: var(--fg-default);
+  --select-placeholder: var(--fg-subtle);
+  --select-radius: var(--sp-radius-md);
+  --select-content-bg: var(--surface-overlay);
+  --select-item-hover: var(--color-interactive-subtle);
+
+  /* ── Toast ─────────────────────────────────────────────── */
+  --toast-bg: var(--surface-overlay);
+  --toast-border: var(--border-subtle);
+  --toast-radius: var(--sp-radius-lg);
+  --toast-shadow: var(--shadow-lg);
+
+  /* ── Alert ─────────────────────────────────────────────── */
+  --alert-radius: var(--sp-radius-md);
+
+  /* ── Skeleton ──────────────────────────────────────────── */
+  --skeleton-bg: var(--sp-gray-700);
+  --skeleton-shine: var(--sp-gray-600);
+
+  /* ── RadioGroup ────────────────────────────────────────── */
+  /* Reuses checkbox tokens */
+
+  /* ── ScrollArea ──────────────────────────────────────── */
+  --scrollarea-thumb: var(--sp-gray-500);
+  --scrollarea-thumb-hover: var(--sp-gray-400);
+  --scrollarea-track: transparent;
+
+  /* ── ContextMenu ─────────────────────────────────────── */
+  /* Reuses --menu-* tokens from DropdownMenu */
+
+  /* ── Toggle / ToggleGroup ────────────────────────────── */
+  --toggle-bg: transparent;
+  --toggle-active-bg: var(--color-interactive-subtle);
+  --toggle-active-fg: var(--color-interactive);
+  --toggle-border: var(--border-default);
+  --toggle-radius: var(--sp-radius-md);
+
+  /* ── HoverCard ────────────────────────────────────────── */
+  /* Reuses --menu-* tokens */
+
+  /* ── Collapsible ──────────────────────────────────────── */
+  /* No dedicated tokens — uses base animation utilities */
+
+  /* ── NavigationMenu ──────────────────────────────────── */
+  /* Reuses --menu-* tokens */
+
+  /* ── Menubar ─────────────────────────────────────────── */
+  /* Reuses --menu-* tokens */
+
+  /* ── Textarea ────────────────────────────────────────── */
+  /* Reuses --input-* tokens */
+
+  /* ── Sheet ───────────────────────────────────────────── */
+  /* Reuses --dialog-* and --overlay-bg tokens */
+
+  /* ── Pagination ──────────────────────────────────────── */
+  /* Reuses --btn-* tokens */
+
+  /* ── AlertDialog ─────────────────────────────────────── */
+  /* Reuses --dialog-* and --overlay-bg tokens */
+
+  /* ── Toolbar ─────────────────────────────────────────── */
+  /* Reuses --menu-* and --toggle-* tokens */
+}

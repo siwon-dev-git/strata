@@ -1,0 +1,91 @@
+/* ═══════════════════════════════════════════════════════════════
+   Layer 2: Semantic Tokens
+   Assign MEANING to Layer 1 primitives.
+   Components reference these — never Layer 1 directly.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Dark mode (default) ─────────────────────────────────────── */
+:root {
+  /* Interactive */
+  --color-interactive: var(--sp-blue-500);
+  --color-interactive-hover: var(--sp-blue-400);
+  --color-interactive-fg: oklch(0.98 0 0);
+  --color-interactive-subtle: oklch(0.62 0.21 260 / 12%);
+
+  /* Status: danger / success / warning */
+  --color-danger: var(--sp-red-500);
+  --color-danger-hover: var(--sp-red-400);
+  --color-danger-fg: oklch(0.98 0 0);
+  --color-danger-subtle: oklch(0.63 0.24 25 / 12%);
+
+  --color-success: var(--sp-green-400);
+  --color-success-fg: oklch(0.08 0.01 250);
+  --color-success-subtle: oklch(0.72 0.19 155 / 12%);
+
+  --color-warning: var(--sp-yellow-400);
+  --color-warning-fg: oklch(0.08 0.01 250);
+  --color-warning-subtle: oklch(0.8 0.16 85 / 12%);
+
+  /* Surface hierarchy */
+  --surface-base: var(--sp-gray-950);
+  --surface-raised: var(--sp-gray-900);
+  --surface-overlay: var(--sp-gray-800);
+  --surface-inset: oklch(0.06 0.004 250);
+  --surface-disabled: var(--sp-gray-800);
+
+  /* Foreground hierarchy */
+  --fg-default: var(--sp-gray-50);
+  --fg-muted: var(--sp-gray-400);
+  --fg-subtle: var(--sp-gray-500);
+  --fg-disabled: var(--sp-gray-600);
+  --fg-on-accent: oklch(0.98 0 0);
+
+  /* Border */
+  --border-subtle: var(--sp-gray-800);
+  --border-default: var(--sp-gray-700);
+  --border-strong: var(--sp-gray-600);
+  --border-interactive: var(--sp-blue-500);
+  --border-danger: var(--sp-red-500);
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px oklch(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.5);
+}
+
+/* ── Light mode ──────────────────────────────────────────────── */
+:root:not(.dark),
+:root:not(.dark) [data-theme] {
+  --color-interactive: var(--sp-blue-600);
+  --color-interactive-hover: var(--sp-blue-500);
+  --color-interactive-subtle: oklch(0.54 0.2 260 / 10%);
+
+  --color-danger: var(--sp-red-600);
+  --color-danger-hover: var(--sp-red-500);
+  --color-danger-subtle: oklch(0.5 0.24 25 / 10%);
+
+  --color-success: var(--sp-green-600);
+  --color-success-subtle: oklch(0.55 0.19 155 / 10%);
+
+  --color-warning: var(--sp-yellow-600);
+  --color-warning-subtle: oklch(0.6 0.16 85 / 10%);
+
+  --surface-base: var(--sp-gray-50);
+  --surface-raised: var(--sp-gray-0);
+  --surface-overlay: var(--sp-gray-0);
+  --surface-inset: var(--sp-gray-100);
+  --surface-disabled: var(--sp-gray-100);
+
+  --fg-default: var(--sp-gray-900);
+  --fg-muted: var(--sp-gray-600);
+  --fg-subtle: var(--sp-gray-500);
+  --fg-disabled: var(--sp-gray-400);
+
+  --border-subtle: var(--sp-gray-200);
+  --border-default: var(--sp-gray-300);
+  --border-strong: var(--sp-gray-400);
+
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.06);
+  --shadow-md: 0 4px 6px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
+}

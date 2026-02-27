@@ -1,0 +1,55 @@
+name: Auto-regenerate Baselines
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/components/**/*.tsx'
+      - 'src/tokens/**'
+
+concurrency:
+  group: auto-baseline
+  cancel-in-progress: true
+
+jobs:
+  regen:
+    name: Regenerate stale baselines
+    runs-on: ubuntu-latest
+    # Disabled until visual testing (Playwright + Storybook) is set up
+    if: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-strata
+
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Regenerate visual baselines
+        run: pnpm test:visual:update
+
+      - name: Check for changes
+        id: diff
+        run: |
+          CHANGED=$(git diff --name-only e2e/__screenshots__/ | wc -l | tr -d ' ')
+          echo "count=$CHANGED" >> "$GITHUB_OUTPUT"
+          if [ "$CHANGED" -gt 0 ]; then
+            echo "📸 $CHANGED baseline(s) drifted — auto-regenerating"
+          else
+            echo "✅ All baselines current — no changes needed"
+          fi
+
+      - name: Commit updated baselines
+        if: steps.diff.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add e2e/__screenshots__/
+          git commit -m "chore(visual): auto-regenerate ${{ steps.diff.outputs.count }} baseline(s)
+
+          Triggered by component/theme change on main"
+          git push

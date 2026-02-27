@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Format · Lint · Typecheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-strata
+
+      - name: Prettier — format check
+        run: pnpm format:check
+
+      - name: ESLint
+        run: pnpm lint
+
+      - name: TypeScript — type check
+        run: pnpm typecheck
+
+  test:
+    name: Unit tests
+    needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-strata
+
+      - name: Unit tests
+        run: pnpm test:ci
+
+  build:
+    name: Build
+    needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-strata
+
+      - name: Build
+        run: pnpm build

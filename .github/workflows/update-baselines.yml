@@ -1,0 +1,54 @@
+name: Update Visual Baselines
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to update baselines on
+        required: true
+        default: main
+
+concurrency:
+  group: baselines-${{ github.event.inputs.branch }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: Regenerate screenshots
+    runs-on: ubuntu-latest
+    # Disabled until visual testing (Playwright + Storybook) is set up
+    if: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - uses: ./.github/actions/setup-strata
+
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Update visual baselines
+        run: pnpm test:visual:update
+
+      - name: Check for changes
+        id: diff
+        run: |
+          CHANGED=$(git diff --name-only e2e/__screenshots__/ | wc -l | tr -d ' ')
+          echo "count=$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "📸 $CHANGED baseline(s) changed"
+
+      - name: Commit updated baselines
+        if: steps.diff.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add e2e/__screenshots__/
+          git commit -m "chore(visual): regenerate ${{ steps.diff.outputs.count }} baseline(s)
+
+          Triggered by workflow_dispatch on ${{ github.event.inputs.branch }}"
+          git push
