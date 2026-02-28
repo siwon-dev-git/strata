@@ -30,9 +30,9 @@ export function SelectTrigger({
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
-        'flex h-9 w-full items-center justify-between',
+        'flex h-[--density-item-height] w-full items-center justify-between',
         'rounded-[--select-radius]',
-        'border border-[--select-border] bg-[--select-bg] px-3 text-sm text-[--select-fg]',
+        'border border-[--select-border] bg-[--select-bg] px-[--density-padding-x] text-sm text-[--select-fg]',
         'placeholder:text-[--select-placeholder]',
         'transition-colors duration-[--motion-duration-normal]',
         'focus:outline-none focus:ring-2 focus:ring-[--select-border-focus]',

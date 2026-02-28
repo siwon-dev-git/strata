@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const SIZE_MAP = {
   sm: 'h-7 text-xs px-2',
-  md: 'h-9 text-sm px-3',
+  md: 'h-[--density-item-height] text-sm px-[--density-padding-x]',
   lg: 'h-11 text-base px-4',
 } as const;
 

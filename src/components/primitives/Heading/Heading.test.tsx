@@ -25,7 +25,7 @@ describe('Heading', () => {
     const el = screen.getByText('Override');
     expect(el.tagName).toBe('H4');
     // Visually level 2, semantically h4
-    expect(el.className).toContain('text-2xl');
+    expect(el.className).toContain('text-[length:--type-title]');
   });
 
   it('applies tracking-tight base class', () => {
