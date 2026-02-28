@@ -74,10 +74,10 @@ Optional. Component or area name in lowercase:
 
 1. Execute default commit flow
 2. **Pre-PR checks** (before push):
-   - Bundle budget: `pnpm build && du -sk dist | cut -f1`
+   - Bundle budget: `pnpm build && grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}'`
      - ≤ 512KB → proceed
      - \> 512KB → 🔴 HALT (must reduce bundle size before PR)
-   - PR size: `git diff --stat origin/main...HEAD` → total changed lines
+   - PR size: `git diff --stat origin/main...HEAD -- ':!*lock*'` → total changed lines
      - ≤ 500 lines → proceed
      - 501–1000 lines → ⚠️ WARN: ask user to confirm or split
      - \> 1000 lines → 🔴 BLOCK: split required (user can explicitly override)

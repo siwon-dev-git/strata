@@ -35,7 +35,7 @@
 ## Harness
 
 - **coverage-ratchet**: Coverage threshold auto-rises to current - 1%. Only blocks regression, enables natural growth
-- **bundle-budget-g3**: Bundle size (512KB budget) enforced as G3 hard gate extension after `pnpm build`. `du -sk dist | cut -f1` → >512KB = FAIL. 400-512KB = WARN. Rationale: bundle is a build output metric, not a separate gate. Avoids renumbering G4/G5 and breaking heritage refs
+- **bundle-budget-g3**: Bundle size (512KB budget) enforced as G3 hard gate extension after `pnpm build`. Measures initial entry bundle (files referenced by index.html), not total dist. Code-split lazy chunks excluded because users load them on demand. >512KB = FAIL. 400-512KB = WARN. Rationale: bundle is a build output metric, not a separate gate. Avoids renumbering G4/G5 and breaking heritage refs
 - **pr-size-precheck**: PR size checked as pre-PR soft gate before push. >500 lines = WARN + user confirm. >1000 lines = BLOCK (user override possible). Not a numbered gate because diff size is contextual, not binary quality. Applies to both `/commit pr` and sprint ❿ PR+CI step
 - **ci-needs-chain**: lint → test/visual dependency required. Static analysis failure blocks downstream job resources
 - **three-loop-selfheal**: Detect (health-check) → Correct (ratchet, auto-baseline) → Defend (dependency-review, actionlint). 3-loop triangle maintains quality floor

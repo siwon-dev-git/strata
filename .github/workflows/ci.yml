@@ -53,14 +53,16 @@ jobs:
         with:
           script: |
             const { execSync } = require('child_process');
-            const size = execSync('du -sk dist | cut -f1').toString().trim();
+            const size = execSync(
+              `grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}'`
+            ).toString().trim();
             const kb = parseInt(size);
             const status = kb > 512 ? '🔴' : kb > 400 ? '🟡' : '✅';
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `${status} **Bundle:** ${kb}KB / 512KB budget`,
+              body: `${status} **Bundle (entry):** ${kb}KB / 512KB budget`,
             });
 
   # ── PR Checks ────────────────────────────────────
@@ -72,12 +74,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Label PR size
         uses: actions/github-script@v7
         with:
           script: |
-            const { additions, deletions } = context.payload.pull_request;
+            const { execSync } = require('child_process');
+            const stat = execSync(
+              `git diff --numstat origin/main...HEAD -- ':!*lock*' | awk '{a+=$1; d+=$2} END {print a, d}'`
+            ).toString().trim().split(' ');
+            const additions = parseInt(stat[0]) || 0;
+            const deletions = parseInt(stat[1]) || 0;
             const total = additions + deletions;
 
             const sizes = [

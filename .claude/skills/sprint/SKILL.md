@@ -92,7 +92,7 @@ Sequential gate chain. Each gate must PASS before the next runs.
 
 1. `pnpm test:ci` — FAIL → fix → re-verify
 2. `pnpm build` — FAIL → fix → re-verify
-3. Bundle budget: `du -sk dist | cut -f1`
+3. Bundle budget: `grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}'`
    - ≤ 400KB → ✅ PASS
    - 401–512KB → 🟡 WARN (proceed with caution)
    - \> 512KB → 🔴 FAIL (must reduce bundle size)
@@ -128,7 +128,7 @@ Sequential gate chain. Each gate must PASS before the next runs.
 
 **Pre-PR size check** (before push):
 
-1. `git diff --stat origin/main...HEAD` → calculate total changed lines
+1. `git diff --stat origin/main...HEAD -- ':!*lock*'` → calculate total changed lines
    - ≤ 500 lines → proceed
    - 501–1000 lines → ⚠️ WARN: "Large PR. Consider splitting." Ask user to confirm or split
    - \> 1000 lines → 🔴 BLOCK: "PR too large. Split required." User can explicitly override
