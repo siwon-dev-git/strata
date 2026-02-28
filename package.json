@@ -37,11 +37,12 @@
   ],
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-llms-txt.js",
     "build": "tsc -b && vite build",
     "build:lib": "vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && mkdir -p dist/tokens && cp src/tokens/*.css dist/tokens/ && printf '@import \"./tokens/layer1-primitive.css\";\\n@import \"./tokens/layer2-semantic.css\";\\n@import \"./tokens/layer3-component.css\";\\n' > dist/styles.css && cp src/preset.css dist/preset.css",
     "lint": "eslint .",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6007",
+    "storybook": "lsof -ti:6007 | xargs kill -9 2>/dev/null; storybook dev -p 6007",
     "build-storybook": "storybook build",
     "test": "vitest",
     "test:ci": "vitest run",

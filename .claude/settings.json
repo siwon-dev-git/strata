@@ -2,5 +2,11 @@
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "context7@claude-plugins-official": true
+  },
+  "mcpServers": {
+    "storybook-mcp": {
+      "type": "http",
+      "url": "http://localhost:6007/mcp"
+    }
   }
 }
