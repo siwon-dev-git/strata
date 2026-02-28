@@ -14,6 +14,8 @@ $ARGUMENTS — unified loop. Single command runs the full cycle.
 - text → BUILD 1 cycle (quest)
 - N + text → BUILD N cycles
 
+**Multi-cycle BUILD**: Each cycle runs ❶-❿ fully (including G5 PR+CI). After G5 PASS, emit output block with `Session: CLEAR`. Do not start cycle N+1 in the same session.
+
 ## Gate Chain
 
 6 gates govern every cycle. Each gate is binary (PASS/FAIL). Failure blocks downstream.
@@ -142,6 +144,7 @@ Sequential gate chain. Each gate must PASS before the next runs.
 5. FAIL → diagnose → fix locally → re-enter at G1 → push → re-watch
 6. Max 3 CI fix rounds. Exhausted → BLOCKED
 7. CI green → report PR URL. **Merge is user's decision. Never auto-merge.**
+8. **Session boundary** (BUILD only): G5 PASS → emit final output block → instruct user: "Sprint complete. Run `/clear` to start fresh." Do not start another quest in this session.
 
 ### ⓫ Cleanup (post-merge)
 
@@ -212,9 +215,14 @@ Re-run SENSE →
 [MAINTAIN] Health: Hard ✅|❌ Soft X/4 / Actions: / Insight:
 Heritage: ADR N₁ + FMEA N₂
 Status: COMPLETE | INCOMPLETE | BLOCKED | CONVERGED | DIMINISHING | MAX_CYCLE
+Session: CLEAR (BUILD G5 PASS) | CONTINUE (MAINTAIN) | BLOCKED
 ═══════════════════════
 ```
 
 ## Constraints
 
 Scope: 10min/100k per cycle. Self-scoring prohibited (Babel paradox). Ship-loop-harness: evolve within shipping loop. Evaluation must be actionable.
+
+**Session boundary**: BUILD G5 PASS → session ends. Instruct user to `/clear`. Never start a new BUILD quest in the same session. MAINTAIN mode is exempt (convergence loop is self-contained).
+
+**PR mandatory**: Step ❿ (PR+CI) is never skippable in BUILD mode. G5 is the terminal gate. A BUILD cycle without G5 is INCOMPLETE, not COMPLETE.

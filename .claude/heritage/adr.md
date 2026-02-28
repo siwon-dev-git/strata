@@ -30,7 +30,7 @@
 
 ## Process
 
-- **sprint-clear-commit-align**: Commit boundary = session boundary. Build→commit→retro. Next session fully restores from git log + file reads
+- **sprint-clear-commit-align**: Commit boundary = session boundary. Build→commit→retro. Next session fully restores from git log + file reads. Enforced: sprint SKILL.md ❿.8 + Output Format `Session: CLEAR` + Constraints §Session boundary
 
 ## Harness
 
