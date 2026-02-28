@@ -26,7 +26,7 @@
   --sp-gray-700: oklch(0.28 0.01 250);
   --sp-gray-800: oklch(0.2 0.008 250);
   --sp-gray-900: oklch(0.13 0.006 250);
-  --sp-gray-950: oklch(0.08 0.004 250);
+  --sp-gray-950: oklch(0.06 0.004 250);
 
   /* ── Blue ──────────────────────────────────────────────────── */
   --sp-blue-50: oklch(0.97 0.02 260);
@@ -103,6 +103,14 @@
   --sp-text-2xl: 1.5rem;
   --sp-text-3xl: 1.875rem;
   --sp-text-4xl: 2.25rem;
+
+  /* ── Line-height scale ──────────────────────────────────────── */
+  --sp-leading-none: 1;
+  --sp-leading-tight: 1.25;
+  --sp-leading-snug: 1.375;
+  --sp-leading-normal: 1.5;
+  --sp-leading-relaxed: 1.625;
+  --sp-leading-loose: 2;
 
   /* ── Motion scale ──────────────────────────────────────────── */
   --sp-duration-0: 0ms;
@@ -185,6 +193,21 @@
   --fg-disabled: var(--sp-gray-600);
   --fg-on-accent: oklch(0.98 0 0);
 
+  /* Control surfaces (switches, sliders, scrollbars) */
+  --surface-control: var(--sp-gray-600);
+  --surface-control-hover: var(--sp-gray-400);
+
+  /* Inverted surfaces (tooltips) */
+  --surface-inverted: var(--sp-gray-800);
+  --fg-on-inverted: var(--sp-gray-50);
+
+  /* Loading states (skeleton) */
+  --surface-loading: var(--sp-gray-700);
+  --surface-loading-shine: var(--sp-gray-600);
+
+  /* Scrim overlay */
+  --surface-scrim: oklch(0 0 0 / 50%);
+
   /* Border */
   --border-subtle: var(--sp-gray-800);
   --border-default: var(--sp-gray-700);
@@ -219,6 +242,14 @@
   --type-body: var(--sp-text-base);
   --type-label: var(--sp-text-sm);
   --type-caption: var(--sp-text-xs);
+
+  /* Typography — line-height */
+  --type-display-leading: var(--sp-leading-tight);
+  --type-title-leading: var(--sp-leading-tight);
+  --type-heading-leading: var(--sp-leading-snug);
+  --type-body-leading: var(--sp-leading-normal);
+  --type-label-leading: var(--sp-leading-normal);
+  --type-caption-leading: var(--sp-leading-normal);
 
   /* Focus — accessible ring (WCAG 2.2 AA: 3:1 against adjacents) */
   --focus-ring-color: var(--sp-blue-500);
@@ -288,6 +319,14 @@
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
 
   --focus-ring-color: var(--sp-blue-600);
+
+  --surface-control: var(--sp-gray-300);
+  --surface-control-hover: var(--sp-gray-500);
+  --surface-inverted: var(--sp-gray-800);
+  --fg-on-inverted: var(--sp-gray-50);
+  --surface-loading: var(--sp-gray-200);
+  --surface-loading-shine: var(--sp-gray-300);
+  --surface-scrim: oklch(0 0 0 / 30%);
 }
 
 /* ── Theme: Blue → purple accent (dark) ────────────────────── */
@@ -394,7 +433,7 @@
   --input-fg: var(--fg-default);
   --input-placeholder: var(--fg-subtle);
   --input-radius: var(--sp-radius-md);
-  --input-ring: oklch(0.62 0.21 260 / 25%);
+  --input-ring: color-mix(in oklch, var(--focus-ring-color) 25%, transparent);
 
   /* ── Badge ─────────────────────────────────────────────────── */
   --badge-radius: var(--sp-radius-full);
@@ -423,11 +462,11 @@
   --dialog-border: var(--border-subtle);
   --dialog-radius: var(--sp-radius-xl);
   --dialog-shadow: var(--shadow-lg);
-  --overlay-bg: oklch(0 0 0 / 50%);
+  --overlay-bg: var(--surface-scrim);
 
   /* ── Tooltip ───────────────────────────────────────────────── */
-  --tooltip-bg: var(--sp-gray-800);
-  --tooltip-fg: var(--sp-gray-50);
+  --tooltip-bg: var(--surface-inverted);
+  --tooltip-fg: var(--fg-on-inverted);
   --tooltip-radius: var(--sp-radius-sm);
 
   /* ── Tabs ──────────────────────────────────────────────────── */
@@ -446,17 +485,17 @@
   --menu-shadow: var(--shadow-md);
 
   /* ── Switch ──────────────────────────────────────────────── */
-  --switch-bg: var(--sp-gray-600);
+  --switch-bg: var(--surface-control);
   --switch-bg-checked: var(--color-interactive);
-  --switch-thumb: var(--sp-gray-50);
+  --switch-thumb: var(--fg-on-accent);
 
   /* ── Slider ──────────────────────────────────────────────── */
-  --slider-track: var(--sp-gray-700);
+  --slider-track: var(--surface-control);
   --slider-range: var(--color-interactive);
-  --slider-thumb: var(--sp-gray-50);
+  --slider-thumb: var(--fg-on-accent);
 
   /* ── ProgressBar ─────────────────────────────────────────── */
-  --progress-track: var(--sp-gray-700);
+  --progress-track: var(--surface-control);
   --progress-bar: var(--color-interactive);
 
   /* ── Card ────────────────────────────────────────────────── */
@@ -471,7 +510,7 @@
   --checkbox-bg-checked: var(--color-interactive);
   --checkbox-border: var(--border-default);
   --checkbox-border-checked: var(--color-interactive);
-  --checkbox-fg: var(--sp-gray-50);
+  --checkbox-fg: var(--fg-on-accent);
   --checkbox-radius: var(--sp-radius-sm);
 
   /* ── Select ────────────────────────────────────────────── */
@@ -494,15 +533,15 @@
   --alert-radius: var(--sp-radius-md);
 
   /* ── Skeleton ──────────────────────────────────────────── */
-  --skeleton-bg: var(--sp-gray-700);
-  --skeleton-shine: var(--sp-gray-600);
+  --skeleton-bg: var(--surface-loading);
+  --skeleton-shine: var(--surface-loading-shine);
 
   /* ── RadioGroup ────────────────────────────────────────── */
   /* Reuses checkbox tokens */
 
   /* ── ScrollArea ──────────────────────────────────────── */
-  --scrollarea-thumb: var(--sp-gray-500);
-  --scrollarea-thumb-hover: var(--sp-gray-400);
+  --scrollarea-thumb: var(--surface-control);
+  --scrollarea-thumb-hover: var(--surface-control-hover);
   --scrollarea-track: transparent;
 
   /* ── ContextMenu ─────────────────────────────────────── */

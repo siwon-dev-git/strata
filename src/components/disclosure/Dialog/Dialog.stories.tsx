@@ -93,3 +93,69 @@ export const WithFooter: Story = {
     </DialogRoot>
   ),
 };
+
+export const ScrollOverflow: Story = {
+  render: () => (
+    <DialogRoot>
+      <DialogTrigger asChild>
+        <Button>Open Long Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Terms of Service</DialogTitle>
+          <DialogClose asChild>
+            <Button variant="ghost" size="sm">
+              X
+            </Button>
+          </DialogClose>
+        </DialogHeader>
+        <DialogBody>
+          <div className="max-h-60 overflow-y-auto space-y-4 text-sm text-fg-muted">
+            {Array.from({ length: 10 }, (_, i) => (
+              <p key={i}>
+                Section {i + 1}: Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris.
+              </p>
+            ))}
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="ghost">Decline</Button>
+          </DialogClose>
+          <Button variant="solid">Accept</Button>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
+  ),
+};
+
+export const DisabledTrigger: Story = {
+  render: () => (
+    <DialogRoot>
+      <DialogTrigger asChild>
+        <Button disabled>Cannot Open</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Unreachable</DialogTitle>
+        </DialogHeader>
+        <DialogBody>
+          <DialogDescription>This dialog should not open.</DialogDescription>
+        </DialogBody>
+      </DialogContent>
+    </DialogRoot>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /cannot open/i });
+
+    await expect(trigger).toBeDisabled();
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    await expect(body.queryByRole('dialog')).not.toBeInTheDocument();
+  },
+};

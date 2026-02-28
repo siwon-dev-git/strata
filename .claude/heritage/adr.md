@@ -10,6 +10,8 @@
 - **empty-state-story**: List/table components require empty array story
 - **fixture-single-source**: 3+ stories sharing data → centralize in fixtures/
 - **composition-recipe-doc**: Container slot architecture must be documented in DesignGuide
+- **l3-never-references-l1**: Layer 3 component tokens must reference Layer 2 semantic tokens exclusively. Layer 2 references Layer 1. No skip connections. CI enforces via grep for `--sp-gray-` and `oklch(` in `layer3-component.css`
+- **use-client-boundary**: All component `.tsx` files get `"use client"` directive. Type files (`.type.ts`), variant files (`.variant.ts`), and barrel `index.ts` files remain server-safe for RSC compatibility
 
 ## AI Integration
 
@@ -32,6 +34,8 @@
 - **pr-size-precheck**: Pre-PR soft gate. >500 WARN, >1000 BLOCK (overridable). Contextual, not binary
 - **ci-needs-chain**: lint → test dependency. Static failure blocks downstream jobs
 - **three-loop-selfheal**: Detect → Correct → Defend. 3-loop triangle maintains quality floor
+- **token-layer-ci-lint**: CI step greps `layer3-component.css` for L1 references (`--sp-gray-`) and hardcoded `oklch(` values. Any match = hard fail. Prevents layer violation regression
+- **bundle-budget-hard-gate**: Bundle size gate enforces 512KB hard limit (not just PR comment). Runs after build step, fails CI if exceeded
 
 ## File Convention
 
