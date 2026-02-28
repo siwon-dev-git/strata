@@ -31,6 +31,11 @@
 - **llms-txt-stale**: llms.md not regenerated after component add/remove → AI tools see outdated index. Run `pnpm generate:llms` after component changes
 - **mcp-addon-breaking**: @storybook/addon-mcp API may change (experimental). Pin version, test on upgrade. llms.md = stable fallback
 
+## Harness
+
+- **template-dollar-expansion**: SKILL.md `$1`, `$2` etc. in code blocks (e.g., awk `{sum+=$1}`) are expanded as positional arguments during skill invocation. `$ARGUMENTS` and `$N` (numeric) are expanded; `$f`, `$s` (letter-named) are NOT. Fix: avoid awk `$N` in SKILLs — use pure bash arithmetic with letter-named variables instead. Occurred: sprint SKILL.md + commit SKILL.md bundle budget commands. Hardened: replaced awk with `{ s=0; while read -r f; ... }`
+- **heritage-count-drift**: self-model.md claimed "ADR 42 + FMEA 31 = 73" but actual count was ADR 29 + FMEA 21 = 50. Heritage counts drift when entries are consolidated or removed without updating self-model. Fix: count entries via grep when updating self-model. Occurred: self-model.md Current State section
+
 ## Tooling
 
 - **skill-frontmatter-invalid**: SKILL.md contained unsupported frontmatter attribute `allowed-tools`. Claude Code only supports: `argument-hint`, `compatibility`, `description`, `disable-model-invocation`, `license`, `metadata`, `name`, `user-invokable`. Invalid keys are silently ignored or warn at runtime. Fix: verify frontmatter keys against supported list when editing SKILL files. Occurred: sprint/SKILL.md, convention/SKILL.md

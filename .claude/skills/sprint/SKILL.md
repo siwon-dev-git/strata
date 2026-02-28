@@ -91,7 +91,7 @@ Sequential gate chain. Each gate must PASS before the next runs.
 
 1. `pnpm test:ci` — FAIL → fix → re-verify
 2. `pnpm build` — FAIL → fix → re-verify
-3. Bundle budget: `grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}'`
+3. Bundle budget: `grep -oE 'assets/[^"]+' dist/index.html | { s=0; while read -r f; do n=$(wc -c < "dist/$f"); s=$((s+n)); done; echo $((s/1024)); }`
    - ≤ 400KB → ✅ PASS
    - 401–512KB → 🟡 WARN (proceed with caution)
    - \> 512KB → 🔴 FAIL (must reduce bundle size)
@@ -172,7 +172,7 @@ Two-tier check:
 - Unreviewed commits: <3
 - Heritage freshness: <7 days
 - Dead references: 0
-- Bundle size: ≤ 512KB (`pnpm build && grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}'`)
+- Bundle size: ≤ 512KB (`pnpm build && grep -oE 'assets/[^"]+' dist/index.html | { s=0; while read -r f; do n=$(wc -c < "dist/$f"); s=$((s+n)); done; echo $((s/1024)); }`)
 
 ### DECIDE — Priority
 

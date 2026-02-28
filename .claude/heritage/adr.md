@@ -40,6 +40,12 @@
 - **ci-needs-chain**: lint → test/visual dependency required. Static analysis failure blocks downstream job resources
 - **three-loop-selfheal**: Detect (health-check) → Correct (ratchet, auto-baseline) → Defend (dependency-review, actionlint). 3-loop triangle maintains quality floor
 
+## File Convention
+
+- **barrel-tier-boundary**: index.ts barrel required for Tier 2+ composites (3+ sub-components), forbidden for Tier 0-1 (single export). Barrel = public API boundary per FSD "public API per slice" principle. Category-level barrels always exist regardless of tier
+- **fsd-segment-naming**: File suffixes map to FSD segments (.tsx=ui, .type.ts=model, .variant.ts=config, .hook.ts=model, .policy.ts=lib, .const.ts=config, index.ts=api). Does not change file names — clarifies architectural role
+- **template-safe-commands**: SKILL.md code blocks must avoid `$N` (numeric positional) patterns. Use letter-named bash variables ($s, $n, $f) which are not expanded by the skill template engine
+
 ## Component Design
 
 - **svg-first-viz**: No external chart libraries. React+SVG+Tailwind for visualization. stroke-dasharray for donut/gauge, polygon for radar, polyline for sparkline. Zero bundle dependency
