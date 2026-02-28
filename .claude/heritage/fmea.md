@@ -24,8 +24,8 @@
 
 ## AI
 
-- **llms-txt-stale**: llms.txt not regenerated after component add/remove → AI tools see outdated index. Run `pnpm generate:llms` after component changes
-- **mcp-addon-breaking**: @storybook/addon-mcp API may change (experimental). Pin version, test on upgrade. llms.txt = stable fallback
+- **llms-txt-stale**: llms.md not regenerated after component add/remove → AI tools see outdated index. Run `pnpm generate:llms` after component changes
+- **mcp-addon-breaking**: @storybook/addon-mcp API may change (experimental). Pin version, test on upgrade. llms.md = stable fallback
 
 ## Tooling
 

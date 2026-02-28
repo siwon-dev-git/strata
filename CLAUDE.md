@@ -37,9 +37,9 @@ Code comments and commits in English.
 ```
 src/components/{primitives|layout|disclosure|feedback}/
 src/tokens/     — 3-layer CSS custom properties
-src/demos/      — 11 reference implementations
+src/demos/      — 12 reference implementations
 src/icons/      — 61 SVG icon components
-scripts/        — Build utilities (llms.txt generation)
+scripts/        — Build utilities (llms.md generation)
 ```
 
 ## Conventions
@@ -51,7 +51,7 @@ scripts/        — Build utilities (llms.txt generation)
 
 ## AI Integration
 
-- `llms.txt` / `llms-full.txt` — AI-readable component index (auto-generated via `pnpm generate:llms`)
+- `llms.md` / `llms-full.md` — AI-readable component index (auto-generated via `pnpm generate:llms`)
 - Storybook MCP — `@storybook/addon-mcp` exposes component manifest at `http://localhost:6007/mcp`
 - Before UI development, query Storybook MCP for existing component APIs
 

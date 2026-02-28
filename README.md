@@ -37,7 +37,7 @@ While other libraries focus on component count or CSS-in-JS convenience, Strata 
 | **Runtime theme switching**           | **CSS vars only** | CSS vars  | JS context |  Hooks  |
 | **Decision registry** (ADR + FMEA)    |      **Yes**      |    No     |     No     |   No    |
 | **Convention system**                 |   **Tier 0–3**    |    No     |     No     |   No    |
-| **Real-world demos**                  |    **11 apps**    | Starters  |     No     |   No    |
+| **Real-world demos**                  |    **12 apps**    | Starters  |     No     |   No    |
 
 ## Quick Start
 
@@ -105,22 +105,22 @@ Strata is the first design system with a **three-tier AI consumption strategy**:
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  Tier 1: llms.txt          ~2K tokens   Index       │
-│  Tier 2: llms-full.txt    ~15K tokens   Deep docs   │
+│  Tier 1: llms.md           ~2K tokens   Index       │
+│  Tier 2: llms-full.md     ~15K tokens   Deep docs   │
 │  Tier 3: Storybook MCP    Real-time     Live API    │
 └─────────────────────────────────────────────────────┘
 ```
 
-| Channel           | File                             | Use Case                                                                                       |
-| ----------------- | -------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **llms.txt**      | [`llms.txt`](llms.txt)           | Quick component discovery for any AI tool                                                      |
-| **llms-full.txt** | [`llms-full.txt`](llms-full.txt) | Full implementation guidance for large-context models                                          |
-| **Storybook MCP** | `http://localhost:6007/mcp`      | Real-time component API queries via [Model Context Protocol](https://modelcontextprotocol.io/) |
-| **Component .md** | `src/components/*/*.md`          | Structured docs (Role, Tier, Tokens, Constraints)                                              |
+| Channel           | File                           | Use Case                                                                                       |
+| ----------------- | ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| **llms.md**       | [`llms.md`](llms.md)           | Quick component discovery for any AI tool                                                      |
+| **llms-full.md**  | [`llms-full.md`](llms-full.md) | Full implementation guidance for large-context models                                          |
+| **Storybook MCP** | `http://localhost:6007/mcp`    | Real-time component API queries via [Model Context Protocol](https://modelcontextprotocol.io/) |
+| **Component .md** | `src/components/*/*.md`        | Structured docs (Role, Tier, Tokens, Constraints)                                              |
 
 ### For AI tool users (Cursor, Windsurf, Claude, ChatGPT)
 
-Point your AI tool at `llms.txt` for component discovery, or `llms-full.txt` for detailed implementation guidance. The structured `.md` format eliminates hallucination by providing exact token dependencies and API constraints.
+Point your AI tool at `llms.md` for component discovery, or `llms-full.md` for detailed implementation guidance. The structured `.md` format eliminates hallucination by providing exact token dependencies and API constraints.
 
 ### For Claude Code
 
@@ -133,23 +133,24 @@ Strata includes built-in orchestration skills:
 | `/commit [pr] [merge]` | Conventional commit with optional PR workflow                            |
 | `/research [topic]`    | Evidence-based research with falsification loops                         |
 
-## 11 Real-World Demos
+## 12 Real-World Demos
 
 Strata includes production-grade demo applications that prove component composition in real scenarios:
 
-| Demo               | Pattern                                             |
-| ------------------ | --------------------------------------------------- |
-| **Linear**         | Issue tracker — Select + Dialog + Badge composition |
-| **Slack**          | Message threads — AppShell + Sidebar + ScrollArea   |
-| **Twitter**        | Social feed — Card + Avatar + DropdownMenu          |
-| **Notion**         | Note-taking — Toolbar + Toggle + NavigationMenu     |
-| **Spotify**        | Music player — Slider + Tabs + ScrollArea           |
-| **GitHub**         | Issue browser — Table patterns + Label + Badge      |
-| **Discord**        | Server navigation — Sidebar + Tooltip + Avatar      |
-| **Figma**          | Document browser — Card grid + AspectRatio          |
-| **VS Code**        | Editor layout — AppShell + Tabs + Menubar           |
-| **Trello**         | Kanban board — Card + drag patterns + Stack         |
-| **Character Chat** | Mobile chat — Dialog + ScrollArea + Input           |
+| Demo         | Pattern                                             |
+| ------------ | --------------------------------------------------- |
+| **Linear**   | Issue tracker — Select + Dialog + Badge composition |
+| **Slack**    | Message threads — AppShell + Sidebar + ScrollArea   |
+| **Twitter**  | Social feed — Card + Avatar + DropdownMenu          |
+| **Notion**   | Note-taking — Toolbar + Toggle + NavigationMenu     |
+| **Spotify**  | Music player — Slider + Tabs + ScrollArea           |
+| **GitHub**   | Issue browser — Table patterns + Label + Badge      |
+| **Discord**  | Server navigation — Sidebar + Tooltip + Avatar      |
+| **Figma**    | Document browser — Card grid + AspectRatio          |
+| **VS Code**  | Editor layout — AppShell + Tabs + Menubar           |
+| **Trello**   | Kanban board — Card + drag patterns + Stack         |
+| **WhatsApp** | Mobile chat — Avatar + Badge + Tabs + Input         |
+| **Reddit**   | Social forum — Card + recursive comments + Tabs     |
 
 ## Governance & Heritage
 
@@ -177,7 +178,7 @@ pnpm test:ci        # Run tests once (CI)
 pnpm typecheck      # TypeScript check (tsc -b)
 pnpm lint           # ESLint check
 pnpm format         # Format with Prettier
-pnpm generate:llms  # Regenerate llms.txt + llms-full.txt
+pnpm generate:llms  # Regenerate llms.md + llms-full.md
 ```
 
 ---
@@ -190,8 +191,8 @@ Establishing production-grade reliability and adoption readiness.
 
 - [x] 57 components with full test coverage (52 test files)
 - [x] 3-layer OKLch token system
-- [x] 11 real-world demo applications
-- [x] AI three-tier consumption (llms.txt + llms-full.txt + Storybook MCP)
+- [x] 12 real-world demo applications
+- [x] AI three-tier consumption (llms.md + llms-full.md + Storybook MCP)
 - [x] Convention system with tier-based audit
 - [x] Heritage registry (ADR + FMEA)
 - [ ] npm publish pipeline (`@strata-ds/core` on npm)
@@ -252,6 +253,6 @@ Contributions are welcome. Please read the component convention system before su
 
 **Strata** — Design systems for the AI era.
 
-[GitHub](https://github.com/siwon-dev-git/strata) · [Storybook](http://localhost:6007) · [llms.txt](llms.txt)
+[GitHub](https://github.com/siwon-dev-git/strata) · [Storybook](http://localhost:6007) · [llms.md](llms.md)
 
 </div>
