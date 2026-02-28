@@ -55,12 +55,12 @@ Primary interactive element for triggering actions, with variant styling, loadin
 
 ## Sizes
 
-| size | height               | use case                          |
-| ---- | -------------------- | --------------------------------- |
-| sm   | 28px                 | Compact contexts, inline actions  |
-| md   | density-aware        | Default, adapts to density mode   |
-| lg   | 44px                 | Primary CTAs, mobile-friendly     |
-| icon | density-aware square | Icon-only buttons, toolbars       |
+| size | height               | use case                         |
+| ---- | -------------------- | -------------------------------- |
+| sm   | 28px                 | Compact contexts, inline actions |
+| md   | density-aware        | Default, adapts to density mode  |
+| lg   | 44px                 | Primary CTAs, mobile-friendly    |
+| icon | density-aware square | Icon-only buttons, toolbars      |
 
 ## History
 
