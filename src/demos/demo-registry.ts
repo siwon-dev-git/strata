@@ -4,20 +4,49 @@
    Component lists are verified against actual imports.
    ═══════════════════════════════════════════════════════════════ */
 
+import { lazy } from 'react';
+
 import type { DemoSchema } from './demo-schema';
-import { DiscordDemo } from './discord/DiscordDemo';
-import { FigmaDemo } from './figma/FigmaDemo';
-import { GitHubDemo } from './github/GitHubDemo';
-import { LinearDemo } from './linear/LinearDemo';
-import { NotionDemo } from './notion/NotionDemo';
-import { RedditDemo } from './reddit/RedditDemo';
-import { ShowcaseDemo } from './showcase/ShowcaseDemo';
-import { SlackDemo } from './slack/SlackDemo';
-import { SpotifyDemo } from './spotify/SpotifyDemo';
-import { TrelloDemo } from './trello/TrelloDemo';
-import { TwitterDemo } from './twitter/TwitterDemo';
-import { VSCodeDemo } from './vscode/VSCodeDemo';
-import { WhatsAppDemo } from './whatsapp/WhatsAppDemo';
+
+const LinearDemo = lazy(() =>
+  import('./linear/LinearDemo').then((m) => ({ default: m.LinearDemo })),
+);
+const SlackDemo = lazy(() =>
+  import('./slack/SlackDemo').then((m) => ({ default: m.SlackDemo })),
+);
+const TwitterDemo = lazy(() =>
+  import('./twitter/TwitterDemo').then((m) => ({ default: m.TwitterDemo })),
+);
+const NotionDemo = lazy(() =>
+  import('./notion/NotionDemo').then((m) => ({ default: m.NotionDemo })),
+);
+const SpotifyDemo = lazy(() =>
+  import('./spotify/SpotifyDemo').then((m) => ({ default: m.SpotifyDemo })),
+);
+const GitHubDemo = lazy(() =>
+  import('./github/GitHubDemo').then((m) => ({ default: m.GitHubDemo })),
+);
+const DiscordDemo = lazy(() =>
+  import('./discord/DiscordDemo').then((m) => ({ default: m.DiscordDemo })),
+);
+const FigmaDemo = lazy(() =>
+  import('./figma/FigmaDemo').then((m) => ({ default: m.FigmaDemo })),
+);
+const VSCodeDemo = lazy(() =>
+  import('./vscode/VSCodeDemo').then((m) => ({ default: m.VSCodeDemo })),
+);
+const TrelloDemo = lazy(() =>
+  import('./trello/TrelloDemo').then((m) => ({ default: m.TrelloDemo })),
+);
+const WhatsAppDemo = lazy(() =>
+  import('./whatsapp/WhatsAppDemo').then((m) => ({ default: m.WhatsAppDemo })),
+);
+const RedditDemo = lazy(() =>
+  import('./reddit/RedditDemo').then((m) => ({ default: m.RedditDemo })),
+);
+const ShowcaseDemo = lazy(() =>
+  import('./showcase/ShowcaseDemo').then((m) => ({ default: m.ShowcaseDemo })),
+);
 
 /* ── Registry ─────────────────────────────────────────────────── */
 
