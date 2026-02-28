@@ -17,7 +17,7 @@
   --sp-gray-700: oklch(0.28 0.01 250);
   --sp-gray-800: oklch(0.2 0.008 250);
   --sp-gray-900: oklch(0.13 0.006 250);
-  --sp-gray-950: oklch(0.08 0.004 250);
+  --sp-gray-950: oklch(0.06 0.004 250);
 
   /* ── Blue ──────────────────────────────────────────────────── */
   --sp-blue-50: oklch(0.97 0.02 260);
@@ -94,6 +94,14 @@
   --sp-text-2xl: 1.5rem;
   --sp-text-3xl: 1.875rem;
   --sp-text-4xl: 2.25rem;
+
+  /* ── Line-height scale ──────────────────────────────────────── */
+  --sp-leading-none: 1;
+  --sp-leading-tight: 1.25;
+  --sp-leading-snug: 1.375;
+  --sp-leading-normal: 1.5;
+  --sp-leading-relaxed: 1.625;
+  --sp-leading-loose: 2;
 
   /* ── Motion scale ──────────────────────────────────────────── */
   --sp-duration-0: 0ms;
