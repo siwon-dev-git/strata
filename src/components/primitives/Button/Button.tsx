@@ -23,13 +23,26 @@ export function Button({
   className,
   children,
   ref,
+  type = 'button',
   ...props
 }: ButtonProps) {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    size === 'icon' &&
+    !props['aria-label'] &&
+    !props['aria-labelledby']
+  ) {
+    console.warn(
+      'Button: icon-only buttons require an aria-label or aria-labelledby attribute.',
+    );
+  }
+
   const Component = asChild ? Slot : 'button';
 
   return (
     <Component
       ref={ref}
+      type={asChild ? undefined : type}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
       className={cn(buttonVariants({ variant, size }), className)}

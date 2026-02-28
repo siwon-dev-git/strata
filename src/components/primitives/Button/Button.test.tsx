@@ -175,9 +175,7 @@ describe('Button', () => {
         <span>X</span>
       </Button>,
     );
-    expect(spy).toHaveBeenCalledWith(
-      expect.stringContaining('aria-label'),
-    );
+    expect(spy).toHaveBeenCalledWith(expect.stringContaining('aria-label'));
     spy.mockRestore();
   });
 
@@ -202,10 +200,7 @@ describe('Button', () => {
 
   it('passes aria-expanded to the button element', () => {
     render(<Button aria-expanded={true}>Toggle</Button>);
-    expect(screen.getByRole('button')).toHaveAttribute(
-      'aria-expanded',
-      'true',
-    );
+    expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('has no aria-busy when not loading', () => {
