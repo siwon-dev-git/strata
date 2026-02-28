@@ -35,7 +35,7 @@ export function SelectTrigger({
         'border border-[--select-border] bg-[--select-bg] px-[--density-padding-x] text-sm text-[--select-fg]',
         'placeholder:text-[--select-placeholder]',
         'transition-colors duration-[--motion-duration-normal]',
-        'focus:outline-none focus:ring-2 focus:ring-[--select-border-focus]',
+        'focus-visible:outline-none focus-visible:ring-[length:--focus-ring-width] focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-[length:--focus-ring-offset] focus-visible:ring-offset-[--surface-base]',
         'disabled:pointer-events-none disabled:opacity-40',
         className,
       )}

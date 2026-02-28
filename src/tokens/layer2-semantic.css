@@ -66,6 +66,11 @@
   --type-label: var(--sp-text-sm);
   --type-caption: var(--sp-text-xs);
 
+  /* Focus — accessible ring (WCAG 2.2 AA: 3:1 against adjacents) */
+  --focus-ring-color: var(--sp-blue-500);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
   /* Motion — semantic intent */
   --motion-duration-fast: var(--sp-duration-100);
   --motion-duration-normal: var(--sp-duration-150);
@@ -125,6 +130,8 @@
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.06);
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
+
+  --focus-ring-color: var(--sp-blue-600);
 }
 
 /* ── Theme: Blue → purple accent (dark) ────────────────────── */
