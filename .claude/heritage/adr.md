@@ -53,3 +53,7 @@
 - **global-css-motion-gate**: prefers-reduced-motion via CSS media query; rAF hooks must call usePrefersReducedMotion
 - **test-scope-sixfold**: 6 test categories: rendering, props, happy-path, action failure, keyboard, ARIA
 - **jsdom-polyfill-register**: Radix browser APIs (ResizeObserver, scrollIntoView, pointerCapture) → centralize in setup.ts
+- **btn-touch-target-pseudo**: Touch target expansion uses invisible before pseudo-element. min-height conflicts with compact density
+- **btn-type-button-default**: Button defaults to type="button" instead of native "submit". Alpha-stage breaking change accepted
+- **btn-icon-dev-warning**: Icon-only buttons warn in dev when missing aria-label. Runtime warning over TS discriminated union
+- **focus-ring-component-tokens**: Button focus ring uses L3 tokens (--btn-focus-ring-*) aligned with Input/Select/Textarea pattern

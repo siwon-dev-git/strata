@@ -36,6 +36,8 @@
 ## Testing
 
 - **happy-path-only-tests**: Tests cover only rendering + basic interaction. Must cover 6 categories: rendering, props, happy-path, action failure, keyboard nav, ARIA
+- **focus-ring-nonconformance**: Button used `ring-2 ring-[--border-interactive]` while Input/Select/Textarea used full ring-offset pattern. Fix: align via L3 component tokens
+- **active-state-omission**: Button variants had hover but no :active pseudo-class → no press feedback. Fix: add active state tokens + fast transition duration
 
 ## Tooling
 
