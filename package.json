@@ -1,7 +1,7 @@
 {
-  "name": "@strata-ds/core",
+  "name": "@siwon-dev-npm/strata",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,23 +13,31 @@
     "node": ">=22"
   },
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./tokens": "./src/tokens/layer2-semantic.css",
-    "./tokens/primitive": "./src/tokens/layer1-primitive.css",
-    "./tokens/semantic": "./src/tokens/layer2-semantic.css",
-    "./tokens/component": "./src/tokens/layer3-component.css",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tokens": "./dist/tokens/layer2-semantic.css",
+    "./tokens/primitive": "./dist/tokens/layer1-primitive.css",
+    "./tokens/semantic": "./dist/tokens/layer2-semantic.css",
+    "./tokens/component": "./dist/tokens/layer3-component.css",
     "./tokens.json": "./tokens.json",
-    "./styles": "./src/index.css"
+    "./styles": "./dist/styles.css"
   },
+  "files": [
+    "dist",
+    "tokens.json"
+  ],
   "sideEffects": [
     "**/*.css"
   ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:lib": "vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && mkdir -p dist/tokens && cp src/tokens/*.css dist/tokens/ && printf '@import \"./tokens/layer1-primitive.css\";\\n@import \"./tokens/layer2-semantic.css\";\\n@import \"./tokens/layer3-component.css\";\\n' > dist/styles.css",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6007",
@@ -75,9 +83,11 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.5.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

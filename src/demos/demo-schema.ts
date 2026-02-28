@@ -98,7 +98,6 @@ export const DEMO_IDS = [
   'whatsapp',
   'reddit',
   'showcase',
-  'character-chat',
 ] as const;
 
 export type DemoId = (typeof DEMO_IDS)[number];

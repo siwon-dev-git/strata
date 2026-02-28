@@ -33,7 +33,7 @@ export function MenubarRoot({
 
 /* ----- Menu -------------------------------------------------------------- */
 
-export const MenubarMenu = RadixMenubar.Menu;
+export const MenubarMenu: typeof RadixMenubar.Menu = RadixMenubar.Menu;
 
 /* ----- Trigger ----------------------------------------------------------- */
 
