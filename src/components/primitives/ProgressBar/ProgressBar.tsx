@@ -35,7 +35,7 @@ export function ProgressBar({
       )}
     >
       <ProgressPrimitive.Indicator
-        className="h-full rounded-full bg-[--progress-bar] transition-transform duration-300"
+        className="h-full rounded-full bg-[--progress-bar] transition-transform duration-[--motion-duration-slow]"
         style={{ transform: `translateX(-${100 - percentage}%)` }}
       />
     </ProgressPrimitive.Root>

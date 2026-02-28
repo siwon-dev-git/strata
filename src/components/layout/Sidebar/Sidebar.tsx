@@ -18,7 +18,7 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        'flex flex-col bg-[--sidebar-bg] border-r border-[--sidebar-border] transition-[width] duration-200',
+        'flex flex-col bg-[--sidebar-bg] border-r border-[--sidebar-border] transition-[width] duration-[--motion-duration-entrance]',
         collapsed ? 'overflow-hidden' : 'overflow-y-auto',
         className,
       )}

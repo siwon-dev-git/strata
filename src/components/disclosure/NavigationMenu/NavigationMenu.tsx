@@ -77,7 +77,7 @@ export function NavigationMenuTrigger({
         height="16"
         viewBox="0 0 16 16"
         fill="none"
-        className="relative top-px transition-transform duration-200 data-[state=open]:rotate-180 group-data-[state=open]:rotate-180"
+        className="relative top-px transition-transform duration-[--motion-duration-entrance] data-[state=open]:rotate-180 group-data-[state=open]:rotate-180"
       >
         <path
           d="M4 6l4 4 4-4"

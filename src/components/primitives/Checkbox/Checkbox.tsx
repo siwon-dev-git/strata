@@ -15,7 +15,7 @@ export function Checkbox({ className, ref, ...props }: CheckboxProps) {
         'h-4 w-4 shrink-0 rounded-[--checkbox-radius]',
         'border border-[--checkbox-border] bg-[--checkbox-bg]',
         'data-[state=checked]:bg-[--checkbox-bg-checked] data-[state=checked]:border-[--checkbox-border-checked]',
-        'transition-colors duration-150',
+        'transition-colors duration-[--motion-duration-normal]',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
         'disabled:pointer-events-none disabled:opacity-40',
         className,

@@ -40,7 +40,7 @@ export function RadioGroupItem({
         'h-4 w-4 shrink-0 rounded-full',
         'border border-[--checkbox-border] bg-transparent',
         'data-[state=checked]:border-[--checkbox-border-checked]',
-        'transition-colors duration-150',
+        'transition-colors duration-[--motion-duration-normal]',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
         'disabled:pointer-events-none disabled:opacity-40',
         className,

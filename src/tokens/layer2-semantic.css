@@ -51,6 +51,29 @@
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.4);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.5);
+
+  /* Motion — semantic intent */
+  --motion-duration-fast: var(--sp-duration-100);
+  --motion-duration-normal: var(--sp-duration-150);
+  --motion-duration-slow: var(--sp-duration-300);
+  --motion-duration-entrance: var(--sp-duration-200);
+  --motion-duration-exit: var(--sp-duration-150);
+  --motion-ease: var(--sp-ease-default);
+  --motion-ease-entrance: var(--sp-ease-out);
+  --motion-ease-exit: var(--sp-ease-in);
+  --motion-ease-spring: var(--sp-ease-spring);
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sp-duration-75: 0ms;
+    --sp-duration-100: 0ms;
+    --sp-duration-150: 0ms;
+    --sp-duration-200: 0ms;
+    --sp-duration-300: 0ms;
+    --sp-duration-500: 0ms;
+  }
 }
 
 /* ── Light mode ──────────────────────────────────────────────── */

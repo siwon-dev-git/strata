@@ -151,7 +151,8 @@
   /* Reuses --menu-* tokens */
 
   /* ── Collapsible ──────────────────────────────────────── */
-  /* No dedicated tokens — uses base animation utilities */
+  --collapsible-duration: var(--motion-duration-normal);
+  --collapsible-ease: var(--motion-ease);
 
   /* ── NavigationMenu ──────────────────────────────────── */
   /* Reuses --menu-* tokens */

@@ -30,7 +30,7 @@ export function Switch({ size = 'md', className, ref, ...props }: SwitchProps) {
         'inline-flex shrink-0 items-center rounded-full',
         'bg-[--switch-bg]',
         'data-[state=checked]:bg-[--switch-bg-checked]',
-        'transition-colors duration-150',
+        'transition-colors duration-[--motion-duration-normal]',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
         'disabled:pointer-events-none disabled:opacity-40',
         SIZE_MAP[size].root,
@@ -41,7 +41,7 @@ export function Switch({ size = 'md', className, ref, ...props }: SwitchProps) {
       <SwitchPrimitive.Thumb
         className={cn(
           'block rounded-full bg-[--switch-thumb]',
-          'transition-transform duration-150',
+          'transition-transform duration-[--motion-duration-normal]',
           'data-[state=unchecked]:translate-x-0.5',
           SIZE_MAP[size].thumb,
         )}
