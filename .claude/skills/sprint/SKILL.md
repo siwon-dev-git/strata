@@ -1,7 +1,6 @@
 ---
 name: sprint
 description: Build+maintain cycle. Use when building features (quest text) or maintaining system health (no args or number).
-allowed-tools: ['Read', 'Write', 'Edit', 'Glob', 'Grep', 'Bash', 'Task']
 ---
 
 # Sprint
@@ -173,7 +172,7 @@ Two-tier check:
 - Unreviewed commits: <3
 - Heritage freshness: <7 days
 - Dead references: 0
-- Bundle size: ≤ 512KB (`pnpm build && du -sk dist | cut -f1`)
+- Bundle size: ≤ 512KB (`pnpm build && grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}'`)
 
 ### DECIDE — Priority
 
