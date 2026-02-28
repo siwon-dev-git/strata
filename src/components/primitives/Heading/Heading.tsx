@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { LEVEL_MAP } from './Heading.variant';
+import { headingVariants } from './Heading.variant';
 
 interface HeadingProps {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
@@ -22,11 +22,7 @@ export function Heading({
   return (
     <Component
       ref={ref}
-      className={cn(
-        'text-fg-default tracking-tight',
-        LEVEL_MAP[level],
-        className,
-      )}
+      className={cn(headingVariants({ level }), className)}
     >
       {children}
     </Component>

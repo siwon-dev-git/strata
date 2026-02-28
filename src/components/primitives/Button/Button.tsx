@@ -3,16 +3,14 @@ import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/lib/utils';
 import { Spinner } from '../Spinner/Spinner';
 import {
-  VARIANT_MAP,
-  SIZE_MAP,
+  buttonVariants,
   SPINNER_SIZE_MAP,
-  type ButtonVariant,
-  type ButtonSize,
+  type ButtonVariantProps,
 } from './Button.variant';
 
-interface ButtonProps extends ComponentPropsWithRef<'button'> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
+interface ButtonProps
+  extends ComponentPropsWithRef<'button'>,
+    ButtonVariantProps {
   loading?: boolean;
   asChild?: boolean;
 }
@@ -35,21 +33,12 @@ export function Button({
       ref={ref}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
-      className={cn(
-        'inline-flex items-center justify-center font-medium',
-        'rounded-[--btn-radius]',
-        'transition-colors duration-150',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
-        'disabled:pointer-events-none disabled:opacity-40',
-        VARIANT_MAP[variant],
-        SIZE_MAP[size],
-        className,
-      )}
+      className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
       {loading ? (
         <>
-          <Spinner size={SPINNER_SIZE_MAP[size]} className="shrink-0" />
+          <Spinner size={SPINNER_SIZE_MAP[size!]} className="shrink-0" />
           {children}
         </>
       ) : (

@@ -26,7 +26,7 @@ describe('StatusDot', () => {
   it('applies correct color class for status', () => {
     const { container } = render(<StatusDot status="online" />);
     expect((container.firstChild as HTMLElement).className).toContain(
-      'bg-green-500',
+      'bg-[--color-success]',
     );
   });
 
