@@ -1,9 +1,8 @@
 import { cn } from '@/lib/utils';
-import { STATUS_MAP, SIZE_MAP } from './StatusDot.variant';
+import { statusDotVariants, type StatusDotVariantProps } from './StatusDot.variant';
 
-interface StatusDotProps {
-  status: keyof typeof STATUS_MAP;
-  size?: 'sm' | 'md' | 'lg';
+interface StatusDotProps extends StatusDotVariantProps {
+  status: NonNullable<StatusDotVariantProps['status']>;
   className?: string;
 }
 
@@ -12,12 +11,7 @@ export function StatusDot({ status, size = 'md', className }: StatusDotProps) {
     <span
       role="status"
       aria-label={status}
-      className={cn(
-        'inline-block rounded-full',
-        STATUS_MAP[status],
-        SIZE_MAP[size],
-        className,
-      )}
+      className={cn(statusDotVariants({ status, size }), className)}
     />
   );
 }

@@ -1,15 +1,8 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import {
-  VARIANT_MAP,
-  SIZE_MAP,
-  type BadgeVariant,
-  type BadgeSize,
-} from './Badge.variant';
+import { badgeVariants, type BadgeVariantProps } from './Badge.variant';
 
-interface BadgeProps {
-  variant?: BadgeVariant;
-  size?: BadgeSize;
+interface BadgeProps extends BadgeVariantProps {
   children: ReactNode;
   className?: string;
 }
@@ -21,14 +14,7 @@ export function Badge({
   className,
 }: BadgeProps) {
   return (
-    <span
-      className={cn(
-        'inline-flex items-center font-medium rounded-[--badge-radius]',
-        VARIANT_MAP[variant],
-        SIZE_MAP[size],
-        className,
-      )}
-    >
+    <span className={cn(badgeVariants({ variant, size }), className)}>
       {children}
     </span>
   );

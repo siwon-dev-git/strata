@@ -1,7 +1,7 @@
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import { cn } from '@/lib/utils';
-import { VARIANT_MAP, SIZE_MAP } from './ToggleGroup.variant';
+import { toggleVariants } from './ToggleGroup.variant';
 import type {
   ToggleProps,
   ToggleGroupRootProps,
@@ -21,15 +21,7 @@ export function Toggle({
   return (
     <TogglePrimitive.Root
       ref={ref}
-      className={cn(
-        'inline-flex items-center justify-center rounded-[--toggle-radius]',
-        'font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
-        'disabled:pointer-events-none disabled:opacity-40',
-        VARIANT_MAP[variant],
-        SIZE_MAP[size],
-        className,
-      )}
+      className={cn(toggleVariants({ variant, size }), className)}
       {...props}
     >
       {children}
@@ -69,15 +61,7 @@ export function ToggleGroupItem({
   return (
     <ToggleGroupPrimitive.Item
       ref={ref}
-      className={cn(
-        'inline-flex items-center justify-center rounded-[--toggle-radius]',
-        'font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
-        'disabled:pointer-events-none disabled:opacity-40',
-        VARIANT_MAP[variant],
-        SIZE_MAP[size],
-        className,
-      )}
+      className={cn(toggleVariants({ variant, size }), className)}
       {...props}
     >
       {children}
