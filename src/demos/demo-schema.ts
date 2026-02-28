@@ -14,7 +14,8 @@ export type LayoutPattern =
   | 'three-column' // left nav + center + right widget
   | 'kanban' // horizontal scrolling columns
   | 'mobile-frame' // constrained mobile viewport
-  | 'fixed-footer'; // main content + fixed bottom bar
+  | 'fixed-footer' // main content + fixed bottom bar
+  | 'showcase'; // single-column reference page
 
 /* ── Component catalog ────────────────────────────────────────── */
 

@@ -11,6 +11,7 @@ import { GitHubDemo } from './github/GitHubDemo';
 import { LinearDemo } from './linear/LinearDemo';
 import { NotionDemo } from './notion/NotionDemo';
 import { RedditDemo } from './reddit/RedditDemo';
+import { ShowcaseDemo } from './showcase/ShowcaseDemo';
 import { SlackDemo } from './slack/SlackDemo';
 import { SpotifyDemo } from './spotify/SpotifyDemo';
 import { TrelloDemo } from './trello/TrelloDemo';
@@ -198,6 +199,61 @@ export const DEMO_REGISTRY: DemoSchema[] = [
     },
     layout: 'three-column',
     features: { interactivity: false, density: false },
+  },
+  {
+    id: 'showcase',
+    label: 'Showcase',
+    description:
+      'Comprehensive component reference demonstrating all Strata primitives, disclosure, and feedback components.',
+    component: ShowcaseDemo,
+    components: {
+      primitives: [
+        'Avatar',
+        'AvatarGroup',
+        'Badge',
+        'Breadcrumb',
+        'Button',
+        'Card',
+        'Checkbox',
+        'Code',
+        'DataList',
+        'Divider',
+        'FormField',
+        'Heading',
+        'Input',
+        'Kbd',
+        'Label',
+        'Pagination',
+        'ProgressBar',
+        'RadioGroup',
+        'ScrollArea',
+        'Select',
+        'Separator',
+        'Slider',
+        'Spinner',
+        'StatusDot',
+        'Switch',
+        'Table',
+        'Text',
+        'Textarea',
+        'Toggle',
+        'Toolbar',
+        'Truncate',
+      ],
+      layout: ['Container', 'Stack', 'TopBar'],
+      disclosure: [
+        'Accordion',
+        'Dialog',
+        'DropdownMenu',
+        'Popover',
+        'Sheet',
+        'Tabs',
+        'Tooltip',
+      ],
+      feedback: ['Alert', 'Callout', 'EmptyState', 'Skeleton'],
+    },
+    layout: 'showcase',
+    features: { interactivity: true, density: false },
   },
 ];
 
