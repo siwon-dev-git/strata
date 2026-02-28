@@ -64,12 +64,16 @@
   --dialog-border: var(--border-subtle);
   --dialog-radius: var(--sp-radius-xl);
   --dialog-shadow: var(--shadow-lg);
+  --dialog-duration: var(--motion-duration-entrance);
+  --dialog-ease: var(--motion-ease-spring);
   --overlay-bg: var(--surface-scrim);
 
   /* ── Tooltip ───────────────────────────────────────────────── */
   --tooltip-bg: var(--surface-inverted);
   --tooltip-fg: var(--fg-on-inverted);
   --tooltip-radius: var(--sp-radius-sm);
+  --tooltip-duration: var(--motion-duration-fast);
+  --tooltip-ease: var(--motion-ease-spring);
 
   /* ── Tabs ──────────────────────────────────────────────────── */
   --tabs-border: var(--border-subtle);
@@ -163,6 +167,10 @@
   --collapsible-duration: var(--motion-duration-normal);
   --collapsible-ease: var(--motion-ease);
 
+  /* ── Accordion ──────────────────────────────────────── */
+  --accordion-duration: var(--motion-duration-normal);
+  --accordion-ease: var(--motion-ease-spring);
+
   /* ── NavigationMenu ──────────────────────────────────── */
   /* Reuses --menu-* tokens */
 
@@ -174,6 +182,8 @@
 
   /* ── Sheet ───────────────────────────────────────────── */
   /* Reuses --dialog-* and --overlay-bg tokens */
+  --sheet-duration: var(--motion-duration-slow);
+  --sheet-ease: var(--motion-ease-spring);
 
   /* ── Pagination ──────────────────────────────────────── */
   /* Reuses --btn-* tokens */

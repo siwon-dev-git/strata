@@ -85,6 +85,37 @@ const layer2Root = layer2RootMatch ? layer2RootMatch[1] : '';
 const primitiveVars = parseCssVars(layer1);
 const semanticVars = parseCssVars(layer2Root);
 
+/* ── Group descriptions (DTCG $description) ──────────────────── */
+
+const GROUP_DESCRIPTIONS = {
+  // Primitive groups
+  'primitive.gray': 'Neutral gray scale (12 steps). Hue 250.',
+  'primitive.blue': 'Primary blue scale (10 steps). Hue 260.',
+  'primitive.red': 'Danger/error red scale. Hue 25.',
+  'primitive.green': 'Success green scale. Hue 155.',
+  'primitive.yellow': 'Warning yellow scale (10 steps). Hue 85.',
+  'primitive.purple': 'Accent purple scale (10 steps). Hue 305.',
+  'primitive.orange': 'Accent orange scale (10 steps). Hue 55.',
+  'primitive.space': 'Spacing scale (0–16). Base unit: 0.25rem.',
+  'primitive.text': 'Font size scale (xs–4xl).',
+  'primitive.leading': 'Line-height scale (none–loose).',
+  'primitive.duration': 'Animation duration scale (0–500ms).',
+  'primitive.ease': 'Easing functions (default, in, out, in-out, spring).',
+  'primitive.z': 'Z-index scale (0–60).',
+  'primitive.radius': 'Border radius scale (none–full).',
+  // Semantic groups
+  'semantic.color': 'Interactive and status colors. References primitive hues.',
+  'semantic.surface': 'Background surface hierarchy (base → overlay).',
+  'semantic.fg': 'Foreground/text color hierarchy (default → disabled).',
+  'semantic.border': 'Border color hierarchy (subtle → danger).',
+  'semantic.shadow': 'Elevation shadows (sm, md, lg).',
+  'semantic.elevation': 'Z-index aliases for UI layers.',
+  'semantic.density': 'Density mode tokens (gap, padding, item height).',
+  'semantic.type': 'Typography semantic scale (display → caption).',
+  'semantic.focus': 'Focus ring system (WCAG 2.2 AA compliant).',
+  'semantic.motion': 'Motion/animation semantic tokens.',
+};
+
 /* ── Build DTCG structure ─────────────────────────────────────── */
 
 const dtcg = {
@@ -100,7 +131,11 @@ for (const { name, value } of primitiveVars) {
   const type = inferType(name, value);
 
   if (!dtcg.primitive[group]) {
-    dtcg.primitive[group] = { $type: type };
+    const desc = GROUP_DESCRIPTIONS[`primitive.${group}`];
+    dtcg.primitive[group] = {
+      $type: type,
+      ...(desc ? { $description: desc } : {}),
+    };
   }
 
   dtcg.primitive[group][tokenName] = {
@@ -120,7 +155,10 @@ for (const { name, value } of semanticVars) {
   const type = inferType(name, value);
 
   if (!dtcg.semantic[group]) {
-    dtcg.semantic[group] = {};
+    const desc = GROUP_DESCRIPTIONS[`semantic.${group}`];
+    dtcg.semantic[group] = {
+      ...(desc ? { $description: desc } : {}),
+    };
   }
 
   const resolved = resolveReference(value);

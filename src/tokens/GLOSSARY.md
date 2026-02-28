@@ -49,27 +49,30 @@ Components reference **Layer 3 only**. Layer 3 aliases Layer 2. Layer 2 aliases 
 
 ## L3 Common Component Prefixes
 
-| Prefix          | Component                                          | Token Count |
-| --------------- | -------------------------------------------------- | ----------- |
-| `--btn-`        | Button                                             | 14          |
-| `--input-`      | Input, Textarea                                    | 8           |
-| `--select-`     | Select                                             | 8           |
-| `--dialog-`     | Dialog                                             | 4           |
-| `--menu-`       | DropdownMenu, ContextMenu, Menubar, NavigationMenu | 6           |
-| `--checkbox-`   | Checkbox, RadioGroup                               | 6           |
-| `--card-`       | Card                                               | 5           |
-| `--tabs-`       | Tabs                                               | 5           |
-| `--sidebar-`    | Sidebar                                            | 7           |
-| `--toggle-`     | Toggle, ToggleGroup                                | 5           |
-| `--toast-`      | Toast                                              | 4           |
-| `--switch-`     | Switch                                             | 3           |
-| `--slider-`     | Slider                                             | 3           |
-| `--tooltip-`    | Tooltip                                            | 3           |
-| `--avatar-`     | Avatar                                             | 3           |
-| `--scrollarea-` | ScrollArea                                         | 3           |
-| `--skeleton-`   | Skeleton                                           | 2           |
-| `--progress-`   | Progress                                           | 2           |
-| `--topbar-`     | TopBar                                             | 3           |
+| Prefix           | Component                                          | Token Count |
+| ---------------- | -------------------------------------------------- | ----------- |
+| `--btn-`         | Button                                             | 14          |
+| `--input-`       | Input, Textarea                                    | 8           |
+| `--select-`      | Select                                             | 8           |
+| `--dialog-`      | Dialog                                             | 6           |
+| `--menu-`        | DropdownMenu, ContextMenu, Menubar, NavigationMenu | 6           |
+| `--checkbox-`    | Checkbox, RadioGroup                               | 6           |
+| `--card-`        | Card                                               | 5           |
+| `--tabs-`        | Tabs                                               | 5           |
+| `--sidebar-`     | Sidebar                                            | 7           |
+| `--toggle-`      | Toggle, ToggleGroup                                | 5           |
+| `--toast-`       | Toast                                              | 4           |
+| `--switch-`      | Switch                                             | 3           |
+| `--slider-`      | Slider                                             | 3           |
+| `--tooltip-`     | Tooltip                                            | 5           |
+| `--avatar-`      | Avatar                                             | 3           |
+| `--scrollarea-`  | ScrollArea                                         | 3           |
+| `--skeleton-`    | Skeleton                                           | 2           |
+| `--progress-`    | Progress                                           | 2           |
+| `--topbar-`      | TopBar                                             | 3           |
+| `--collapsible-` | Collapsible                                        | 2           |
+| `--accordion-`   | Accordion                                          | 2           |
+| `--sheet-`       | Sheet                                              | 2           |
 
 ## Suffix Conventions (All Layers)
 
@@ -90,6 +93,8 @@ Components reference **Layer 3 only**. Layer 3 aliases Layer 2. Layer 2 aliases 
 | `-overlay`  | Modal/overlay surface  |
 | `-inset`    | Recessed surface       |
 | `-error`    | Validation error state |
+| `-duration` | Animation duration     |
+| `-ease`     | Animation easing curve |
 
 ## Token Reuse (Shared Groups)
 
@@ -111,3 +116,56 @@ Certain component families share a single token group:
 | `[data-density='compact']`        | Compact spacing       |
 | `[data-density='spacious']`       | Spacious spacing      |
 | `@media (prefers-reduced-motion)` | All durations → `0ms` |
+
+## Color Palette Coverage (L1)
+
+All color scales use OKLch with consistent lightness/chroma curves per step. Each hue maintains its own chroma ceiling appropriate to the gamut.
+
+| Hue    | Steps                                                   | Count | Hue Angle |
+| ------ | ------------------------------------------------------- | ----- | --------- |
+| Gray   | 0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | 12    | 250       |
+| Blue   | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900         | 10    | 260       |
+| Red    | 50, 100, 200, 300, 400, 500, 600, 700                   | 8     | 25        |
+| Green  | 50, 100, 200, 300, 400, 500, 600, 700                   | 8     | 155       |
+| Yellow | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900         | 10    | 85        |
+| Purple | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900         | 10    | 305       |
+| Orange | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900         | 10    | 55        |
+
+### Lightness/Chroma Curve Pattern
+
+Steps follow a consistent envelope across all hues (using Blue as the reference):
+
+| Step | Lightness  | Chroma (approx)       | Usage                   |
+| ---- | ---------- | --------------------- | ----------------------- |
+| 50   | ~0.97      | low (~0.02)           | Tinted background wash  |
+| 100  | ~0.93      | low (~0.04-0.05)      | Subtle background       |
+| 200  | ~0.87      | rising (~0.08-0.09)   | Light accent background |
+| 300  | ~0.79-0.83 | mid (~0.12-0.14)      | Hover/active states     |
+| 400  | ~0.70-0.80 | mid-high (~0.16-0.20) | Light-mode interactive  |
+| 500  | ~0.62-0.72 | peak (~0.16-0.24)     | Dark-mode primary       |
+| 600  | ~0.52-0.60 | peak (~0.16-0.24)     | Light-mode primary      |
+| 700  | ~0.43-0.50 | falling (~0.14-0.20)  | Dark accents            |
+| 800  | ~0.34-0.40 | low (~0.11-0.16)      | Dark-mode backgrounds   |
+| 900  | ~0.25-0.30 | low (~0.07-0.10)      | Darkest tone            |
+
+## Spring Easing (L3)
+
+The `--sp-ease-spring` primitive (`cubic-bezier(0.34, 1.56, 0.64, 1)`) provides an overshoot curve for lively entrance animations. It flows through the token layers as:
+
+```
+L1: --sp-ease-spring
+L2: --motion-ease-spring  →  var(--sp-ease-spring)
+L3: --{component}-ease    →  var(--motion-ease-spring)
+```
+
+Components using spring easing:
+
+| Component   | Duration Token           | Ease Token           | Semantic Duration |
+| ----------- | ------------------------ | -------------------- | ----------------- |
+| Dialog      | `--dialog-duration`      | `--dialog-ease`      | entrance (200ms)  |
+| Sheet       | `--sheet-duration`       | `--sheet-ease`       | slow (300ms)      |
+| Accordion   | `--accordion-duration`   | `--accordion-ease`   | normal (150ms)    |
+| Tooltip     | `--tooltip-duration`     | `--tooltip-ease`     | fast (100ms)      |
+| Collapsible | `--collapsible-duration` | `--collapsible-ease` | normal (150ms)    |
+
+Note: Collapsible uses `--motion-ease` (non-spring) for a gentler expand/collapse feel.
