@@ -62,3 +62,18 @@
 - **btn-type-button-default**: Button defaults to type="button" instead of native "submit". Alpha-stage breaking change accepted
 - **btn-icon-dev-warning**: Icon-only buttons warn in dev when missing aria-label. Runtime warning over TS discriminated union
 - **focus-ring-component-tokens**: Button focus ring uses L3 tokens (--btn-focus-ring-\*) aligned with Input/Select/Textarea pattern
+
+## Phase 1-4 Strategic Decisions (2026-03-01)
+
+- **create-theme-css-only**: createTheme() generates CSS custom property blocks. No runtime JS theme switching — CSS cascade handles it
+- **server-provider-no-hooks**: StrataServerProvider uses zero hooks/useState. Props-only div wrapper for RSC environments
+- **icon-tree-shaking**: Individual icon files in icons/ directory. createIcon factory shared. barrel re-export preserves backward compat
+- **intent-vocabulary-extensible**: 5 built-in intents (professional, playful, minimal, bold, calm). registerIntent() for custom profiles
+- **screen-analysis-contract**: ScreenAnalysis interface is the standard AI vision model output schema. analysisToJSX() for code generation
+- **recipe-per-pattern**: 3 page recipes (SettingsPage, DataDashboard, AuthFlow). Each demonstrates a distinct layout pattern
+- **spring-easing-disclosure**: Spring easing (--sp-ease-spring) applied to Dialog/Sheet/Accordion/Tooltip via L3 tokens
+- **dtcg-description-fields**: tokens.json includes $description per group. Script auto-generates from GROUP_DESCRIPTIONS map
+- **four-tier-consumption**: L1(llms.md) → L2(Storybook MCP) → L3(Assembly MCP) → L4(tokens.json). Progressive detail
+- **quality-score-composite**: Component quality = testing(30) + stories(20) + tokens(20) + docs(15) + types(15) = 100
+- **self-improve-threshold**: Gap detected when same event appears 3+ times. Priority = (impact × frequency) / effort
+- **vrt-playwright-free**: Visual regression via Playwright toHaveScreenshot(). Dark+light mode per component. Free, no Chromatic

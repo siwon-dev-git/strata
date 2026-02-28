@@ -26,7 +26,15 @@
     "./tokens/component": "./dist/tokens/layer3-component.css",
     "./tokens.json": "./tokens.json",
     "./styles": "./dist/styles.css",
-    "./preset": "./dist/preset.css"
+    "./preset": "./dist/preset.css",
+    "./icons": {
+      "types": "./dist/components/primitives/Icon/icons/index.d.ts",
+      "import": "./dist/components/primitives/Icon/icons/index.js"
+    },
+    "./recipes": {
+      "types": "./dist/recipes/index.d.ts",
+      "import": "./dist/recipes/index.js"
+    }
   },
   "files": [
     "dist",
@@ -34,6 +42,10 @@
   ],
   "sideEffects": [
     "**/*.css"
+  ],
+  "browserslist": [
+    "defaults and fully supports es6-module",
+    "maintained node versions"
   ],
   "scripts": {
     "dev": "vite",
@@ -52,7 +64,9 @@
     "typecheck": "tsc -b",
     "generate:llms": "node scripts/generate-llms-txt.js",
     "demo:coverage": "node scripts/demo-coverage.js",
-    "tokens:export": "node scripts/export-tokens-dtcg.js"
+    "tokens:export": "node scripts/export-tokens-dtcg.js",
+    "test:vrt": "playwright test",
+    "test:vrt:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

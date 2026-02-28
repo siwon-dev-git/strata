@@ -63,21 +63,38 @@
   /* ── Yellow ────────────────────────────────────────────────── */
   --sp-yellow-50: oklch(0.97 0.02 85);
   --sp-yellow-100: oklch(0.93 0.05 85);
+  --sp-yellow-200: oklch(0.87 0.09 85);
+  --sp-yellow-300: oklch(0.83 0.13 85);
   --sp-yellow-400: oklch(0.8 0.16 85);
   --sp-yellow-500: oklch(0.72 0.16 85);
   --sp-yellow-600: oklch(0.6 0.16 85);
+  --sp-yellow-700: oklch(0.5 0.14 85);
+  --sp-yellow-800: oklch(0.4 0.11 85);
+  --sp-yellow-900: oklch(0.3 0.07 85);
 
   /* ── Purple ────────────────────────────────────────────────── */
   --sp-purple-50: oklch(0.97 0.02 305);
   --sp-purple-100: oklch(0.93 0.05 305);
+  --sp-purple-200: oklch(0.87 0.09 305);
+  --sp-purple-300: oklch(0.79 0.14 305);
   --sp-purple-400: oklch(0.7 0.2 305);
   --sp-purple-500: oklch(0.62 0.24 305);
   --sp-purple-600: oklch(0.52 0.24 305);
+  --sp-purple-700: oklch(0.43 0.2 305);
+  --sp-purple-800: oklch(0.34 0.16 305);
+  --sp-purple-900: oklch(0.25 0.1 305);
 
   /* ── Orange ────────────────────────────────────────────────── */
+  --sp-orange-50: oklch(0.97 0.02 55);
+  --sp-orange-100: oklch(0.93 0.05 55);
+  --sp-orange-200: oklch(0.87 0.09 55);
+  --sp-orange-300: oklch(0.81 0.13 55);
   --sp-orange-400: oklch(0.76 0.16 55);
   --sp-orange-500: oklch(0.72 0.19 55);
   --sp-orange-600: oklch(0.58 0.19 55);
+  --sp-orange-700: oklch(0.48 0.16 55);
+  --sp-orange-800: oklch(0.38 0.12 55);
+  --sp-orange-900: oklch(0.28 0.08 55);
 
   /* ── Spacing scale ─────────────────────────────────────────── */
   --sp-space-0: 0;
@@ -462,12 +479,16 @@
   --dialog-border: var(--border-subtle);
   --dialog-radius: var(--sp-radius-xl);
   --dialog-shadow: var(--shadow-lg);
+  --dialog-duration: var(--motion-duration-entrance);
+  --dialog-ease: var(--motion-ease-spring);
   --overlay-bg: var(--surface-scrim);
 
   /* ── Tooltip ───────────────────────────────────────────────── */
   --tooltip-bg: var(--surface-inverted);
   --tooltip-fg: var(--fg-on-inverted);
   --tooltip-radius: var(--sp-radius-sm);
+  --tooltip-duration: var(--motion-duration-fast);
+  --tooltip-ease: var(--motion-ease-spring);
 
   /* ── Tabs ──────────────────────────────────────────────────── */
   --tabs-border: var(--border-subtle);
@@ -561,6 +582,10 @@
   --collapsible-duration: var(--motion-duration-normal);
   --collapsible-ease: var(--motion-ease);
 
+  /* ── Accordion ──────────────────────────────────────── */
+  --accordion-duration: var(--motion-duration-normal);
+  --accordion-ease: var(--motion-ease-spring);
+
   /* ── NavigationMenu ──────────────────────────────────── */
   /* Reuses --menu-* tokens */
 
@@ -572,6 +597,8 @@
 
   /* ── Sheet ───────────────────────────────────────────── */
   /* Reuses --dialog-* and --overlay-bg tokens */
+  --sheet-duration: var(--motion-duration-slow);
+  --sheet-ease: var(--motion-ease-spring);
 
   /* ── Pagination ──────────────────────────────────────── */
   /* Reuses --btn-* tokens */
