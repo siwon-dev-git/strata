@@ -75,7 +75,7 @@ export { Heading } from './Heading/Heading';
 export { Switch } from './Switch/Switch';
 export { Slider } from './Slider/Slider';
 export { ProgressBar } from './ProgressBar/ProgressBar';
-export { Card, CardHeader, CardBody, CardFooter } from './Card/Card';
+export { Card, CardHeader, CardBody, CardFooter } from './Card';
 export { Checkbox } from './Checkbox/Checkbox';
 export {
   Select,
@@ -96,7 +96,7 @@ export {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
-} from './Breadcrumb/Breadcrumb';
+} from './Breadcrumb';
 export { RadioGroup, RadioGroupRoot, RadioGroupItem } from './RadioGroup';
 export {
   Table,
@@ -115,7 +115,7 @@ export {
   ScrollAreaViewport,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
-} from './ScrollArea/ScrollArea';
+} from './ScrollArea';
 export {
   Toggle,
   ToggleGroup,
