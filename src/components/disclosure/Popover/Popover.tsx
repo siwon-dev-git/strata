@@ -27,7 +27,7 @@ export function PopoverContent({
         ref={ref}
         sideOffset={4}
         className={cn(
-          'z-50 w-72 outline-none',
+          'z-[--elevation-dropdown] w-72 outline-none',
           'rounded-[--menu-radius] bg-[--menu-bg] border border-[--menu-border] shadow-[--menu-shadow]',
           'p-4',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',

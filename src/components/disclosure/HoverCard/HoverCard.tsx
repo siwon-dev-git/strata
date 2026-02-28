@@ -27,7 +27,7 @@ export function HoverCardContent({
         ref={ref}
         sideOffset={4}
         className={cn(
-          'z-50 min-w-[220px]',
+          'z-[--elevation-dropdown] min-w-[220px]',
           'rounded-[--menu-radius] bg-[--menu-bg] border border-[--menu-border] shadow-[--menu-shadow]',
           'p-4',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',

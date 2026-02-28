@@ -110,6 +110,15 @@
   --sp-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --sp-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
+  /* ── Z-index scale ─────────────────────────────────────────── */
+  --sp-z-0: 0;
+  --sp-z-10: 10;
+  --sp-z-20: 20;
+  --sp-z-30: 30;
+  --sp-z-40: 40;
+  --sp-z-50: 50;
+  --sp-z-60: 60;
+
   /* ── Radius scale ──────────────────────────────────────────── */
   --sp-radius-none: 0;
   --sp-radius-sm: 0.25rem;

@@ -52,6 +52,15 @@
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.4);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.5);
 
+  /* Elevation — z-index stacking order */
+  --elevation-base: var(--sp-z-0);
+  --elevation-raised: var(--sp-z-10);
+  --elevation-dropdown: var(--sp-z-20);
+  --elevation-sticky: var(--sp-z-30);
+  --elevation-overlay: var(--sp-z-40);
+  --elevation-modal: var(--sp-z-50);
+  --elevation-toast: var(--sp-z-60);
+
   /* Density — comfortable (default) */
   --density-gap: var(--sp-space-3);
   --density-padding-x: var(--sp-space-4);
