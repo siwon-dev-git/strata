@@ -1,14 +1,6 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-
-const LEVEL_MAP = {
-  1: 'text-3xl font-bold',
-  2: 'text-2xl font-semibold',
-  3: 'text-xl font-semibold',
-  4: 'text-lg font-medium',
-  5: 'text-base font-medium',
-  6: 'text-sm font-medium',
-} as const;
+import { LEVEL_MAP } from './Heading.variant';
 
 interface HeadingProps {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
