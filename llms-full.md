@@ -104,6 +104,30 @@
   --sp-text-3xl: 1.875rem;
   --sp-text-4xl: 2.25rem;
 
+  /* ── Motion scale ──────────────────────────────────────────── */
+  --sp-duration-0: 0ms;
+  --sp-duration-75: 75ms;
+  --sp-duration-100: 100ms;
+  --sp-duration-150: 150ms;
+  --sp-duration-200: 200ms;
+  --sp-duration-300: 300ms;
+  --sp-duration-500: 500ms;
+
+  --sp-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --sp-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --sp-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --sp-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --sp-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-index scale ─────────────────────────────────────────── */
+  --sp-z-0: 0;
+  --sp-z-10: 10;
+  --sp-z-20: 20;
+  --sp-z-30: 30;
+  --sp-z-40: 40;
+  --sp-z-50: 50;
+  --sp-z-60: 60;
+
   /* ── Radius scale ──────────────────────────────────────────── */
   --sp-radius-none: 0;
   --sp-radius-sm: 0.25rem;
@@ -170,6 +194,57 @@
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.4);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.5);
+
+  /* Elevation — z-index stacking order */
+  --elevation-base: var(--sp-z-0);
+  --elevation-raised: var(--sp-z-10);
+  --elevation-dropdown: var(--sp-z-20);
+  --elevation-sticky: var(--sp-z-30);
+  --elevation-overlay: var(--sp-z-40);
+  --elevation-modal: var(--sp-z-50);
+  --elevation-toast: var(--sp-z-60);
+
+  /* Density — comfortable (default) */
+  --density-gap: var(--sp-space-3);
+  --density-padding-x: var(--sp-space-4);
+  --density-padding-y: var(--sp-space-2);
+  --density-item-height: 2.25rem;
+
+  /* Typography — semantic scale */
+  --type-display: var(--sp-text-4xl);
+  --type-title: var(--sp-text-2xl);
+  --type-heading: var(--sp-text-xl);
+  --type-body: var(--sp-text-base);
+  --type-label: var(--sp-text-sm);
+  --type-caption: var(--sp-text-xs);
+
+  /* Focus — accessible ring (WCAG 2.2 AA: 3:1 against adjacents) */
+  --focus-ring-color: var(--sp-blue-500);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* Motion — semantic intent */
+  --motion-duration-fast: var(--sp-duration-100);
+  --motion-duration-normal: var(--sp-duration-150);
+  --motion-duration-slow: var(--sp-duration-300);
+  --motion-duration-entrance: var(--sp-duration-200);
+  --motion-duration-exit: var(--sp-duration-150);
+  --motion-ease: var(--sp-ease-default);
+  --motion-ease-entrance: var(--sp-ease-out);
+  --motion-ease-exit: var(--sp-ease-in);
+  --motion-ease-spring: var(--sp-ease-spring);
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sp-duration-75: 0ms;
+    --sp-duration-100: 0ms;
+    --sp-duration-150: 0ms;
+    --sp-duration-200: 0ms;
+    --sp-duration-300: 0ms;
+    --sp-duration-500: 0ms;
+  }
 }
 
 /* ── Light mode ──────────────────────────────────────────────── */
@@ -207,6 +282,8 @@
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.06);
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
+
+  --focus-ring-color: var(--sp-blue-600);
 }
 
 /* ── Theme: Blue → purple accent (dark) ────────────────────── */
@@ -241,6 +318,31 @@
   --color-interactive-hover: var(--sp-green-500);
   --color-interactive-subtle: oklch(0.55 0.19 155 / 10%);
   --border-interactive: var(--sp-green-600);
+}
+
+/* ── Density: compact ──────────────────────────────────────── */
+[data-density='compact'] {
+  --density-gap: var(--sp-space-1_5);
+  --density-padding-x: var(--sp-space-2);
+  --density-padding-y: var(--sp-space-1);
+  --density-item-height: 1.75rem;
+}
+
+/* ── Density: spacious ─────────────────────────────────────── */
+[data-density='spacious'] {
+  --density-gap: var(--sp-space-4);
+  --density-padding-x: var(--sp-space-6);
+  --density-padding-y: var(--sp-space-3);
+  --density-item-height: 2.75rem;
+}
+
+/* ── Responsive typography ─────────────────────────────────── */
+@media (max-width: 640px) {
+  :root {
+    --type-display: var(--sp-text-2xl);
+    --type-title: var(--sp-text-xl);
+    --type-heading: var(--sp-text-lg);
+  }
 }
 ```
 
@@ -400,7 +502,8 @@
   /* Reuses --menu-* tokens */
 
   /* ── Collapsible ──────────────────────────────────────── */
-  /* No dedicated tokens — uses base animation utilities */
+  --collapsible-duration: var(--motion-duration-normal);
+  --collapsible-ease: var(--motion-ease);
 
   /* ── NavigationMenu ──────────────────────────────────── */
   /* Reuses --menu-* tokens */
