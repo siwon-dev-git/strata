@@ -1,11 +1,15 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import type {
+  PaginationRootProps,
+  PaginationContentProps,
+  PaginationItemProps,
+  PaginationLinkProps,
+  PaginationPreviousProps,
+  PaginationNextProps,
+  PaginationEllipsisProps,
+} from './Pagination.type';
 
 /* ----- Root ---------------------------------------------------------------- */
-
-interface PaginationRootProps extends ComponentPropsWithRef<'nav'> {
-  children: ReactNode;
-}
 
 export function PaginationRoot({
   className,
@@ -27,10 +31,6 @@ export function PaginationRoot({
 
 /* ----- Content ------------------------------------------------------------- */
 
-interface PaginationContentProps extends ComponentPropsWithRef<'ul'> {
-  children: ReactNode;
-}
-
 export function PaginationContent({
   className,
   children,
@@ -50,10 +50,6 @@ export function PaginationContent({
 
 /* ----- Item ---------------------------------------------------------------- */
 
-interface PaginationItemProps extends ComponentPropsWithRef<'li'> {
-  children: ReactNode;
-}
-
 export function PaginationItem({
   className,
   children,
@@ -68,11 +64,6 @@ export function PaginationItem({
 }
 
 /* ----- Link ---------------------------------------------------------------- */
-
-interface PaginationLinkProps extends ComponentPropsWithRef<'button'> {
-  isActive?: boolean;
-  children: ReactNode;
-}
 
 export function PaginationLink({
   isActive = false,
@@ -103,8 +94,6 @@ export function PaginationLink({
 
 /* ----- Previous ------------------------------------------------------------ */
 
-type PaginationPreviousProps = ComponentPropsWithRef<'button'>;
-
 export function PaginationPrevious({
   className,
   ref,
@@ -131,8 +120,6 @@ export function PaginationPrevious({
 
 /* ----- Next ---------------------------------------------------------------- */
 
-type PaginationNextProps = ComponentPropsWithRef<'button'>;
-
 export function PaginationNext({
   className,
   ref,
@@ -158,8 +145,6 @@ export function PaginationNext({
 }
 
 /* ----- Ellipsis ------------------------------------------------------------ */
-
-type PaginationEllipsisProps = ComponentPropsWithRef<'span'>;
 
 export function PaginationEllipsis({
   className,

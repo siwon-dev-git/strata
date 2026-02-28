@@ -1,7 +1,8 @@
 import type { ComponentPropsWithRef } from 'react';
 import { cn } from '@/lib/utils';
+import type { CardVariant, CardProps } from './Card.type';
 
-const VARIANT_MAP = {
+const VARIANT_MAP: Record<CardVariant, string> = {
   default: [
     'bg-[--card-bg] border border-[--card-border] rounded-[--card-radius]',
   ].join(' '),
@@ -10,13 +11,7 @@ const VARIANT_MAP = {
     'hover:bg-[--card-bg-hover] hover:border-[--card-border-hover]',
     'cursor-pointer transition-colors duration-150',
   ].join(' '),
-} as const;
-
-type CardVariant = keyof typeof VARIANT_MAP;
-
-interface CardProps extends ComponentPropsWithRef<'div'> {
-  variant?: CardVariant;
-}
+};
 
 export function Card({
   variant = 'default',
