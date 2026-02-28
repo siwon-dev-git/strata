@@ -34,7 +34,7 @@ export function CharacterChatDemo() {
   const [isTyping, setIsTyping] = useState(false);
 
   const activeCharacter = activeId
-    ? CHAT_CHARACTERS.find((c) => c.id === activeId) ?? null
+    ? (CHAT_CHARACTERS.find((c) => c.id === activeId) ?? null)
     : null;
   const messages = activeId ? (CHAT_CONVERSATIONS[activeId] ?? []) : [];
 
@@ -100,17 +100,65 @@ function StatusBar() {
       </Text>
       <div className="flex items-center gap-1">
         {/* Signal bars */}
-        <svg width="16" height="12" viewBox="0 0 16 12" className="text-fg-default">
+        <svg
+          width="16"
+          height="12"
+          viewBox="0 0 16 12"
+          className="text-fg-default"
+        >
           <rect x="0" y="8" width="3" height="4" rx="0.5" fill="currentColor" />
-          <rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="currentColor" />
-          <rect x="9" y="2" width="3" height="10" rx="0.5" fill="currentColor" />
-          <rect x="13" y="0" width="3" height="12" rx="0.5" fill="currentColor" />
+          <rect
+            x="4.5"
+            y="5"
+            width="3"
+            height="7"
+            rx="0.5"
+            fill="currentColor"
+          />
+          <rect
+            x="9"
+            y="2"
+            width="3"
+            height="10"
+            rx="0.5"
+            fill="currentColor"
+          />
+          <rect
+            x="13"
+            y="0"
+            width="3"
+            height="12"
+            rx="0.5"
+            fill="currentColor"
+          />
         </svg>
         {/* Battery */}
-        <svg width="24" height="12" viewBox="0 0 24 12" className="text-fg-default">
-          <rect x="0" y="1" width="20" height="10" rx="2" stroke="currentColor" strokeWidth="1" fill="none" />
+        <svg
+          width="24"
+          height="12"
+          viewBox="0 0 24 12"
+          className="text-fg-default"
+        >
+          <rect
+            x="0"
+            y="1"
+            width="20"
+            height="10"
+            rx="2"
+            stroke="currentColor"
+            strokeWidth="1"
+            fill="none"
+          />
           <rect x="2" y="3" width="14" height="6" rx="1" fill="currentColor" />
-          <rect x="21" y="4" width="2" height="4" rx="0.5" fill="currentColor" opacity="0.4" />
+          <rect
+            x="21"
+            y="4"
+            width="2"
+            height="4"
+            rx="0.5"
+            fill="currentColor"
+            opacity="0.4"
+          />
         </svg>
       </div>
     </div>
@@ -268,11 +316,7 @@ function ChatView({
         {/* Message bubbles */}
         <div className="space-y-3 px-4 pb-4">
           {messages.map((msg) => (
-            <MessageBubble
-              key={msg.id}
-              message={msg}
-              character={character}
-            />
+            <MessageBubble key={msg.id} message={msg} character={character} />
           ))}
 
           {/* Typing indicator */}
