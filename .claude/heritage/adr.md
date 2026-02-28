@@ -41,6 +41,7 @@
 ## Library Publishing
 
 - **dual-build-target**: Dev build (vite.config.ts) and lib build (vite.lib.config.ts) are separate pipelines
+- **external-from-manifest**: Rollup external을 package.json deps + peerDeps에서 빌드 시 derive. 수동 리스트 금지
 - **declaration-emit-explicit**: Barrel re-exports of Radix need explicit type annotations for declaration emit
 - **consumer-feedback-loop**: Feedback → real gaps (implement) / already-addressed (document) / out-of-scope (recipes)
 

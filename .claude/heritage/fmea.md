@@ -9,6 +9,7 @@
 ## Build
 
 - **ci-gate-bypass**: CI signals (bundle 🔴, PR size ⚠️) ignored when `gh run watch` returns 0. Fix: enforce bundle budget in G3 locally; pre-PR size check before push. (Merged: ci-blind-merge + ci-comment-gate-blind)
+- **external-peer-drift**: package.json dep 변경이 rollupOptions.external에 반영되지 않음 → 번들 bloat 또는 런타임 에러. Fix: package.json에서 derive하여 수동 리스트 제거
 - **type-drift**: Type field exists but not rendered, or barrel destroyed. tsc doesn't warn on unused props. Cross-check type vs impl during audit; verify with `tsc --noEmit`. (Merged: type-regression + type-impl-drift)
 - **creation-pair-missing**: Config/artifact without corresponding file. When adding build config, create seed file; when creating output dir, register in .gitignore. (Merged: config-without-seed + artifact-gitignore-gap)
 - **mock-data-scatter**: Inline mocks scattered across N stories → N modifications on data change. Extract to fixtures when 3+ share data
