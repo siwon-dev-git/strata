@@ -27,7 +27,8 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc -b",
     "generate:llms": "node scripts/generate-llms-txt.js",
-    "demo:coverage": "node scripts/demo-coverage.js"
+    "demo:coverage": "node scripts/demo-coverage.js",
+    "tokens:export": "node scripts/export-tokens-dtcg.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
