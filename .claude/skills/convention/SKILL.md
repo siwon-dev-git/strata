@@ -17,12 +17,12 @@ $ARGUMENTS Apply file convention to target component(s). Analyze → Tier classi
 
 ## Tier Classification Criteria
 
-| Tier            | Criteria                                             | File Structure                                    |
-| --------------- | ---------------------------------------------------- | ------------------------------------------------- |
-| **0 Leaf**      | ≤100 lines, no variants, no sub-components           | `.tsx` `.test.tsx` `.stories.tsx` `.md`           |
-| **1 Styled**    | 2+ variant maps OR >100 lines                        | + `.variant.ts`                                   |
-| **2 Composite** | 3+ sub-components OR >150 lines                      | + `.type.ts`                                      |
-| **3 Domain**    | validation/policy logic, 3+ useState, business rules | + `.hook.ts` `.policy.ts` `.const.ts` (as needed) |
+| Tier            | Criteria                                             | File Structure                                               |
+| --------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
+| **0 Leaf**      | ≤100 lines, no variants, no sub-components           | `.tsx` `.test.tsx` `.stories.tsx` `.md`                      |
+| **1 Styled**    | 2+ variant maps OR >100 lines                        | + `.variant.ts`                                              |
+| **2 Composite** | 3+ sub-components OR >150 lines                      | + `.type.ts` + `index.ts`                                    |
+| **3 Domain**    | validation/policy logic, 3+ useState, business rules | + `.hook.ts` `.policy.ts` `.const.ts` `index.ts` (as needed) |
 
 Auto-classification logic:
 
@@ -73,6 +73,48 @@ Declarative business rules: validation rules, state→feedback mappings, a11y po
 ### .const.ts (Tier 3, as needed)
 
 Magic numbers, defaults, error messages. Separate when 5+ accumulate.
+
+### index.ts — Public API Barrel (Tier 2+, required)
+
+Re-exports the component's public interface. Required for Tier 2+ (composite/domain) components.
+
+Barrel rules:
+
+- **Tier 0–1**: No barrel. Import directly from `.tsx` (single export = no API boundary needed)
+- **Tier 2+**: Barrel required. Consolidates multi-export composite into one import path
+- Category-level barrels (`primitives/index.ts`, `disclosure/index.ts`, etc.) always exist
+- Barrel must only re-export — no logic, no transformations
+- Named exports only (no `export default` in barrels)
+
+```ts
+// index.ts — Tier 2+ barrel example
+export {
+  DialogRoot,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from './Dialog';
+export type { DialogProps, DialogContentProps } from './Dialog.type';
+```
+
+## File Naming Alignment (FSD Segment Mapping)
+
+File suffixes map to FSD segments for consistent mental model:
+
+| File Suffix    | FSD Segment | Role                        |
+| -------------- | ----------- | --------------------------- |
+| `.tsx`         | ui          | Visual rendering + assembly |
+| `.type.ts`     | model       | Shared interfaces + context |
+| `.variant.ts`  | config      | Style variant declarations  |
+| `.hook.ts`     | model       | Stateful logic extraction   |
+| `.policy.ts`   | lib         | Business rules + validation |
+| `.const.ts`    | config      | Constants + defaults        |
+| `.test.tsx`    | —           | Unit + behavioral tests     |
+| `.stories.tsx` | —           | Visual documentation        |
+| `.md`          | —           | AI collaboration contract   |
+| `index.ts`     | api         | Public API boundary         |
+
+This mapping does NOT change file names — it clarifies each file's architectural role within the component slice.
 
 ## Dependency Direction (unidirectional, enforced)
 
@@ -136,7 +178,8 @@ Total: N gaps across M components
 Trigger                              Action
 ─────────────────────────────────────────────
 Variant map added                    T0→T1: create .variant.ts
-Props interfaces reach 3             T1→T2: create .type.ts
+Props interfaces reach 3             T1→T2: create .type.ts + index.ts
+Sub-components reach 3               T1→T2: create .type.ts + index.ts
 3+ useState/custom hooks             →T3: create .hook.ts
 Validation/policy logic appears      →T3: create .policy.ts
 5+ magic numbers/defaults accumulate →T3: create .const.ts
@@ -151,6 +194,7 @@ Promotion only, no demotion. Once a file is separated, it stays.
 3. **Single file under 100 lines** — Tier 0 keeps everything in .tsx. No excessive splitting
 4. **No reverse imports** — Only type ← variant ← hook ← tsx direction allowed
 5. **typecheck must pass** — Roll back if `pnpm typecheck` fails after extraction
+6. **Barrel = Tier 2+** — index.ts required for Tier 2+ (composite), forbidden for Tier 0–1 (leaf/styled) unless category-level
 
 ## Output Format
 
