@@ -58,7 +58,10 @@ import {
   DataListItem,
   DataListLabel,
   DataListValue,
+  ToggleGroupRoot,
+  ToggleGroupItem,
   Truncate,
+  VisuallyHidden,
   IconSearch,
   IconSettings,
   IconStar,
@@ -93,6 +96,33 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
+  AlertDialogRoot,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+  ContextMenuRoot,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  HoverCardRoot,
+  HoverCardTrigger,
+  HoverCardContent,
+  MenubarRoot,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  NavigationMenuRoot,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
   TooltipProvider,
   SimpleTooltip,
 } from '@/components/disclosure';
@@ -102,6 +132,11 @@ import {
   Callout,
   EmptyState,
   Skeleton,
+  ToastProvider,
+  ToastRoot,
+  ToastTitle,
+  ToastDescription,
+  ToastViewport,
 } from '@/components/feedback';
 
 import { Container, Stack, TopBar } from '@/components/layout';
@@ -170,6 +205,13 @@ export function ShowcaseDemo() {
               title="No results"
               description="Try adjusting your search criteria."
             />
+            <ToastProvider>
+              <ToastRoot open>
+                <ToastTitle>Changes saved</ToastTitle>
+                <ToastDescription>Your settings have been updated.</ToastDescription>
+              </ToastRoot>
+              <ToastViewport />
+            </ToastProvider>
           </Section>
 
           <Divider className="my-6" />
@@ -227,6 +269,11 @@ export function ShowcaseDemo() {
               >
                 <IconStar size="sm" />
               </Toggle>
+
+              <ToggleGroupRoot type="single" defaultValue="list">
+                <ToggleGroupItem value="list" size="sm">List</ToggleGroupItem>
+                <ToggleGroupItem value="grid" size="sm">Grid</ToggleGroupItem>
+              </ToggleGroupRoot>
             </div>
 
             <div className="max-w-xs">
@@ -343,6 +390,16 @@ export function ShowcaseDemo() {
             </div>
 
             <ProgressBar value={72} />
+
+            <div className="flex items-center gap-2">
+              <Button size="sm">
+                Save
+                <VisuallyHidden> current document</VisuallyHidden>
+              </Button>
+              <Text size="xs" className="text-fg-muted">
+                (VisuallyHidden text for screen readers)
+              </Text>
+            </div>
           </Section>
 
           <Divider className="my-6" />
@@ -422,7 +479,7 @@ export function ShowcaseDemo() {
               </AccordionItem>
             </AccordionRoot>
 
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <DialogRoot>
                 <DialogTrigger asChild>
                   <Button variant="outline" size="sm">
@@ -446,6 +503,24 @@ export function ShowcaseDemo() {
                   </DialogFooter>
                 </DialogContent>
               </DialogRoot>
+
+              <AlertDialogRoot>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    Alert Dialog
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogTitle>Delete item?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone.
+                  </AlertDialogDescription>
+                  <div className="flex justify-end gap-2 mt-4">
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>Delete</AlertDialogAction>
+                  </div>
+                </AlertDialogContent>
+              </AlertDialogRoot>
 
               <SheetRoot>
                 <SheetTrigger asChild>
@@ -485,6 +560,76 @@ export function ShowcaseDemo() {
                 </PopoverContent>
               </PopoverRoot>
             </div>
+
+            <HoverCardRoot>
+              <HoverCardTrigger asChild>
+                <Text size="sm" className="text-fg-link underline cursor-pointer inline-block">
+                  Hover for details
+                </Text>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div className="space-y-1">
+                  <Text size="sm" weight="semibold">@strata-ds</Text>
+                  <Text size="xs" className="text-fg-muted">
+                    A design system built with React 19 and Radix UI.
+                  </Text>
+                </div>
+              </HoverCardContent>
+            </HoverCardRoot>
+
+            <ContextMenuRoot>
+              <ContextMenuTrigger asChild>
+                <div className="border border-dashed border-border-subtle rounded-md p-4 text-center">
+                  <Text size="sm" className="text-fg-muted">
+                    Right-click for context menu
+                  </Text>
+                </div>
+              </ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuItem>Copy</ContextMenuItem>
+                <ContextMenuItem>Paste</ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem>Delete</ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenuRoot>
+
+            <MenubarRoot>
+              <MenubarMenu>
+                <MenubarTrigger>File</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem shortcut="⌘N">New</MenubarItem>
+                  <MenubarItem shortcut="⌘O">Open</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem shortcut="⌘S">Save</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu>
+                <MenubarTrigger>Edit</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem shortcut="⌘Z">Undo</MenubarItem>
+                  <MenubarItem shortcut="⌘Y">Redo</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+            </MenubarRoot>
+
+            <NavigationMenuRoot>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink>Home</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="p-4 w-48">
+                      <Text size="sm">Product navigation content</Text>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink>About</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenuRoot>
 
             <TabsRoot defaultValue="tab1">
               <TabsList>

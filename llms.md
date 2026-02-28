@@ -84,7 +84,7 @@
 - [Skeleton](src/components/feedback/Skeleton/Skeleton.md): Animated loading placeholder with shape variants for content shimmer effects.
 - [Toast](src/components/feedback/Toast/Toast.md): Transient notification system built on Radix Toast primitive with timed auto-dismiss.
 
-## Demo Applications (12)
+## Demo Applications (13)
 
 - [discord](src/demos/discord/): Reference implementation
 - [figma](src/demos/figma/): Reference implementation
@@ -92,6 +92,7 @@
 - [linear](src/demos/linear/): Reference implementation
 - [notion](src/demos/notion/): Reference implementation
 - [reddit](src/demos/reddit/): Reference implementation
+- [showcase](src/demos/showcase/): Reference implementation
 - [slack](src/demos/slack/): Reference implementation
 - [spotify](src/demos/spotify/): Reference implementation
 - [trello](src/demos/trello/): Reference implementation
