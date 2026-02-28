@@ -31,7 +31,7 @@ export function TooltipContent({
       ref={ref}
       sideOffset={6}
       className={cn(
-        'z-50 rounded-[--tooltip-radius] bg-[--tooltip-bg] px-2.5 py-1.5',
+        'z-[--elevation-dropdown] rounded-[--tooltip-radius] bg-[--tooltip-bg] px-2.5 py-1.5',
         'text-xs font-medium text-[--tooltip-fg] shadow-sm',
         'data-[state=delayed-open]:animate-in data-[state=closed]:animate-out',
         'data-[state=delayed-open]:fade-in-0 data-[state=closed]:fade-out-0',

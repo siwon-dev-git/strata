@@ -37,7 +37,7 @@ export function SheetContent({
     <RadixDialog.Portal>
       <RadixDialog.Overlay
         className={cn(
-          'fixed inset-0 z-50 bg-[--overlay-bg]',
+          'fixed inset-0 z-[--elevation-overlay] bg-[--overlay-bg]',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
         )}
@@ -45,7 +45,7 @@ export function SheetContent({
       <RadixDialog.Content
         ref={ref}
         className={cn(
-          'fixed z-50',
+          'fixed z-[--elevation-modal]',
           'bg-[--dialog-bg] border border-[--dialog-border] shadow-[--dialog-shadow] p-6',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',

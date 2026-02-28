@@ -20,7 +20,7 @@ export function NavigationMenuRoot({
   return (
     <RadixNavigationMenu.Root
       ref={ref}
-      className={cn('relative z-10 flex items-center', className)}
+      className={cn('relative z-[--elevation-raised] flex items-center', className)}
       {...props}
     >
       {children}

@@ -74,7 +74,7 @@ export function MenubarContent({
         sideOffset={4}
         align="start"
         className={cn(
-          'z-50 min-w-[180px]',
+          'z-[--elevation-dropdown] min-w-[180px]',
           'rounded-[--menu-radius] bg-[--menu-bg] border border-[--menu-border] shadow-[--menu-shadow]',
           'p-1',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',

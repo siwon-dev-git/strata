@@ -25,7 +25,7 @@ export function AlertDialogContent({
     <RadixAlertDialog.Portal>
       <RadixAlertDialog.Overlay
         className={cn(
-          'fixed inset-0 z-50 bg-[--overlay-bg]',
+          'fixed inset-0 z-[--elevation-overlay] bg-[--overlay-bg]',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
         )}
@@ -33,7 +33,7 @@ export function AlertDialogContent({
       <RadixAlertDialog.Content
         ref={ref}
         className={cn(
-          'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50',
+          'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[--elevation-modal]',
           'w-full max-w-md',
           'rounded-[--dialog-radius] bg-[--dialog-bg] border border-[--dialog-border] shadow-[--dialog-shadow]',
           'p-6',
