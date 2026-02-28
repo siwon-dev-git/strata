@@ -40,7 +40,17 @@ jobs:
         run: pnpm typecheck
 
       - name: Test
-        run: pnpm test:ci
+        run: pnpm test:ci -- --coverage
+
+      - name: Token layer lint
+        run: |
+          # L3 must not reference L1 primitives (--sp-gray-) or hardcode oklch()
+          VIOLATIONS=$(grep -cE '\-\-sp-gray-|oklch\(' src/tokens/layer3-component.css || true)
+          if [ "$VIOLATIONS" -gt 0 ]; then
+            echo "::error::L3 token layer violations found: $VIOLATIONS references to L1 primitives or hardcoded oklch()"
+            grep -nE '\-\-sp-gray-|oklch\(' src/tokens/layer3-component.css
+            exit 1
+          fi
 
       - name: Build
         run: pnpm build
@@ -67,6 +77,15 @@ jobs:
               issue_number: context.issue.number,
               body: `${status} **Bundle (entry):** ${kb}KB / 512KB budget`,
             });
+
+      - name: Bundle budget gate
+        run: |
+          SIZE_KB=$(grep -oE 'assets/[^"]+' dist/index.html | while read f; do wc -c < "dist/$f"; done | awk '{sum+=$1} END {print int(sum/1024)}')
+          echo "Bundle size: ${SIZE_KB}KB (budget: 512KB)"
+          if [ "$SIZE_KB" -gt 512 ]; then
+            echo "::error::Bundle size ${SIZE_KB}KB exceeds 512KB budget"
+            exit 1
+          fi
 
   # ── PR Checks ────────────────────────────────────
   # Size label + dependency review. Only on pull_request.
