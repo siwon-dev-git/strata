@@ -10,7 +10,8 @@ import { SpotifyDemo } from '@/demos/spotify/SpotifyDemo';
 import { TwitterDemo } from '@/demos/twitter/TwitterDemo';
 import { TrelloDemo } from '@/demos/trello/TrelloDemo';
 import { VSCodeDemo } from '@/demos/vscode/VSCodeDemo';
-import { CharacterChatDemo } from '@/demos/character-chat/CharacterChatDemo';
+import { WhatsAppDemo } from '@/demos/whatsapp/WhatsAppDemo';
+import { RedditDemo } from '@/demos/reddit/RedditDemo';
 
 const meta = {
   title: 'Demos',
@@ -71,7 +72,12 @@ export const Trello: Story = {
   parameters: { layout: 'fullscreen' },
 };
 
-export const CharacterChat: Story = {
-  render: () => <CharacterChatDemo />,
+export const WhatsApp: Story = {
+  render: () => <WhatsAppDemo />,
+  parameters: { layout: 'fullscreen' },
+};
+
+export const Reddit: Story = {
+  render: () => <RedditDemo />,
   parameters: { layout: 'fullscreen' },
 };
