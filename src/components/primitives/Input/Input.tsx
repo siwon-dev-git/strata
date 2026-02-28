@@ -16,18 +16,33 @@ type InputSize = keyof typeof SIZE_MAP;
 interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
   size?: InputSize;
   error?: boolean;
+  /** Called when Enter is pressed (without Shift). Convenience for chat/search inputs. */
+  onPressEnter?: () => void;
 }
 
 export function Input({
   size = 'md',
   error = false,
+  onPressEnter,
+  onKeyDown,
   className,
   ref,
   ...props
 }: InputProps) {
+  const handleKeyDown = onPressEnter
+    ? (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          onPressEnter();
+        }
+        onKeyDown?.(e);
+      }
+    : onKeyDown;
+
   return (
     <input
       ref={ref}
+      onKeyDown={handleKeyDown}
       className={cn(
         'w-full rounded-[--input-radius]',
         'bg-[--input-bg] text-[--input-fg] border border-[--input-border]',

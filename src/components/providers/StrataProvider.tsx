@@ -20,11 +20,21 @@ export function StrataProvider({
 
   const handleSetTheme = useCallback((t: ThemeName) => setTheme(t), []);
   const handleSetMode = useCallback((m: ThemeMode) => setMode(m), []);
+  const handleToggleMode = useCallback(
+    () => setMode((prev) => (prev === 'dark' ? 'light' : 'dark')),
+    [],
+  );
   const handleSetDensity = useCallback((d: Density) => setDensity(d), []);
 
   const themeValue = useMemo(
-    () => ({ theme, mode, setTheme: handleSetTheme, setMode: handleSetMode }),
-    [theme, mode, handleSetTheme, handleSetMode],
+    () => ({
+      theme,
+      mode,
+      setTheme: handleSetTheme,
+      setMode: handleSetMode,
+      toggleMode: handleToggleMode,
+    }),
+    [theme, mode, handleSetTheme, handleSetMode, handleToggleMode],
   );
 
   const densityValue = useMemo(

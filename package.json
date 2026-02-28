@@ -25,7 +25,8 @@
     "./tokens/semantic": "./dist/tokens/layer2-semantic.css",
     "./tokens/component": "./dist/tokens/layer3-component.css",
     "./tokens.json": "./tokens.json",
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/styles.css",
+    "./preset": "./dist/preset.css"
   },
   "files": [
     "dist",
@@ -37,7 +38,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:lib": "vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && mkdir -p dist/tokens && cp src/tokens/*.css dist/tokens/ && printf '@import \"./tokens/layer1-primitive.css\";\\n@import \"./tokens/layer2-semantic.css\";\\n@import \"./tokens/layer3-component.css\";\\n' > dist/styles.css",
+    "build:lib": "vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && mkdir -p dist/tokens && cp src/tokens/*.css dist/tokens/ && printf '@import \"./tokens/layer1-primitive.css\";\\n@import \"./tokens/layer2-semantic.css\";\\n@import \"./tokens/layer3-component.css\";\\n' > dist/styles.css && cp src/preset.css dist/preset.css",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6007",

@@ -6,6 +6,7 @@ export interface ThemeContextValue {
   mode: ThemeMode;
   setTheme: (t: ThemeName) => void;
   setMode: (m: ThemeMode) => void;
+  toggleMode: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextValue | null>(null);
