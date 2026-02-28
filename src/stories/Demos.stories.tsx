@@ -12,6 +12,7 @@ import { TrelloDemo } from '@/demos/trello/TrelloDemo';
 import { VSCodeDemo } from '@/demos/vscode/VSCodeDemo';
 import { WhatsAppDemo } from '@/demos/whatsapp/WhatsAppDemo';
 import { RedditDemo } from '@/demos/reddit/RedditDemo';
+import { ShowcaseDemo } from '@/demos/showcase/ShowcaseDemo';
 
 const meta = {
   title: 'Demos',
@@ -79,5 +80,10 @@ export const WhatsApp: Story = {
 
 export const Reddit: Story = {
   render: () => <RedditDemo />,
+  parameters: { layout: 'fullscreen' },
+};
+
+export const Showcase: Story = {
+  render: () => <ShowcaseDemo />,
   parameters: { layout: 'fullscreen' },
 };
