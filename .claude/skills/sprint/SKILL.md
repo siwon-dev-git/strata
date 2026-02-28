@@ -21,7 +21,7 @@ $ARGUMENTS — unified loop. Single command runs the full cycle.
 | Gate | Name     | Check                                         | Fix                            | Retry |
 | ---- | -------- | --------------------------------------------- | ------------------------------ | ----- |
 | G0   | Scope    | scope declared + FMEA checked                 | narrow scope                   | 1     |
-| G1   | Surface  | `pnpm format:check && pnpm lint --fix`        | auto (`format:write`, `--fix`) | 1     |
+| G1   | Surface  | `pnpm install --frozen-lockfile && pnpm format:check && pnpm lint --fix` | auto (lockfile regen, `format:write`, `--fix`) | 1     |
 | G2   | Static   | `pnpm lint && pnpm typecheck`                 | manual code fix                | 3     |
 | G3   | Runtime  | `pnpm test:ci && pnpm build` + bundle ≤ 512KB | manual code fix                | 3     |
 | G4   | Heritage | retro done if 3+ commits since last           | update ADR + FMEA              | 1     |
@@ -77,9 +77,10 @@ Sequential gate chain. Each gate must PASS before the next runs.
 
 **G1 Surface** (auto-fix):
 
-1. `pnpm format:check` — FAIL → `pnpm format:write` → re-verify
-2. `pnpm lint --fix` (auto-fixable items)
-3. Re-run `pnpm format:check` → must PASS
+1. `pnpm install --frozen-lockfile` — FAIL → `pnpm install` → commit lockfile → re-verify
+2. `pnpm format:check` — FAIL → `pnpm format:write` → re-verify
+3. `pnpm lint --fix` (auto-fixable items)
+4. Re-run `pnpm format:check` → must PASS
 
 **G2 Static** (manual fix):
 
@@ -163,7 +164,7 @@ Two-tier check:
 
 **Hard checks** (gate violations — must fix):
 
-- G1 Surface: `pnpm format:check && pnpm lint --fix` then verify
+- G1 Surface: `pnpm install --frozen-lockfile && pnpm format:check && pnpm lint --fix` then verify
 - G2 Static: `pnpm lint && pnpm typecheck`
 - G3 Runtime: `pnpm test:ci && pnpm build`
 
