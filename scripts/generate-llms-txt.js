@@ -1,10 +1,10 @@
 /**
- * Generates llms.txt and llms-full.txt from component .md files.
+ * Generates llms.md and llms-full.md from component .md files.
  *
  * Usage: node scripts/generate-llms-txt.js
  *
- * llms.txt      — Lightweight index (~5K tokens) following llmstxt.org spec
- * llms-full.txt — Full documentation content for large-context AI tools
+ * llms.md      — Lightweight index (~5K tokens)
+ * llms-full.md — Full documentation content for large-context AI tools
  */
 
 import { readdir, readFile, writeFile } from 'node:fs/promises';
@@ -220,17 +220,15 @@ async function main() {
   const llmsTxt = generateLlmsTxt(components, demos);
   const llmsFullTxt = await generateLlmsFullTxt(components);
 
-  await writeFile(join(ROOT, 'llms.txt'), llmsTxt, 'utf-8');
-  await writeFile(join(ROOT, 'llms-full.txt'), llmsFullTxt, 'utf-8');
+  await writeFile(join(ROOT, 'llms.md'), llmsTxt, 'utf-8');
+  await writeFile(join(ROOT, 'llms-full.md'), llmsFullTxt, 'utf-8');
 
   const llmsTokens = Math.round(llmsTxt.length / 4);
   const fullTokens = Math.round(llmsFullTxt.length / 4);
 
+  console.log(`llms.md      → ${llmsTxt.length} chars (~${llmsTokens} tokens)`);
   console.log(
-    `llms.txt      → ${llmsTxt.length} chars (~${llmsTokens} tokens)`,
-  );
-  console.log(
-    `llms-full.txt → ${llmsFullTxt.length} chars (~${fullTokens} tokens)`,
+    `llms-full.md → ${llmsFullTxt.length} chars (~${fullTokens} tokens)`,
   );
   console.log(`Components: ${components.length}`);
   console.log(`Demos: ${demos.length}`);
