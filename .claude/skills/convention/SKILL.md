@@ -1,7 +1,6 @@
 ---
 name: convention
 description: Strata Convention. Tier-based component file structure. Use when organizing, auditing, or scaffolding Strata components.
-allowed-tools: ['Read', 'Write', 'Edit', 'Glob', 'Grep', 'Bash', 'Task']
 ---
 
 # Convention — Strata File Convention

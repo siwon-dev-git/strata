@@ -14,7 +14,7 @@
 - **maintain-sense-decide-gap**: MAINTAIN SENSE had 5 checks but DECIDE only mapped 4 actions (format+lint+typecheck missing). Health ≥8 threshold let 1 failing check exit as "healthy" (4/5×10=8). Fix: hard/soft 2-tier separation; hard gate = binary pass/fail, soft = health score. No threshold escape
 - **script-name-phantom**: SKILL.md referenced `format:write` but actual script is `format`. Phantom script names cause gate auto-fix to fail silently. Fix: verify script names against package.json when writing SKILL
 - **type-regression**: Barrel destruction, missing initial values. Verify with tsc --noEmit
-- **ci-comment-gate-blind**: CI reports bundle size (🔴 700KB/512KB) and PR size (⚠️ 3886 lines) as PR comments, but `gh run watch --exit-status` returns 0 because they don't fail the workflow. Harness G5 sees PASS while quality signals are ignored. Occurred: PR #18 (11 bundle warnings, 7 PR size warnings). Fix: bundle budget check in G3 after build (`du -sk dist`); pre-PR size check before push (`git diff --stat`). CI comments remain informational; harness enforces locally before CI
+- **ci-comment-gate-blind**: CI reports bundle size (🔴 700KB/512KB) and PR size (⚠️ 3886 lines) as PR comments, but `gh run watch --exit-status` returns 0 because they don't fail the workflow. Harness G5 sees PASS while quality signals are ignored. Occurred: PR #18 (11 bundle warnings, 7 PR size warnings). Fix: bundle budget check in G3 after build (entry bundle from index.html); pre-PR size check before push (`git diff --stat -- ':!*lock*'`). CI comments remain informational; harness enforces locally before CI
 - **commit-delay-after-build**: Delaying commit after review pass. Immediate commit mandatory
 - **type-impl-drift**: Field exists in type but not rendered. tsc doesn't warn on unused props. Cross-check type vs implementation during component audit
 - **config-without-seed**: Build config has pattern registered but 0 actual files. When adding config, create at least 1 seed file simultaneously
@@ -33,6 +33,7 @@
 
 ## Tooling
 
+- **skill-frontmatter-invalid**: SKILL.md contained unsupported frontmatter attribute `allowed-tools`. Claude Code only supports: `argument-hint`, `compatibility`, `description`, `disable-model-invocation`, `license`, `metadata`, `name`, `user-invokable`. Invalid keys are silently ignored or warn at runtime. Fix: verify frontmatter keys against supported list when editing SKILL files. Occurred: sprint/SKILL.md, convention/SKILL.md
 - **npx-pnpm-passthrough**: `pnpm script -- --flag` passes `--` directly to vitest, flag misinterpreted as file filter. Use dedicated scripts
 - **npm-remnants**: After package manager switch, error messages/comments reference old manager. grep full check on switch
 - **artifact-gitignore-gap**: Build artifacts not registered in .gitignore → large commit accident. Register output directories on creation
