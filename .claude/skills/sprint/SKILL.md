@@ -19,14 +19,14 @@ $ARGUMENTS — unified loop. Single command runs the full cycle.
 
 6 gates govern every cycle. Each gate is binary (PASS/FAIL). Failure blocks downstream.
 
-| Gate | Name     | Check                                  | Fix                            | Retry |
-| ---- | -------- | -------------------------------------- | ------------------------------ | ----- |
-| G0   | Scope    | scope declared + FMEA checked          | narrow scope                   | 1     |
-| G1   | Surface  | `pnpm format:check && pnpm lint --fix` | auto (`format:write`, `--fix`) | 1     |
-| G2   | Static   | `pnpm lint && pnpm typecheck`          | manual code fix                | 3     |
-| G3   | Runtime  | `pnpm test:ci && pnpm build`           | manual code fix                | 3     |
-| G4   | Heritage | retro done if 3+ commits since last    | update ADR + FMEA              | 1     |
-| G5   | CI       | `gh run watch --exit-status`           | local fix → G1 re-entry        | 3     |
+| Gate | Name     | Check                                         | Fix                            | Retry |
+| ---- | -------- | --------------------------------------------- | ------------------------------ | ----- |
+| G0   | Scope    | scope declared + FMEA checked                 | narrow scope                   | 1     |
+| G1   | Surface  | `pnpm format:check && pnpm lint --fix`        | auto (`format:write`, `--fix`) | 1     |
+| G2   | Static   | `pnpm lint && pnpm typecheck`                 | manual code fix                | 3     |
+| G3   | Runtime  | `pnpm test:ci && pnpm build` + bundle ≤ 512KB | manual code fix                | 3     |
+| G4   | Heritage | retro done if 3+ commits since last           | update ADR + FMEA              | 1     |
+| G5   | CI       | `gh run watch --exit-status`                  | local fix → G1 re-entry        | 3     |
 
 **Universal rules:**
 
@@ -92,7 +92,11 @@ Sequential gate chain. Each gate must PASS before the next runs.
 
 1. `pnpm test:ci` — FAIL → fix → re-verify
 2. `pnpm build` — FAIL → fix → re-verify
-3. Max 3 fix attempts per check. Exhausted → BLOCKED
+3. Bundle budget: `du -sk dist | cut -f1`
+   - ≤ 400KB → ✅ PASS
+   - 401–512KB → 🟡 WARN (proceed with caution)
+   - \> 512KB → 🔴 FAIL (must reduce bundle size)
+4. Max 3 fix attempts per check. Exhausted → BLOCKED
 
 ### ❻ Hygiene
 
@@ -121,6 +125,15 @@ Sequential gate chain. Each gate must PASS before the next runs.
 4. If up-to-date → proceed
 
 ### ❿ PR + CI — G5
+
+**Pre-PR size check** (before push):
+
+1. `git diff --stat origin/main...HEAD` → calculate total changed lines
+   - ≤ 500 lines → proceed
+   - 501–1000 lines → ⚠️ WARN: "Large PR. Consider splitting." Ask user to confirm or split
+   - \> 1000 lines → 🔴 BLOCK: "PR too large. Split required." User can explicitly override
+
+**PR + CI flow**:
 
 1. Push with `-u`
 2. Create PR via `gh pr create` (or push to existing)
@@ -160,6 +173,7 @@ Two-tier check:
 - Unreviewed commits: <3
 - Heritage freshness: <7 days
 - Dead references: 0
+- Bundle size: ≤ 512KB (`pnpm build && du -sk dist | cut -f1`)
 
 ### DECIDE — Priority
 
@@ -168,7 +182,7 @@ Hard check FAIL → fix in gate order (G1→G2→G3), same retry rules as BUILD
 Hard check ALL PASS → evaluate soft checks:
   Soft ALL ✅ → CONVERGED → EXIT
   Soft ⚠️ → process in order:
-    unreviewed ≥3 (retro) → stale ≥7d (update heritage) → dead refs (clean)
+    unreviewed ≥3 (retro) → stale ≥7d (update heritage) → dead refs (clean) → bundle >512KB (tree-shake/split)
 ```
 
 ### EXECUTE
@@ -195,7 +209,7 @@ Re-run SENSE →
 ```
 ═══ Sprint {Build N|Cycle N|Complete} ═══
 [BUILD] Quest: / Gates: G0✅ G1✅ G2✅ G3✅ G4✅ G5✅ / Commit: [hash]
-[MAINTAIN] Health: Hard ✅|❌ Soft X/3 / Actions: / Insight:
+[MAINTAIN] Health: Hard ✅|❌ Soft X/4 / Actions: / Insight:
 Heritage: ADR N₁ + FMEA N₂
 Status: COMPLETE | INCOMPLETE | BLOCKED | CONVERGED | DIMINISHING | MAX_CYCLE
 ═══════════════════════

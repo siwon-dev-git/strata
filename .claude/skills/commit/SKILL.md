@@ -73,16 +73,24 @@ Optional. Component or area name in lowercase:
 ### With PR (`/commit pr`)
 
 1. Execute default commit flow
-2. Create branch if on main: `<type>/<short-description>`
-3. Push with `-u`
-4. Create PR via `gh pr create`:
+2. **Pre-PR checks** (before push):
+   - Bundle budget: `pnpm build && du -sk dist | cut -f1`
+     - ≤ 512KB → proceed
+     - \> 512KB → 🔴 HALT (must reduce bundle size before PR)
+   - PR size: `git diff --stat origin/main...HEAD` → total changed lines
+     - ≤ 500 lines → proceed
+     - 501–1000 lines → ⚠️ WARN: ask user to confirm or split
+     - \> 1000 lines → 🔴 BLOCK: split required (user can explicitly override)
+3. Create branch if on main: `<type>/<short-description>`
+4. Push with `-u`
+5. Create PR via `gh pr create`:
    - Title = primary commit subject
    - Body = Summary bullets + Test plan + AI badge
-5. Report PR URL
+6. Report PR URL
 
 ### With merge (`/commit pr merge`)
 
-1. Execute PR flow
+1. Execute PR flow (includes pre-PR checks above)
 2. Wait for CI with `gh run watch --exit-status`
 3. If CI fails → diagnose → fix locally → re-enter G1→G2 pre-flight → push → re-watch
 4. **Never merge with CI red.** Max 3 CI fix rounds → BLOCKED
