@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
 import { cn } from '@/lib/utils';
 import type {

@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { badgeVariants, type BadgeVariantProps } from './Badge.variant';

@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixContextMenu from '@radix-ui/react-context-menu';
 import { cn } from '@/lib/utils';
 import type {

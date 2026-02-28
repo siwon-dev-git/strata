@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -14,7 +16,9 @@ const SIZE_MAP = {
 type InputSize = keyof typeof SIZE_MAP;
 
 interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
+  /** Input height variant: `sm` (28px), `md` (density-aware, default), `lg` (44px). */
   size?: InputSize;
+  /** Applies error border (`--input-border-error`) and sets `aria-invalid`. */
   error?: boolean;
   /** Called when Enter is pressed (without Shift). Convenience for chat/search inputs. */
   onPressEnter?: () => void;
@@ -66,7 +70,9 @@ export function Input({
 
 interface InputGroupProps {
   children: ReactNode;
+  /** Absolutely-positioned left adornment (icon, label). Non-interactive (`pointer-events-none`). */
   prefix?: ReactNode;
+  /** Absolutely-positioned right adornment (icon, label). Non-interactive (`pointer-events-none`). */
   suffix?: ReactNode;
   className?: string;
 }
