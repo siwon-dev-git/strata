@@ -753,6 +753,27 @@ Primary interactive element for triggering actions, with variant styling, loadin
 - `--btn-touch-target` — minimum touch target size (WCAG 2.5.8)
 - `--border-interactive` — (L2) focus ring color source
 
+## Props
+
+| prop       | type                                          | default   | description                          |
+| ---------- | --------------------------------------------- | --------- | ------------------------------------ |
+| variant    | `'solid' \| 'ghost' \| 'outline' \| 'danger'` | `'solid'` | Visual variant                       |
+| size       | `'sm' \| 'md' \| 'lg' \| 'icon'`              | `'md'`    | Size variant                         |
+| fullWidth  | `boolean`                                     | `false`   | Stretch to fill parent width         |
+| loading    | `boolean`                                     | `false`   | Show spinner and disable interaction |
+| asChild    | `boolean`                                     | `false`   | Delegate rendering to child via Slot |
+| classNames | `{ spinner?: string }`                        | —         | Granular sub-element class overrides |
+| className  | `string`                                      | —         | Root element class override          |
+
+## Data Attributes
+
+| attribute      | value           | purpose                     |
+| -------------- | --------------- | --------------------------- |
+| `data-slot`    | `"button"`      | Structural CSS targeting    |
+| `data-variant` | variant name    | Variant-based CSS overrides |
+| `data-size`    | size name       | Size-based CSS overrides    |
+| `data-loading` | `"true"` / none | Loading state CSS overrides |
+
 ## Constraints
 
 - `loading` prop disables the button and shows a `Spinner` before children
@@ -783,10 +804,41 @@ Primary interactive element for triggering actions, with variant styling, loadin
 | lg   | 44px                 | Primary CTAs, mobile-friendly    |
 | icon | density-aware square | Icon-only buttons, toolbars      |
 
+## Override Patterns
+
+### Token override (scoped via data attributes)
+
+```css
+[data-slot='button'][data-variant='solid'] {
+  --btn-solid-bg: var(--sp-green-500);
+  --btn-solid-bg-hover: var(--sp-green-400);
+}
+```
+
+### Sub-element styling via classNames
+
+```tsx
+<Button loading classNames={{ spinner: 'opacity-50' }}>
+  Saving
+</Button>
+```
+
+### Extending with buttonVariants
+
+```tsx
+import { buttonVariants } from '@siwon-dev-npm/strata';
+const customClass = buttonVariants({
+  variant: 'solid',
+  size: 'lg',
+  fullWidth: true,
+});
+```
+
 ## History
 
 - Sprint 1: Initial implementation
 - MAINTAIN 10-cycle: Token foundation (active/focus/disabled), focus ring alignment, active states, keyboard tests, variant override tests, touch targets, icon-only support, ARIA tests, type="button" default, density stories, documentation
+- DX optimization: Data attributes, classNames prop, fullWidth variant, export structure, visual evaluation tooling
 
 ---
 

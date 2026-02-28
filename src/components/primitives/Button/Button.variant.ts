@@ -28,10 +28,14 @@ export const buttonVariants = cva(
         lg: 'h-11 px-5 text-base gap-2.5',
         icon: 'h-[--density-item-height] w-[--density-item-height] p-0',
       },
+      fullWidth: {
+        true: 'w-full',
+      },
     },
     defaultVariants: {
       variant: 'solid',
       size: 'md',
+      fullWidth: false,
     },
   },
 );

@@ -8,19 +8,28 @@ import {
   type ButtonVariantProps,
 } from './Button.variant';
 
-interface ButtonProps
+export interface ButtonProps
   extends ComponentPropsWithRef<'button'>, ButtonVariantProps {
+  /** Shows a `Spinner` before children, disables the button, and sets `aria-busy`. */
   loading?: boolean;
+  /** Delegates rendering to `@radix-ui/react-slot` for polymorphic composition (e.g. wrapping an `<a>`). */
   asChild?: boolean;
+  /** Granular class overrides for internal sub-elements. */
+  classNames?: {
+    /** Classes applied to the loading spinner. */
+    spinner?: string;
+  };
 }
 
 export function Button({
   variant = 'solid',
   size = 'md',
+  fullWidth = false,
   loading = false,
   asChild = false,
   disabled,
   className,
+  classNames,
   children,
   ref,
   type = 'button',
@@ -45,12 +54,19 @@ export function Button({
       type={asChild ? undefined : type}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
-      className={cn(buttonVariants({ variant, size }), className)}
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      data-loading={loading || undefined}
+      className={cn(buttonVariants({ variant, size, fullWidth }), className)}
       {...props}
     >
       {loading ? (
         <>
-          <Spinner size={SPINNER_SIZE_MAP[size!]} className="shrink-0" />
+          <Spinner
+            size={SPINNER_SIZE_MAP[size!]}
+            className={cn('shrink-0', classNames?.spinner)}
+          />
           {children}
         </>
       ) : (
