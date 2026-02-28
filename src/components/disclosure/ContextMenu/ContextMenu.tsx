@@ -1,6 +1,11 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixContextMenu from '@radix-ui/react-context-menu';
 import { cn } from '@/lib/utils';
+import type {
+  ContextMenuContentProps,
+  ContextMenuItemProps,
+  ContextMenuSeparatorProps,
+  ContextMenuLabelProps,
+} from './ContextMenu.type';
 
 /* ----- Root / Trigger ---------------------------------------------------- */
 
@@ -8,12 +13,6 @@ export const ContextMenuRoot = RadixContextMenu.Root;
 export const ContextMenuTrigger = RadixContextMenu.Trigger;
 
 /* ----- Content ----------------------------------------------------------- */
-
-interface ContextMenuContentProps extends ComponentPropsWithRef<
-  typeof RadixContextMenu.Content
-> {
-  children: ReactNode;
-}
 
 export function ContextMenuContent({
   className,
@@ -46,14 +45,6 @@ export function ContextMenuContent({
 }
 
 /* ----- Item -------------------------------------------------------------- */
-
-interface ContextMenuItemProps extends ComponentPropsWithRef<
-  typeof RadixContextMenu.Item
-> {
-  icon?: ReactNode;
-  shortcut?: string;
-  children: ReactNode;
-}
 
 export function ContextMenuItem({
   className,
@@ -88,10 +79,6 @@ export function ContextMenuItem({
 
 /* ----- Separator --------------------------------------------------------- */
 
-type ContextMenuSeparatorProps = ComponentPropsWithRef<
-  typeof RadixContextMenu.Separator
->;
-
 export function ContextMenuSeparator({
   className,
   ref,
@@ -107,12 +94,6 @@ export function ContextMenuSeparator({
 }
 
 /* ----- Label ------------------------------------------------------------- */
-
-interface ContextMenuLabelProps extends ComponentPropsWithRef<
-  typeof RadixContextMenu.Label
-> {
-  children: ReactNode;
-}
 
 export function ContextMenuLabel({
   className,

@@ -1,14 +1,15 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { cn } from '@/lib/utils';
+import type {
+  NavigationMenuRootProps,
+  NavigationMenuListProps,
+  NavigationMenuTriggerProps,
+  NavigationMenuContentProps,
+  NavigationMenuLinkProps,
+  NavigationMenuViewportProps,
+} from './NavigationMenu.type';
 
 /* ----- Root -------------------------------------------------------------- */
-
-interface NavigationMenuRootProps extends ComponentPropsWithRef<
-  typeof RadixNavigationMenu.Root
-> {
-  children: ReactNode;
-}
 
 export function NavigationMenuRoot({
   className,
@@ -28,12 +29,6 @@ export function NavigationMenuRoot({
 }
 
 /* ----- List -------------------------------------------------------------- */
-
-interface NavigationMenuListProps extends ComponentPropsWithRef<
-  typeof RadixNavigationMenu.List
-> {
-  children: ReactNode;
-}
 
 export function NavigationMenuList({
   className,
@@ -57,12 +52,6 @@ export function NavigationMenuList({
 export const NavigationMenuItem = RadixNavigationMenu.Item;
 
 /* ----- Trigger ----------------------------------------------------------- */
-
-interface NavigationMenuTriggerProps extends ComponentPropsWithRef<
-  typeof RadixNavigationMenu.Trigger
-> {
-  children: ReactNode;
-}
 
 export function NavigationMenuTrigger({
   className,
@@ -104,12 +93,6 @@ export function NavigationMenuTrigger({
 
 /* ----- Content ----------------------------------------------------------- */
 
-interface NavigationMenuContentProps extends ComponentPropsWithRef<
-  typeof RadixNavigationMenu.Content
-> {
-  children: ReactNode;
-}
-
 export function NavigationMenuContent({
   className,
   children,
@@ -137,12 +120,6 @@ export function NavigationMenuContent({
 
 /* ----- Link -------------------------------------------------------------- */
 
-interface NavigationMenuLinkProps extends ComponentPropsWithRef<
-  typeof RadixNavigationMenu.Link
-> {
-  children: ReactNode;
-}
-
 export function NavigationMenuLink({
   className,
   children,
@@ -165,10 +142,6 @@ export function NavigationMenuLink({
 }
 
 /* ----- Viewport (optional) ----------------------------------------------- */
-
-type NavigationMenuViewportProps = ComponentPropsWithRef<
-  typeof RadixNavigationMenu.Viewport
->;
 
 export function NavigationMenuViewport({
   className,

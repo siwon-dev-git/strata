@@ -1,6 +1,11 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { cn } from '@/lib/utils';
+import type {
+  DropdownMenuContentProps,
+  DropdownMenuItemProps,
+  DropdownMenuSeparatorProps,
+  DropdownMenuLabelProps,
+} from './DropdownMenu.type';
 
 /* ----- Root / Trigger ---------------------------------------------------- */
 
@@ -8,12 +13,6 @@ export const DropdownMenuRoot = RadixDropdownMenu.Root;
 export const DropdownMenuTrigger = RadixDropdownMenu.Trigger;
 
 /* ----- Content ----------------------------------------------------------- */
-
-interface DropdownMenuContentProps extends ComponentPropsWithRef<
-  typeof RadixDropdownMenu.Content
-> {
-  children: ReactNode;
-}
 
 export function DropdownMenuContent({
   className,
@@ -48,14 +47,6 @@ export function DropdownMenuContent({
 
 /* ----- Item -------------------------------------------------------------- */
 
-interface DropdownMenuItemProps extends ComponentPropsWithRef<
-  typeof RadixDropdownMenu.Item
-> {
-  icon?: ReactNode;
-  shortcut?: string;
-  children: ReactNode;
-}
-
 export function DropdownMenuItem({
   className,
   icon,
@@ -89,10 +80,6 @@ export function DropdownMenuItem({
 
 /* ----- Separator --------------------------------------------------------- */
 
-type DropdownMenuSeparatorProps = ComponentPropsWithRef<
-  typeof RadixDropdownMenu.Separator
->;
-
 export function DropdownMenuSeparator({
   className,
   ref,
@@ -108,12 +95,6 @@ export function DropdownMenuSeparator({
 }
 
 /* ----- Label ------------------------------------------------------------- */
-
-interface DropdownMenuLabelProps extends ComponentPropsWithRef<
-  typeof RadixDropdownMenu.Label
-> {
-  children: ReactNode;
-}
 
 export function DropdownMenuLabel({
   className,

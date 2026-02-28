@@ -1,6 +1,6 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import { cn } from '@/lib/utils';
+import type { TooltipContentProps, SimpleTooltipProps } from './Tooltip.type';
 
 /* ----- Provider / Root / Trigger ----------------------------------------- */
 
@@ -19,12 +19,6 @@ export const TooltipRoot = RadixTooltip.Root;
 export const TooltipTrigger = RadixTooltip.Trigger;
 
 /* ----- Content ----------------------------------------------------------- */
-
-interface TooltipContentProps extends ComponentPropsWithRef<
-  typeof RadixTooltip.Content
-> {
-  children: ReactNode;
-}
 
 export function TooltipContent({
   className,
@@ -52,12 +46,6 @@ export function TooltipContent({
 }
 
 /* ----- SimpleTooltip convenience ----------------------------------------- */
-
-interface SimpleTooltipProps {
-  content: string;
-  children: ReactNode;
-  side?: 'top' | 'bottom' | 'left' | 'right';
-}
 
 export function SimpleTooltip({ content, children, side }: SimpleTooltipProps) {
   return (

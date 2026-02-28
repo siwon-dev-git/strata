@@ -1,6 +1,11 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
+import type {
+  DialogContentProps,
+  DialogSectionProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
+} from './Dialog.type';
 
 /* ----- Root / Trigger / Close — pass-through ----------------------------- */
 
@@ -9,12 +14,6 @@ export const DialogTrigger = RadixDialog.Trigger;
 export const DialogClose = RadixDialog.Close;
 
 /* ----- Content (Portal + Overlay + Content) ------------------------------ */
-
-interface DialogContentProps extends ComponentPropsWithRef<
-  typeof RadixDialog.Content
-> {
-  children: ReactNode;
-}
 
 export function DialogContent({
   className,
@@ -52,10 +51,6 @@ export function DialogContent({
 }
 
 /* ----- Header / Body / Footer -------------------------------------------- */
-
-interface DialogSectionProps extends ComponentPropsWithRef<'div'> {
-  children: ReactNode;
-}
 
 export function DialogHeader({
   className,
@@ -112,12 +107,6 @@ export function DialogFooter({
 
 /* ----- Title / Description ----------------------------------------------- */
 
-interface DialogTitleProps extends ComponentPropsWithRef<
-  typeof RadixDialog.Title
-> {
-  children: ReactNode;
-}
-
 export function DialogTitle({
   className,
   children,
@@ -133,12 +122,6 @@ export function DialogTitle({
       {children}
     </RadixDialog.Title>
   );
-}
-
-interface DialogDescriptionProps extends ComponentPropsWithRef<
-  typeof RadixDialog.Description
-> {
-  children: ReactNode;
 }
 
 export function DialogDescription({
