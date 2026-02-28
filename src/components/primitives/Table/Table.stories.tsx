@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import {
   Table,
@@ -50,6 +51,14 @@ export const Default: Story = {
       </TableBody>
     </Table>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const table = canvas.getByRole('table');
+    await expect(table).toBeInTheDocument();
+
+    const rows = canvas.getAllByRole('row');
+    await expect(rows.length).toBe(6); // 1 header + 5 data rows
+  },
 };
 
 export const WithFooter: Story = {

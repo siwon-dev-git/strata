@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   ContextMenuRoot,
@@ -37,4 +38,13 @@ export const Default: Story = {
     </ContextMenuRoot>
   ),
   args: { children: undefined },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByText(/right-click here/i);
+    await userEvent.pointer({ keys: '[MouseRight]', target: trigger });
+
+    const body = within(document.body);
+    const menu = await body.findByRole('menu');
+    await expect(menu).toBeVisible();
+  },
 };

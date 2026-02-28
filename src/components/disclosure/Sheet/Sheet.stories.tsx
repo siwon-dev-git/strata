@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   SheetRoot,
@@ -43,6 +44,15 @@ export const Right: Story = {
       </SheetContent>
     </SheetRoot>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /open sheet/i });
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    const dialog = await body.findByRole('dialog');
+    await expect(dialog).toBeVisible();
+  },
 };
 
 export const Left: Story = {

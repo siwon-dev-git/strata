@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import { HoverCardRoot, HoverCardTrigger, HoverCardContent } from './HoverCard';
 import { Avatar } from '@/components/primitives';
@@ -36,4 +37,14 @@ export const Default: Story = {
     </div>
   ),
   args: { children: null },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByText('@johndoe');
+    await expect(trigger).toBeInTheDocument();
+
+    await userEvent.hover(trigger);
+    const body = within(document.body);
+    const card = await body.findByText('John Doe');
+    await expect(card).toBeVisible();
+  },
 };

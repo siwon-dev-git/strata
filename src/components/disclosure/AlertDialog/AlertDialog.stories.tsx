@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   AlertDialogRoot,
@@ -40,4 +41,13 @@ export const Default: Story = {
       </AlertDialogContent>
     </AlertDialogRoot>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /delete item/i });
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    const dialog = await body.findByRole('alertdialog');
+    await expect(dialog).toBeVisible();
+  },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   AccordionRoot,
@@ -55,6 +56,15 @@ export const Single: Story = {
       ))}
     </AccordionRoot>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /what is strata/i });
+    await expect(trigger).toBeInTheDocument();
+
+    await userEvent.click(trigger);
+    const region = canvas.getByRole('region');
+    await expect(region).toBeVisible();
+  },
 };
 
 export const Multiple: Story = {

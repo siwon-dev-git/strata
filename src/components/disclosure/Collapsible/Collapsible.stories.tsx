@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   CollapsibleRoot,
@@ -31,4 +32,12 @@ export const Default: Story = {
     </CollapsibleRoot>
   ),
   args: { children: null },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /toggle content/i });
+    await userEvent.click(trigger);
+
+    const content = canvas.getByText(/this is the collapsible content/i);
+    await expect(content).toBeVisible();
+  },
 };

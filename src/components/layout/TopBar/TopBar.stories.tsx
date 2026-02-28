@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import { TopBar } from './TopBar';
 import { Text, Button, IconBell, IconSearch } from '@/components/primitives';
@@ -28,5 +29,11 @@ export const Default: Story = {
         </Button>
       </>
     ),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const header = canvas.getByRole('banner');
+    await expect(header).toBeInTheDocument();
+    await expect(canvas.getByText('Dashboard')).toBeVisible();
   },
 };
