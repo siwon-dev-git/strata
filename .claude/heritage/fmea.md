@@ -43,6 +43,10 @@
 - **convenience-wrapper-missing**: Compound components (Dialog 5-part, Avatar+StatusDot) require verbose assembly for common patterns. Fix: add convenience wrappers (SimpleDialog) alongside compound API. Keep both — composition for power users, convenience for common cases
 - **discoverability-gap**: Heading component, Badge 5 variants, Icon tree-shaking — all exist but consumers missed them. Symptom: feedback asks for things already implemented. Fix: improve llms.md surface area and component .md examples
 
+## Testing
+
+- **happy-path-only-tests**: 52 test files (157 assertions) cover only rendering and basic interaction. Zero tests for: disabled state enforcement, callback error resilience, keyboard accessibility (Escape/Enter/Arrow), focus management (trap/restore), loading state interaction prevention. Root cause: convention template has no test scope guidance; G3 gate checks exit code not coverage scope; FMEA had no entry for this pattern. Fix: add test scope section to convention template; add behavioral tests for disabled/keyboard/focus/loading; consider coverage-ratchet for failure scenarios
+
 ## Tooling
 
 - **skill-frontmatter-invalid**: SKILL.md contained unsupported frontmatter attribute `allowed-tools`. Claude Code only supports: `argument-hint`, `compatibility`, `description`, `disable-model-invocation`, `license`, `metadata`, `name`, `user-invokable`. Invalid keys are silently ignored or warn at runtime. Fix: verify frontmatter keys against supported list when editing SKILL files. Occurred: sprint/SKILL.md, convention/SKILL.md

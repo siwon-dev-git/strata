@@ -46,4 +46,28 @@ describe('Button', () => {
     rerender(<Button variant="ghost">Ghost</Button>);
     expect(screen.getByRole('button')).not.toHaveClass('bg-[--btn-solid-bg]');
   });
+
+  // ── Action failure scenarios ──────────────────────────────────────
+
+  it('does not fire onClick when disabled', async () => {
+    const onClick = vi.fn();
+    render(
+      <Button disabled onClick={onClick}>
+        Disabled
+      </Button>,
+    );
+    await userEvent.click(screen.getByRole('button'));
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('does not fire onClick when loading', async () => {
+    const onClick = vi.fn();
+    render(
+      <Button loading onClick={onClick}>
+        Saving
+      </Button>,
+    );
+    await userEvent.click(screen.getByRole('button'));
+    expect(onClick).not.toHaveBeenCalled();
+  });
 });

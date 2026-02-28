@@ -11,6 +11,16 @@ if (typeof globalThis.ResizeObserver === 'undefined') {
   };
 }
 
+// Polyfill DOM APIs missing in jsdom but used by Radix primitives
+if (typeof Element.prototype.scrollIntoView === 'undefined') {
+  Element.prototype.scrollIntoView = () => {};
+}
+if (typeof Element.prototype.hasPointerCapture === 'undefined') {
+  Element.prototype.hasPointerCapture = () => false;
+  Element.prototype.setPointerCapture = () => {};
+  Element.prototype.releasePointerCapture = () => {};
+}
+
 afterEach(() => {
   cleanup();
 });

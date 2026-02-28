@@ -60,3 +60,5 @@
 - **interaction-play-behavioral**: play functions go beyond structure verification (role exists) to behavioral verification (click→sort, hover→dim). userEvent.click/hover + state change assert
 - **global-css-motion-gate**: prefers-reduced-motion applied globally via single CSS media query (covers transition/animation). But rAF-based JS animations bypass CSS queries, so rAF hooks must call usePrefersReducedMotion
 - **evaluation-actionable**: Design system evaluation reports must include specific fix code + file paths + difficulty. Non-actionable reports = debt
+- **test-scope-sixfold**: Every component test must cover 6 categories: rendering, props, happy-path interaction, action failure (disabled/loading), keyboard navigation, ARIA attributes. Convention template silence caused happy-path-only pattern to propagate across 52 test files. Fix: documented in CONTRIBUTING.md Testing Guide
+- **jsdom-polyfill-register**: Radix primitives require browser APIs absent from jsdom (ResizeObserver, scrollIntoView, pointerCapture). Register polyfills in `src/__tests__/setup.ts` immediately when adding interaction tests. Don't debug per-test — centralize in setup
