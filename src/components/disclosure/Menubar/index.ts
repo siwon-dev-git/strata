@@ -18,7 +18,15 @@ import {
   MenubarLabel,
 } from './Menubar';
 
-export const Menubar = {
+export const Menubar: {
+  Root: typeof MenubarRoot;
+  Menu: typeof MenubarMenu;
+  Trigger: typeof MenubarTrigger;
+  Content: typeof MenubarContent;
+  Item: typeof MenubarItem;
+  Separator: typeof MenubarSeparator;
+  Label: typeof MenubarLabel;
+} = {
   Root: MenubarRoot,
   Menu: MenubarMenu,
   Trigger: MenubarTrigger,
