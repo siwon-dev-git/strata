@@ -25,7 +25,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'linear',
     label: 'Linear',
-    description: 'Project tracker with sidebar navigation and split-pane issue view.',
+    description:
+      'Project tracker with sidebar navigation and split-pane issue view.',
     component: LinearDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Button', 'Divider', 'Text'],
@@ -39,7 +40,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'slack',
     label: 'Slack',
-    description: 'Team messaging with workspace rail, channel sidebar, and compose area.',
+    description:
+      'Team messaging with workspace rail, channel sidebar, and compose area.',
     component: SlackDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Button', 'Divider', 'Input', 'Text'],
@@ -53,7 +55,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'twitter',
     label: 'Twitter / X',
-    description: 'Social feed with left navigation, timeline, and trending sidebar.',
+    description:
+      'Social feed with left navigation, timeline, and trending sidebar.',
     component: TwitterDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Button', 'Input', 'Text'],
@@ -67,7 +70,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'notion',
     label: 'Notion',
-    description: 'Document workspace with collapsible sidebar and block-based content.',
+    description:
+      'Document workspace with collapsible sidebar and block-based content.',
     component: NotionDemo,
     components: {
       primitives: ['Button', 'Divider', 'Input', 'Text'],
@@ -81,7 +85,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'spotify',
     label: 'Spotify',
-    description: 'Music player with playlist sidebar, album grid, and fixed playback bar.',
+    description:
+      'Music player with playlist sidebar, album grid, and fixed playback bar.',
     component: SpotifyDemo,
     components: {
       primitives: ['Button', 'Text'],
@@ -95,7 +100,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'github',
     label: 'GitHub',
-    description: 'Repository view with file tree, code display, and action buttons.',
+    description:
+      'Repository view with file tree, code display, and action buttons.',
     component: GitHubDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Button', 'Divider', 'Input', 'Text'],
@@ -109,7 +115,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'discord',
     label: 'Discord',
-    description: 'Chat platform with server rail, channel list, messages, and member panel.',
+    description:
+      'Chat platform with server rail, channel list, messages, and member panel.',
     component: DiscordDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Divider', 'Input', 'Text'],
@@ -123,7 +130,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'figma',
     label: 'Figma',
-    description: 'Design tool with layers panel, canvas, and properties inspector.',
+    description:
+      'Design tool with layers panel, canvas, and properties inspector.',
     component: FigmaDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Button', 'Divider', 'Input', 'Text'],
@@ -137,7 +145,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'vscode',
     label: 'VS Code',
-    description: 'Code editor with activity bar, explorer sidebar, and tabbed editor.',
+    description:
+      'Code editor with activity bar, explorer sidebar, and tabbed editor.',
     component: VSCodeDemo,
     components: {
       primitives: ['Badge', 'Divider', 'Text'],
@@ -165,7 +174,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'whatsapp',
     label: 'WhatsApp',
-    description: 'Mobile messaging with contact list and chat view in a phone frame.',
+    description:
+      'Mobile messaging with contact list and chat view in a phone frame.',
     component: WhatsAppDemo,
     components: {
       primitives: ['Avatar', 'Badge', 'Button', 'Input', 'Text'],
@@ -179,7 +189,8 @@ export const DEMO_REGISTRY: DemoSchema[] = [
   {
     id: 'reddit',
     label: 'Reddit',
-    description: 'Forum with subreddit sidebar, tabbed feed, and community info panel.',
+    description:
+      'Forum with subreddit sidebar, tabbed feed, and community info panel.',
     component: RedditDemo,
     components: {
       primitives: [

@@ -71,7 +71,11 @@ describe('FormField', () => {
 
   it('provides aria-describedby IDs via render-prop', () => {
     render(
-      <FormField label="Email" description="We won't share it." error="Invalid.">
+      <FormField
+        label="Email"
+        description="We won't share it."
+        error="Invalid."
+      >
         {({ inputId, describedBy }) => (
           <input
             id={inputId}

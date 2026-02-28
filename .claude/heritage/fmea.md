@@ -10,6 +10,7 @@
 
 ## Build
 
+- **ci-blind-merge**: PR merged despite CI red. Causes: format:check absent from local pre-flight; commit SKILL ran checks post-commit; sprint REVIEW lacked hard gate. Fix: pre-flight gate (format+lint+typecheck) before any commit; HALT on failure; never merge CI red. Occurred: PR #14–#17 (same 9 Prettier files across 4 PRs)
 - **type-regression**: Barrel destruction, missing initial values. Verify with tsc --noEmit
 - **commit-delay-after-build**: Delaying commit after review pass. Immediate commit mandatory
 - **type-impl-drift**: Field exists in type but not rendered. tsc doesn't warn on unused props. Cross-check type vs implementation during component audit

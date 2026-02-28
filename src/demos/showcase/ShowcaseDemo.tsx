@@ -193,9 +193,7 @@ export function ShowcaseDemo() {
             <Alert variant="danger" title="Error alert">
               Something went wrong. Please try again.
             </Alert>
-            <Callout variant="warning">
-              This action cannot be undone.
-            </Callout>
+            <Callout variant="warning">This action cannot be undone.</Callout>
             <div className="flex gap-4">
               <Skeleton width={120} height={20} />
               <Skeleton width={80} height={20} />
@@ -208,7 +206,9 @@ export function ShowcaseDemo() {
             <ToastProvider>
               <ToastRoot open>
                 <ToastTitle>Changes saved</ToastTitle>
-                <ToastDescription>Your settings have been updated.</ToastDescription>
+                <ToastDescription>
+                  Your settings have been updated.
+                </ToastDescription>
               </ToastRoot>
               <ToastViewport />
             </ToastProvider>
@@ -219,7 +219,10 @@ export function ShowcaseDemo() {
           {/* ── Form Controls ───────────────────────────── */}
           <Section title="Form Controls">
             <div className="grid grid-cols-2 gap-4">
-              <FormField label="Username" description="Choose a unique username.">
+              <FormField
+                label="Username"
+                description="Choose a unique username."
+              >
                 {({ inputId, describedBy }) => (
                   <Input
                     id={inputId}
@@ -263,16 +266,17 @@ export function ShowcaseDemo() {
                 <Label htmlFor="checkbox-demo">Accept terms</Label>
               </div>
 
-              <Toggle
-                pressed={toggleOn}
-                onPressedChange={setToggleOn}
-              >
+              <Toggle pressed={toggleOn} onPressedChange={setToggleOn}>
                 <IconStar size="sm" />
               </Toggle>
 
               <ToggleGroupRoot type="single" defaultValue="list">
-                <ToggleGroupItem value="list" size="sm">List</ToggleGroupItem>
-                <ToggleGroupItem value="grid" size="sm">Grid</ToggleGroupItem>
+                <ToggleGroupItem value="list" size="sm">
+                  List
+                </ToggleGroupItem>
+                <ToggleGroupItem value="grid" size="sm">
+                  Grid
+                </ToggleGroupItem>
               </ToggleGroupRoot>
             </div>
 
@@ -364,7 +368,8 @@ export function ShowcaseDemo() {
                 <DataListLabel>Description</DataListLabel>
                 <DataListValue>
                   <Truncate>
-                    A comprehensive design system built with React, TypeScript, and Tailwind CSS
+                    A comprehensive design system built with React, TypeScript,
+                    and Tailwind CSS
                   </Truncate>
                 </DataListValue>
               </DataListItem>
@@ -563,13 +568,18 @@ export function ShowcaseDemo() {
 
             <HoverCardRoot>
               <HoverCardTrigger asChild>
-                <Text size="sm" className="text-fg-link underline cursor-pointer inline-block">
+                <Text
+                  size="sm"
+                  className="text-fg-link underline cursor-pointer inline-block"
+                >
                   Hover for details
                 </Text>
               </HoverCardTrigger>
               <HoverCardContent>
                 <div className="space-y-1">
-                  <Text size="sm" weight="semibold">@strata-ds</Text>
+                  <Text size="sm" weight="semibold">
+                    @strata-ds
+                  </Text>
                   <Text size="xs" className="text-fg-muted">
                     A design system built with React 19 and Radix UI.
                   </Text>

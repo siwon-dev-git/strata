@@ -26,13 +26,23 @@ Quest-based build cycle. Each cycle has 3 phases:
 2. Quest decomposition: independent → parallel agents, dependent → sequential
 3. Agent dispatch → build execution
 
-### Phase 2: REVIEW
+### Phase 2: REVIEW — Hard Gate
 
-1. Type verification: `pnpm typecheck`
-2. Tests: `pnpm test:ci`
-3. PASS → falsification 1 round: "Is this approach optimal?" If no alternative found → commit
-4. FAIL → fix → return to step 1
-5. `git status` clean check
+**Gate rule: ALL checks PASS before commit or phase transition. Failure = HALT. No exceptions.**
+
+1. Format: `pnpm format:check` — FAIL → `pnpm format:write` → re-verify
+2. Lint: `pnpm lint` — FAIL → fix → re-verify
+3. Type verification: `pnpm typecheck` — FAIL → fix → re-verify
+4. Tests: `pnpm test:ci` — FAIL → fix → re-verify
+5. ALL 4 PASS → falsification 1 round → commit
+6. `git status` clean check
+
+**HALT conditions — never proceed to Phase 3 or `/commit`:**
+
+- Any step 1-4 still fails after 3 fix attempts → Status: BLOCKED, stop cycle
+- Never commit with known check failures
+- Never merge PR with CI red — `gh run watch --exit-status` must succeed
+- Never use `--no-verify` or skip checks to force progress
 
 ### Phase 3: RETRO
 
@@ -50,7 +60,8 @@ Health scan → auto-heal loop. Max: min(N, 10). Early exit on convergence.
 
 Parallel collection (✅=healthy, ⚠️=action needed):
 
-- Tests: ALL PASS
+- Format + Lint + Typecheck: `pnpm format:check && pnpm lint && pnpm typecheck` ALL PASS
+- Tests: `pnpm test:ci` ALL PASS
 - Unreviewed commits: <3
 - Heritage freshness: <7 days
 - Dead references: 0

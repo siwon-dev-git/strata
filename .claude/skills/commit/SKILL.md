@@ -58,13 +58,17 @@ Optional. Component or area name in lowercase:
 ### Default (`/commit`)
 
 1. Run `git status` + `git diff` to understand all changes
-2. Group changes by domain (components, ci, docs, etc.)
-3. For each domain group:
+2. **Pre-flight gate** (must ALL PASS before any commit):
+   - `pnpm format:check` — FAIL → `pnpm format:write` → re-check
+   - `pnpm lint` — FAIL → fix → re-check
+   - `pnpm typecheck` — FAIL → fix → re-check
+   - Any still failing → HALT, do not commit
+3. Group changes by domain (components, ci, docs, etc.)
+4. For each domain group:
    - Stage relevant files
    - Auto-determine type from change nature
    - Generate commit message following format
    - Commit
-4. Run `pnpm format:check && pnpm lint && pnpm typecheck` before committing
 5. If pre-commit hook fails → fix → re-stage → new commit (never amend)
 
 ### With PR (`/commit pr`)
@@ -81,9 +85,10 @@ Optional. Component or area name in lowercase:
 
 1. Execute PR flow
 2. Wait for CI with `gh run watch --exit-status`
-3. If CI fails → diagnose → fix → push → re-watch
-4. On green → `gh pr merge --squash --delete-branch`
-5. Switch to main + pull
+3. If CI fails → diagnose → fix locally → re-run pre-flight gate (step 2 of Default) → push → re-watch
+4. **Never merge with CI red.** Max 3 CI fix attempts → BLOCKED
+5. On green → `gh pr merge --squash --delete-branch`
+6. Switch to main + pull
 
 ## Output Format
 
