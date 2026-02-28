@@ -112,7 +112,7 @@ function highlightCode(code: string) {
 
     return (
       <div key={lineIndex} className="flex">
-        <span className="inline-block w-12 shrink-0 select-none pr-4 text-right text-[#858585]">
+        <span className="inline-block w-12 shrink-0 select-none pr-4 text-right text-fg-subtle">
           {lineIndex + 1}
         </span>
         <span>
@@ -144,18 +144,18 @@ function FileTreeNode({
         <CollapsibleTrigger asChild>
           <button
             type="button"
-            className="flex w-full items-center gap-1 py-[2px] text-[13px] text-[#cccccc] hover:bg-[#2a2d2e]"
+            className="flex w-full items-center gap-1 py-[2px] text-[13px] text-fg-default hover:bg-surface-overlay"
             style={{ paddingLeft }}
           >
             {open ? (
               <IconChevronDown
                 size="sm"
-                className="h-4 w-4 shrink-0 text-[#cccccc]"
+                className="h-4 w-4 shrink-0 text-fg-default"
               />
             ) : (
               <IconChevronRight
                 size="sm"
-                className="h-4 w-4 shrink-0 text-[#cccccc]"
+                className="h-4 w-4 shrink-0 text-fg-default"
               />
             )}
             <IconFolder size="sm" className="h-4 w-4 shrink-0 text-[#dcb67a]" />
@@ -181,12 +181,12 @@ function FileTreeNode({
           ? 'text-[#cbcb41]'
           : file.language === 'markdown'
             ? 'text-[#519aba]'
-            : 'text-[#cccccc]';
+            : 'text-fg-default';
 
   return (
     <button
       type="button"
-      className="flex w-full items-center gap-1 py-[2px] text-[13px] text-[#cccccc] hover:bg-[#2a2d2e]"
+      className="flex w-full items-center gap-1 py-[2px] text-[13px] text-fg-default hover:bg-surface-overlay"
       style={{ paddingLeft: paddingLeft + 20 }}
     >
       <IconFile size="sm" className={cn('h-4 w-4 shrink-0', iconColor)} />
@@ -213,9 +213,9 @@ function ActivityIcon({
         <button
           type="button"
           className={cn(
-            'relative flex h-12 w-full items-center justify-center text-[#858585] transition-colors hover:text-[#ffffff]',
+            'relative flex h-12 w-full items-center justify-center text-fg-subtle transition-colors hover:text-fg-default',
             active &&
-              'text-[#ffffff] before:absolute before:left-0 before:top-1/2 before:h-6 before:-translate-y-1/2 before:w-[2px] before:bg-[#ffffff]',
+              'text-fg-default before:absolute before:left-0 before:top-1/2 before:h-6 before:-translate-y-1/2 before:w-[2px] before:bg-fg-default',
           )}
         >
           {icon}
@@ -223,7 +223,7 @@ function ActivityIcon({
             <Badge
               variant="default"
               size="sm"
-              className="absolute right-1.5 top-2 min-w-[18px] bg-[#007acc] px-1 text-[10px] font-bold text-white"
+              className="absolute right-1.5 top-2 min-w-[18px] bg-interactive px-1 text-[10px] font-bold text-white"
             >
               {badge}
             </Badge>
@@ -337,7 +337,7 @@ export function VSCodeDemo() {
         {/* ── Main layout (activity bar + sidebar + editor/panel) ── */}
         <div className="flex flex-1 overflow-hidden">
           {/* ── Activity Bar (48px) ────────────────────────────────── */}
-          <div className="flex w-12 shrink-0 flex-col bg-[#333333]">
+          <div className="flex w-12 shrink-0 flex-col bg-surface-raised">
             <div className="flex flex-1 flex-col">
               <ActivityIcon icon={<IconExplorer />} label="Explorer" active />
               <ActivityIcon icon={<IconSearch size="md" />} label="Search" />
@@ -358,30 +358,30 @@ export function VSCodeDemo() {
           </div>
 
           {/* ── Sidebar (260px) ────────────────────────────────────── */}
-          <div className="flex w-[260px] shrink-0 flex-col bg-[#252526]">
+          <div className="flex w-[260px] shrink-0 flex-col bg-surface-raised">
             {/* Explorer header */}
             <div className="flex h-9 items-center px-5">
               <Text
                 as="span"
                 size="xs"
                 weight="bold"
-                className="uppercase tracking-widest text-[#bbbbbb]"
+                className="uppercase tracking-widest text-fg-default"
               >
                 Explorer
               </Text>
             </div>
 
             {/* Workspace section */}
-            <div className="flex h-6 items-center bg-[#2d2d2d] px-2">
+            <div className="flex h-6 items-center bg-surface-overlay px-2">
               <IconChevronDown
                 size="sm"
-                className="h-4 w-4 shrink-0 text-[#cccccc]"
+                className="h-4 w-4 shrink-0 text-fg-default"
               />
               <Text
                 as="span"
                 size="xs"
                 weight="bold"
-                className="ml-0.5 uppercase text-[#cccccc]"
+                className="ml-0.5 uppercase text-fg-default"
               >
                 strata
               </Text>
@@ -395,37 +395,37 @@ export function VSCodeDemo() {
             </div>
 
             {/* Outline / Timeline collapsed sections */}
-            <Divider className="border-[#3c3c3c]" />
+            <Divider className="border-border-default" />
             <button
               type="button"
-              className="flex h-6 items-center gap-1 bg-[#2d2d2d] px-2"
+              className="flex h-6 items-center gap-1 bg-surface-overlay px-2"
             >
               <IconChevronRight
                 size="sm"
-                className="h-4 w-4 shrink-0 text-[#cccccc]"
+                className="h-4 w-4 shrink-0 text-fg-default"
               />
               <Text
                 as="span"
                 size="xs"
                 weight="bold"
-                className="uppercase text-[#cccccc]"
+                className="uppercase text-fg-default"
               >
                 Outline
               </Text>
             </button>
             <button
               type="button"
-              className="flex h-6 items-center gap-1 bg-[#2d2d2d] px-2"
+              className="flex h-6 items-center gap-1 bg-surface-overlay px-2"
             >
               <IconChevronRight
                 size="sm"
-                className="h-4 w-4 shrink-0 text-[#cccccc]"
+                className="h-4 w-4 shrink-0 text-fg-default"
               />
               <Text
                 as="span"
                 size="xs"
                 weight="bold"
-                className="uppercase text-[#cccccc]"
+                className="uppercase text-fg-default"
               >
                 Timeline
               </Text>
@@ -435,17 +435,17 @@ export function VSCodeDemo() {
           {/* ── Editor + Panel area ────────────────────────────────── */}
           <div className="flex min-w-0 flex-1 flex-col">
             {/* ── Tab bar ──────────────────────────────────────────── */}
-            <div className="flex h-[35px] shrink-0 items-end bg-[#2d2d2d]">
+            <div className="flex h-[35px] shrink-0 items-end bg-surface-overlay">
               {VSCODE_TABS.map((tab) => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    'group flex h-[35px] items-center gap-1.5 border-r border-[#252526] px-3 text-[13px]',
+                    'group flex h-[35px] items-center gap-1.5 border-r border-border-subtle px-3 text-[13px]',
                     activeTab === tab.id
-                      ? 'bg-[#1e1e1e] text-white'
-                      : 'bg-[#2d2d2d] text-[#969696] hover:bg-[#2d2d2d]',
+                      ? 'bg-surface-inset text-white'
+                      : 'bg-surface-overlay text-fg-muted hover:bg-surface-overlay',
                   )}
                 >
                   {/* File type icon */}
@@ -457,7 +457,7 @@ export function VSCodeDemo() {
                   {tab.modified && (
                     <IconCircle
                       size="sm"
-                      className="h-2.5 w-2.5 shrink-0 fill-current text-[#cccccc]"
+                      className="h-2.5 w-2.5 shrink-0 fill-current text-fg-default"
                     />
                   )}
                   {!tab.modified && (
@@ -471,51 +471,51 @@ export function VSCodeDemo() {
             </div>
 
             {/* ── Breadcrumb bar ────────────────────────────────────── */}
-            <div className="flex h-[22px] items-center gap-1 bg-[#1e1e1e] px-3 text-[12px] text-[#cccccc]">
-              <span className="text-[#cccccc]">src</span>
-              <IconChevronRight size="sm" className="h-3 w-3 text-[#858585]" />
-              <span className="text-[#cccccc]">components</span>
-              <IconChevronRight size="sm" className="h-3 w-3 text-[#858585]" />
-              <span className="text-[#cccccc]">Button.tsx</span>
+            <div className="flex h-[22px] items-center gap-1 bg-surface-inset px-3 text-[12px] text-fg-default">
+              <span className="text-fg-default">src</span>
+              <IconChevronRight size="sm" className="h-3 w-3 text-fg-subtle" />
+              <span className="text-fg-default">components</span>
+              <IconChevronRight size="sm" className="h-3 w-3 text-fg-subtle" />
+              <span className="text-fg-default">Button.tsx</span>
             </div>
 
             {/* ── Code editor ──────────────────────────────────────── */}
-            <div className="flex-1 overflow-auto bg-[#1e1e1e] px-4 py-2 font-mono text-[13px] leading-[20px]">
+            <div className="flex-1 overflow-auto bg-surface-inset px-4 py-2 font-mono text-[13px] leading-[20px]">
               {highlightCode(VSCODE_CODE)}
             </div>
 
             {/* ── Panel (bottom) ───────────────────────────────────── */}
-            <div className="h-[200px] shrink-0 border-t border-[#3c3c3c] bg-[#1e1e1e]">
+            <div className="h-[200px] shrink-0 border-t border-border-default bg-surface-inset">
               <TabsRoot defaultValue="terminal">
-                <TabsList className="flex h-[35px] items-center gap-0 border-b border-[#3c3c3c] bg-[#1e1e1e] px-2">
+                <TabsList className="flex h-[35px] items-center gap-0 border-b border-border-default bg-surface-inset px-2">
                   <TabsTrigger
                     value="problems"
-                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-[#969696] transition-colors data-[state=active]:border-[#ffffff] data-[state=active]:text-[#ffffff]"
+                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-fg-muted transition-colors data-[state=active]:border-fg-default data-[state=active]:text-fg-default"
                   >
                     Problems
                     <Badge
                       variant="default"
                       size="sm"
-                      className="bg-[#4d4d4d] px-1 text-[10px] text-[#cccccc]"
+                      className="bg-surface-overlay px-1 text-[10px] text-fg-default"
                     >
                       0
                     </Badge>
                   </TabsTrigger>
                   <TabsTrigger
                     value="output"
-                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-[#969696] transition-colors data-[state=active]:border-[#ffffff] data-[state=active]:text-[#ffffff]"
+                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-fg-muted transition-colors data-[state=active]:border-fg-default data-[state=active]:text-fg-default"
                   >
                     Output
                   </TabsTrigger>
                   <TabsTrigger
                     value="terminal"
-                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-[#969696] transition-colors data-[state=active]:border-[#ffffff] data-[state=active]:text-[#ffffff]"
+                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-fg-muted transition-colors data-[state=active]:border-fg-default data-[state=active]:text-fg-default"
                   >
                     Terminal
                   </TabsTrigger>
                   <TabsTrigger
                     value="debug-console"
-                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-[#969696] transition-colors data-[state=active]:border-[#ffffff] data-[state=active]:text-[#ffffff]"
+                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-fg-muted transition-colors data-[state=active]:border-fg-default data-[state=active]:text-fg-default"
                   >
                     Debug Console
                   </TabsTrigger>
@@ -523,18 +523,18 @@ export function VSCodeDemo() {
 
                 <TabsContent
                   value="problems"
-                  className="p-3 text-[13px] text-[#cccccc]"
+                  className="p-3 text-[13px] text-fg-default"
                 >
-                  <Text as="p" size="xs" className="text-[#858585]">
+                  <Text as="p" size="xs" className="text-fg-subtle">
                     No problems have been detected in the workspace.
                   </Text>
                 </TabsContent>
 
                 <TabsContent
                   value="output"
-                  className="p-3 text-[13px] text-[#cccccc]"
+                  className="p-3 text-[13px] text-fg-default"
                 >
-                  <Text as="p" size="xs" className="text-[#858585]">
+                  <Text as="p" size="xs" className="text-fg-subtle">
                     [Info] TypeScript language server started.
                   </Text>
                 </TabsContent>
@@ -544,32 +544,32 @@ export function VSCodeDemo() {
                   className="p-3 font-mono text-[13px]"
                 >
                   <div className="space-y-1">
-                    <div className="flex items-center gap-1.5 text-[#cccccc]">
+                    <div className="flex items-center gap-1.5 text-fg-default">
                       <IconTerminal />
-                      <span className="text-[#858585]">~/strata</span>
+                      <span className="text-fg-subtle">~/strata</span>
                     </div>
-                    <div className="text-[#cccccc]">
+                    <div className="text-fg-default">
                       <span className="text-[#6a9955]">$</span> npm run dev
                     </div>
                     <div className="text-[#569cd6]">
                       VITE v7.0.0 ready in 142ms
                     </div>
-                    <div className="text-[#cccccc]">
-                      <span className="text-[#858585]"> ➜</span>{' '}
+                    <div className="text-fg-default">
+                      <span className="text-fg-subtle"> ➜</span>{' '}
                       <span className="font-bold">Local:</span>{' '}
                       <span className="text-[#569cd6]">
                         http://localhost:5173/
                       </span>
                     </div>
-                    <div className="text-[#cccccc]">
-                      <span className="text-[#858585]"> ➜</span>{' '}
-                      <span className="text-[#858585]">Network:</span>{' '}
-                      <span className="text-[#858585]">
+                    <div className="text-fg-default">
+                      <span className="text-fg-subtle"> ➜</span>{' '}
+                      <span className="text-fg-subtle">Network:</span>{' '}
+                      <span className="text-fg-subtle">
                         use --host to expose
                       </span>
                     </div>
-                    <div className="text-[#cccccc]">
-                      <span className="text-[#858585]"> ➜</span> press{' '}
+                    <div className="text-fg-default">
+                      <span className="text-fg-subtle"> ➜</span> press{' '}
                       <span className="font-bold">h + enter</span> to show help
                     </div>
                   </div>
@@ -577,9 +577,9 @@ export function VSCodeDemo() {
 
                 <TabsContent
                   value="debug-console"
-                  className="p-3 text-[13px] text-[#cccccc]"
+                  className="p-3 text-[13px] text-fg-default"
                 >
-                  <Text as="p" size="xs" className="text-[#858585]">
+                  <Text as="p" size="xs" className="text-fg-subtle">
                     No debug session active.
                   </Text>
                 </TabsContent>
@@ -589,19 +589,19 @@ export function VSCodeDemo() {
         </div>
 
         {/* ── Status Bar (22px, full-width) ────────────────────────── */}
-        <div className="flex h-[22px] shrink-0 items-center justify-between bg-[#007acc] px-2 text-[12px] text-white">
+        <div className="flex h-[22px] shrink-0 items-center justify-between bg-interactive px-2 text-[12px] text-white">
           {/* Left side */}
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="flex items-center gap-1 hover:bg-[#1f8ad2] px-1 -mx-1 rounded-sm"
+              className="flex items-center gap-1 hover:bg-interactive-hover px-1 -mx-1 rounded-sm"
             >
               <IconGitBranch />
               <span>main</span>
             </button>
             <button
               type="button"
-              className="flex items-center gap-1 hover:bg-[#1f8ad2] px-1 rounded-sm"
+              className="flex items-center gap-1 hover:bg-interactive-hover px-1 rounded-sm"
             >
               <IconCircle size="sm" className="h-3 w-3" />
               <span>0</span>
@@ -627,31 +627,31 @@ export function VSCodeDemo() {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="hover:bg-[#1f8ad2] px-1 rounded-sm"
+              className="hover:bg-interactive-hover px-1 rounded-sm"
             >
               Ln 1, Col 1
             </button>
             <button
               type="button"
-              className="hover:bg-[#1f8ad2] px-1 rounded-sm"
+              className="hover:bg-interactive-hover px-1 rounded-sm"
             >
               Spaces: 2
             </button>
             <button
               type="button"
-              className="hover:bg-[#1f8ad2] px-1 rounded-sm"
+              className="hover:bg-interactive-hover px-1 rounded-sm"
             >
               UTF-8
             </button>
             <button
               type="button"
-              className="hover:bg-[#1f8ad2] px-1 rounded-sm"
+              className="hover:bg-interactive-hover px-1 rounded-sm"
             >
               TypeScript React
             </button>
             <button
               type="button"
-              className="hover:bg-[#1f8ad2] px-1 rounded-sm"
+              className="hover:bg-interactive-hover px-1 rounded-sm"
             >
               Prettier
             </button>
