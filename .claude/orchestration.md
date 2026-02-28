@@ -4,13 +4,13 @@ Uses Task built-in agents. Skills: `.claude/skills/` (YAML frontmatter based).
 
 ## Skill Map
 
-| Skill         | Mode     | Input                                       | Output                                              | Verification                   |
-| ------------- | -------- | ------------------------------------------- | --------------------------------------------------- | ------------------------------ |
-| `/sprint`     | BUILD    | quest + N cycles                            | sprint→review→commit→retro→forge cycle              | Commit hash + heritage update  |
-| `/sprint`     | MAINTAIN | N cycles (default 1)                        | HRM dual loop: sense→decide→execute→learn→recurse   | Health score ≥ 8 convergence   |
-| `/research`   | —        | domain + quest                              | 3-file workflow: ideation→evidence→validation→final | C#-E# mapping + L1 anchor      |
-| `/convention` | AUDIT    | `audit`                                     | Full Tier status report (no changes)                | Gap report                     |
-| `/convention` | APPLY    | component name \| `all` \| `md` \| `tier N` | analyze→classify→extract→generate→verify            | typecheck PASS + 0 empty files |
+| Skill         | Mode     | Input                                       | Output                                              | Verification                    |
+| ------------- | -------- | ------------------------------------------- | --------------------------------------------------- | ------------------------------- |
+| `/sprint`     | BUILD    | quest + N cycles                            | sprint→review→commit→retro→forge cycle              | Commit hash + heritage update   |
+| `/sprint`     | MAINTAIN | N cycles (default 1)                        | HRM dual loop: sense→decide→execute→learn→recurse   | Hard PASS + Soft ✅ convergence |
+| `/research`   | —        | domain + quest                              | 3-file workflow: ideation→evidence→validation→final | C#-E# mapping + L1 anchor       |
+| `/convention` | AUDIT    | `audit`                                     | Full Tier status report (no changes)                | Gap report                      |
+| `/convention` | APPLY    | component name \| `all` \| `md` \| `tier N` | analyze→classify→extract→generate→verify            | typecheck PASS + 0 empty files  |
 
 ## Rules
 
