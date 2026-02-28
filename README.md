@@ -1,96 +1,257 @@
+<div align="center">
+
 # Strata Design System
 
-A modern design system built with React 19, Radix UI, and Tailwind CSS v4.
+**The first design system built for AI-assisted development.**
 
-## Features
+React 19 + Radix UI + Tailwind CSS v4 + OKLch Tokens
 
-- **3-Layer Token Architecture** — OKLch primitives → semantic → component tokens
-- **Radix UI Headless** — 27 accessible, composable primitives
-- **Dark Mode** — First-class dark mode via `data-theme` + `dark` class
-- **57 Components** — Primitives, layout, disclosure, and feedback
-- **11 Demo Apps** — Linear, Slack, Twitter, Notion, Spotify, GitHub, Discord, Figma, VS Code, Trello, Character Chat
-- **AI-Ready** — llms.txt, Storybook MCP, and structured component docs for AI tools
+[![npm](https://img.shields.io/npm/v/@strata-ds/core?color=blue)](https://www.npmjs.com/package/@strata-ds/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19-61dafb)](https://react.dev/)
+[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8)](https://tailwindcss.com/)
+
+[Quick Start](#quick-start) ·
+[Components](#components) ·
+[Token System](#3-layer-oklch-token-system) ·
+[AI Integration](#ai-native-architecture) ·
+[Roadmap](#roadmap)
+
+</div>
+
+---
+
+## Why Strata?
+
+Design systems have been built for **humans**. Strata is built for **humans _and_ AI**.
+
+While other libraries focus on component count or CSS-in-JS convenience, Strata introduces a systems-level approach — combining perceptually uniform color science, structured machine-readable documentation, and institutional governance that scales with your team.
+
+|                                       |      Strata       | shadcn/ui | Chakra UI  | Mantine |
+| ------------------------------------- | :---------------: | :-------: | :--------: | :-----: |
+| **AI-readable docs** (llms.txt + MCP) |      **Yes**      |    No     |     No     |   No    |
+| **Perceptual color system** (OKLch)   |      **Yes**      |    No     |     No     |   No    |
+| **3-layer token architecture**        |      **Yes**      |  Partial  |  JS only   | JS only |
+| **Headless + styled** (Radix UI)      | **27 primitives** |   Radix   |   Custom   | Custom  |
+| **Runtime theme switching**           | **CSS vars only** | CSS vars  | JS context |  Hooks  |
+| **Decision registry** (ADR + FMEA)    |      **Yes**      |    No     |     No     |   No    |
+| **Convention system**                 |   **Tier 0–3**    |    No     |     No     |   No    |
+| **Real-world demos**                  |    **11 apps**    | Starters  |     No     |   No    |
 
 ## Quick Start
 
 ```bash
 pnpm install
-pnpm storybook     # Storybook on http://localhost:6007
+pnpm storybook     # Component explorer → http://localhost:6007
 pnpm dev           # Dev server
 ```
 
 ## Stack
 
-| Layer         | Technology                                        |
-| ------------- | ------------------------------------------------- |
-| UI Primitives | [Radix UI](https://www.radix-ui.com/)             |
-| Styling       | [Tailwind CSS v4](https://tailwindcss.com/)       |
-| Framework     | [React 19](https://react.dev/)                    |
-| Language      | [TypeScript 5.9](https://www.typescriptlang.org/) |
-| Build         | [Vite 7](https://vite.dev/)                       |
-| Docs          | [Storybook 10](https://storybook.js.org/)         |
-| Tests         | [Vitest 4](https://vitest.dev/) + Testing Library |
-
-## Token System
-
-Strata uses a 3-layer design token architecture:
-
-```
-Layer 1 (Primitive)  →  Raw values in OKLch color space
-Layer 2 (Semantic)   →  Meaningful aliases (--surface-*, --fg-*, --border-*)
-Layer 3 (Component)  →  Component-specific overrides (--btn-*, --dialog-*)
-```
-
-Token files: `src/tokens/layer1-primitive.css` → `layer2-semantic.css` → `layer3-component.css`
+| Layer         | Technology                                        | Why                                             |
+| ------------- | ------------------------------------------------- | ----------------------------------------------- |
+| UI Primitives | [Radix UI](https://www.radix-ui.com/)             | Battle-tested a11y, headless composition        |
+| Styling       | [Tailwind CSS v4](https://tailwindcss.com/)       | Native `@theme`, zero-runtime CSS               |
+| Framework     | [React 19](https://react.dev/)                    | Compiler optimizations, Server Components ready |
+| Language      | [TypeScript 5.9](https://www.typescriptlang.org/) | Strict type safety across all components        |
+| Build         | [Vite 7](https://vite.dev/)                       | Sub-100ms HMR, ESM-first                        |
+| Docs          | [Storybook 10](https://storybook.js.org/)         | Interactive playground + MCP endpoint           |
+| Tests         | [Vitest 4](https://vitest.dev/) + Testing Library | Behavioral testing with `play()` functions      |
 
 ## Components
 
-| Category   | Count | Examples                                                              |
-| ---------- | ----- | --------------------------------------------------------------------- |
-| Primitives | 34    | Button, Input, Avatar, Badge, Card, Checkbox, Select, Slider, Switch  |
-| Layout     | 5     | AppShell, Sidebar, TopBar, Stack, Container                           |
-| Disclosure | 13    | Dialog, Tabs, Tooltip, DropdownMenu, Accordion, Sheet, NavigationMenu |
-| Feedback   | 5     | Toast, Alert, Skeleton, Callout, EmptyState                           |
+**57 components** across 4 categories, all built on Radix UI headless primitives.
+
+| Category       | Count | Highlights                                                                   |
+| -------------- | ----- | ---------------------------------------------------------------------------- |
+| **Primitives** | 34    | Button, Input, Avatar, Badge, Card, Checkbox, Select, Slider, Switch, Toggle |
+| **Layout**     | 5     | AppShell, Sidebar, TopBar, Stack, Container                                  |
+| **Disclosure** | 13    | Dialog, Tabs, Tooltip, DropdownMenu, Accordion, Sheet, NavigationMenu        |
+| **Feedback**   | 5     | Toast, Alert, Skeleton, Callout, EmptyState                                  |
+
+Every component includes:
+
+- `.tsx` — Implementation with Radix UI + Tailwind
+- `.test.tsx` — Behavioral tests (role queries, a11y, state verification)
+- `.stories.tsx` — Interactive Storybook stories with `play()` functions
+- `.md` — Structured documentation (Role, Tier, Tokens, Constraints)
+
+## 3-Layer OKLch Token System
+
+Strata uses **OKLch** — a perceptually uniform color space that produces consistent, vibrant palettes without the hue-shift artifacts of HSL/RGB.
+
+```
+Layer 1 (Primitive)   Raw OKLch scales, spacing, typography, radius
+    ↓                 Prefix: --sp-*  |  11 color palettes
+Layer 2 (Semantic)    Business-intent aliases with dark/light pairs
+    ↓                 --surface-*, --fg-*, --border-*, --color-*
+Layer 3 (Component)   Scoped overrides per component
+                      --btn-*, --dialog-*, --menu-*, --input-*
+```
+
+**Key principles:**
+
+- **Unidirectional flow** — Layer 3 → Layer 2 → Layer 1. No circular dependencies
+- **CSS variables only** — No runtime JS serialization. Instant theme switching
+- **Token reuse** — Related components share token groups (e.g., `--menu-*` powers DropdownMenu, ContextMenu, NavigationMenu, Menubar)
+- **Auditable chain** — Every color traces back to a primitive OKLch value
+
+Token files: [`layer1-primitive.css`](src/tokens/layer1-primitive.css) → [`layer2-semantic.css`](src/tokens/layer2-semantic.css) → [`layer3-component.css`](src/tokens/layer3-component.css)
+
+## AI-Native Architecture
+
+Strata is the first design system with a **three-tier AI consumption strategy**:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Tier 1: llms.txt          ~2K tokens   Index       │
+│  Tier 2: llms-full.txt    ~15K tokens   Deep docs   │
+│  Tier 3: Storybook MCP    Real-time     Live API    │
+└─────────────────────────────────────────────────────┘
+```
+
+| Channel           | File                             | Use Case                                                                                       |
+| ----------------- | -------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **llms.txt**      | [`llms.txt`](llms.txt)           | Quick component discovery for any AI tool                                                      |
+| **llms-full.txt** | [`llms-full.txt`](llms-full.txt) | Full implementation guidance for large-context models                                          |
+| **Storybook MCP** | `http://localhost:6007/mcp`      | Real-time component API queries via [Model Context Protocol](https://modelcontextprotocol.io/) |
+| **Component .md** | `src/components/*/*.md`          | Structured docs (Role, Tier, Tokens, Constraints)                                              |
+
+### For AI tool users (Cursor, Windsurf, Claude, ChatGPT)
+
+Point your AI tool at `llms.txt` for component discovery, or `llms-full.txt` for detailed implementation guidance. The structured `.md` format eliminates hallucination by providing exact token dependencies and API constraints.
+
+### For Claude Code
+
+Strata includes built-in orchestration skills:
+
+| Command                | Purpose                                                                  |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `/convention [target]` | Tier-based component structure analysis and scaffolding                  |
+| `/sprint [quest]`      | Sprint build cycle with automated review, testing, and heritage tracking |
+| `/commit [pr] [merge]` | Conventional commit with optional PR workflow                            |
+| `/research [topic]`    | Evidence-based research with falsification loops                         |
+
+## 11 Real-World Demos
+
+Strata includes production-grade demo applications that prove component composition in real scenarios:
+
+| Demo               | Pattern                                             |
+| ------------------ | --------------------------------------------------- |
+| **Linear**         | Issue tracker — Select + Dialog + Badge composition |
+| **Slack**          | Message threads — AppShell + Sidebar + ScrollArea   |
+| **Twitter**        | Social feed — Card + Avatar + DropdownMenu          |
+| **Notion**         | Note-taking — Toolbar + Toggle + NavigationMenu     |
+| **Spotify**        | Music player — Slider + Tabs + ScrollArea           |
+| **GitHub**         | Issue browser — Table patterns + Label + Badge      |
+| **Discord**        | Server navigation — Sidebar + Tooltip + Avatar      |
+| **Figma**          | Document browser — Card grid + AspectRatio          |
+| **VS Code**        | Editor layout — AppShell + Tabs + Menubar           |
+| **Trello**         | Kanban board — Card + drag patterns + Stack         |
+| **Character Chat** | Mobile chat — Dialog + ScrollArea + Input           |
+
+## Governance & Heritage
+
+Strata doesn't just ship components — it captures **institutional knowledge** that compounds over time.
+
+- **ADR (Architecture Decision Records)** — Every design decision is logged with rationale ([`adr.md`](.claude/heritage/adr.md))
+- **FMEA (Failure Mode & Effects Analysis)** — Known failure patterns are cataloged to prevent recurrence ([`fmea.md`](.claude/heritage/fmea.md))
+- **Convention System** — 4-tier classification (Leaf → Styled → Composite → Domain) with automated audit and scaffolding
+
+```
+Tier 0 (Leaf)       <100 lines, no variants       → .tsx .test .stories .md
+Tier 1 (Styled)     2+ variant maps or >100 lines  → + .variant.ts
+Tier 2 (Composite)  3+ sub-components or >150 lines → + .type.ts
+Tier 3 (Domain)     3+ hooks, policy logic          → + .hook.ts .policy.ts .const.ts
+```
 
 ## Scripts
 
 ```bash
 pnpm dev            # Start dev server
-pnpm build          # TypeScript check + Vite build
 pnpm storybook      # Start Storybook (port 6007)
+pnpm build          # TypeScript check + Vite build
 pnpm test           # Run tests in watch mode
-pnpm test:ci        # Run tests once
+pnpm test:ci        # Run tests once (CI)
 pnpm typecheck      # TypeScript check (tsc -b)
-pnpm format         # Format with Prettier
 pnpm lint           # ESLint check
+pnpm format         # Format with Prettier
 pnpm generate:llms  # Regenerate llms.txt + llms-full.txt
 ```
 
-## AI Integration
+---
 
-Strata is designed for AI-assisted development and consumption:
+## Roadmap
 
-| Channel       | File                             | Purpose                                               |
-| ------------- | -------------------------------- | ----------------------------------------------------- |
-| llms.txt      | [`llms.txt`](llms.txt)           | Lightweight component index (~2K tokens) for AI tools |
-| llms-full.txt | [`llms-full.txt`](llms-full.txt) | Full documentation (~15K tokens) for large-context AI |
-| Storybook MCP | `http://localhost:6007/mcp`      | Real-time component API queries via MCP protocol      |
-| Component .md | `src/components/*/*.md`          | Structured docs (Role, Tier, Tokens, Constraints)     |
+### Phase 1 — Foundation Hardening `(current)`
 
-**For AI tool users** (Cursor, Windsurf, ChatGPT, Claude):
+Establishing production-grade reliability and adoption readiness.
 
-- Reference `llms.txt` for component discovery
-- Reference `llms-full.txt` for detailed implementation guidance
+- [x] 57 components with full test coverage (52 test files)
+- [x] 3-layer OKLch token system
+- [x] 11 real-world demo applications
+- [x] AI three-tier consumption (llms.txt + llms-full.txt + Storybook MCP)
+- [x] Convention system with tier-based audit
+- [x] Heritage registry (ADR + FMEA)
+- [ ] npm publish pipeline (`@strata-ds/core` on npm)
+- [ ] Documentation site (beyond Storybook)
+- [ ] Component expansion: Table, DatePicker, Combobox, Command Palette
+- [ ] CI/CD: coverage ratchet, visual regression, a11y audit automation
 
-**For Claude Code**:
+### Phase 2 — AI Ecosystem Play
 
-- `/convention [target]` — Tier-based component structure analysis and scaffolding
-- `/sprint [quest]` — Sprint build cycle with automated review, testing, and heritage tracking
-- `/commit [pr] [merge]` — Conventional commit with optional PR workflow
-- `/research [topic]` — Evidence-based research with falsification loops
+Becoming the design system AI tools reach for first.
 
-See [CLAUDE.md](CLAUDE.md) for details.
+- [ ] **`@strata-ds/mcp`** — Standalone MCP server package for IDE integration (Cursor, VS Code, Claude Code)
+- [ ] **AI codegen presets** — Pre-built templates for v0, Bolt, Claude Artifacts
+- [ ] **llms.txt standard contribution** — Driving adoption of the [llmstxt.org](https://llmstxt.org) specification
+- [ ] **AI accuracy benchmark** — Measuring AI-generated UI correctness against Strata components
+- [ ] **Framework adapters** — Vue, Svelte, and Solid adapters via headless core extraction
+
+### Phase 3 — Commercial Layer
+
+Open-source core with premium tooling.
+
+- [ ] **Theme Studio** — Visual token editor with OKLch palette generation (SaaS)
+- [ ] **Enterprise MCP** — Connect internal design systems to AI tools via MCP protocol
+- [ ] **Pro Components** — DataGrid, Chart, Calendar, Rich Text Editor (paid package)
+- [ ] **Audit Dashboard** — Team-level Convention + ADR + FMEA management (SaaS)
+- [ ] **Design-to-Code** — Figma plugin that maps designs to Strata tokens and components
+
+```
+Roadmap Timeline
+
+Phase 1 ████████████░░░░░░░░░░░░░░░░░░  Foundation
+Phase 2 ░░░░░░░░░░░░████████████░░░░░░  AI Ecosystem
+Phase 3 ░░░░░░░░░░░░░░░░░░░░░░████████  Commercial
+         ──────────────────────────────→
+         Now                       Future
+```
+
+## Contributing
+
+Contributions are welcome. Please read the component convention system before submitting:
+
+```bash
+# Check component structure compliance
+# via Claude Code:
+/convention audit
+
+# Apply convention to a specific component
+/convention Button
+```
 
 ## License
 
 [MIT](LICENSE)
+
+---
+
+<div align="center">
+
+**Strata** — Design systems for the AI era.
+
+[GitHub](https://github.com/siwon-dev-git/strata) · [Storybook](http://localhost:6007) · [llms.txt](llms.txt)
+
+</div>
