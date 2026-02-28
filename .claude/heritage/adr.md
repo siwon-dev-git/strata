@@ -24,6 +24,9 @@
 ## Strategy
 
 - **ship-loop-harness**: Don't perfect the harness first. Evolve it within the shipping loop. Perfect preparation = time delay risk
+- **6-gate-chain**: G0 Scope → G1 Surface (auto) → G2 Static (manual) → G3 Runtime (manual) → G4 Heritage (conditional) → G5 CI (remote). Gates are sequential, binary, and shared between BUILD and COMMIT. Single source of truth in sprint SKILL.md
+- **hard-soft-separation**: Gate violations (format/lint/typecheck/test/build) are binary hard gates. Health indicators (unreviewed commits, heritage freshness, dead refs) are soft checks with score. Never use a score to govern an invariant
+- **merge-user-authority**: System prepares (CI green, PR ready) but never auto-merges. Merge = user decision. Post-merge cleanup (branch delete, failed run delete) is autonomous
 
 ## Process
 

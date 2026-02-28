@@ -10,7 +10,9 @@
 
 ## Build
 
-- **ci-blind-merge**: PR merged despite CI red. Causes: format:check absent from local pre-flight; commit SKILL ran checks post-commit; sprint REVIEW lacked hard gate. Fix: pre-flight gate (format+lint+typecheck) before any commit; HALT on failure; never merge CI red. Occurred: PR #14–#17 (same 9 Prettier files across 4 PRs)
+- **ci-blind-merge**: PR merged despite CI red. Causes: format:check absent from local pre-flight; commit SKILL ran checks post-commit; sprint REVIEW lacked hard gate. Fix: 6-gate chain (G0–G5) with sequential enforcement; HALT on failure; never merge CI red. Occurred: PR #14–#17. Hardened: 6-gate restructure
+- **maintain-sense-decide-gap**: MAINTAIN SENSE had 5 checks but DECIDE only mapped 4 actions (format+lint+typecheck missing). Health ≥8 threshold let 1 failing check exit as "healthy" (4/5×10=8). Fix: hard/soft 2-tier separation; hard gate = binary pass/fail, soft = health score. No threshold escape
+- **script-name-phantom**: SKILL.md referenced `format:write` but actual script is `format`. Phantom script names cause gate auto-fix to fail silently. Fix: verify script names against package.json when writing SKILL
 - **type-regression**: Barrel destruction, missing initial values. Verify with tsc --noEmit
 - **commit-delay-after-build**: Delaying commit after review pass. Immediate commit mandatory
 - **type-impl-drift**: Field exists in type but not rendered. tsc doesn't warn on unused props. Cross-check type vs implementation during component audit
