@@ -305,7 +305,7 @@ export function RedditDemo() {
       {/* ── Three-column layout ──────────────────────────────────── */}
       <div className="flex flex-1 min-h-0">
         {/* ── Left sidebar: subreddit list ─────────────────────── */}
-        <div className="w-[200px] bg-surface-base border-r border-border-subtle shrink-0 flex flex-col">
+        <div className="w-50 bg-surface-base border-r border-border-subtle shrink-0 flex flex-col">
           <div className="px-3 py-3">
             <Text
               as="span"
@@ -420,7 +420,7 @@ export function RedditDemo() {
         </div>
 
         {/* ── Right sidebar: community info ────────────────────── */}
-        <div className="w-[280px] bg-surface-base border-l border-border-subtle shrink-0">
+        <div className="w-70 bg-surface-base border-l border-border-subtle shrink-0">
           <ScrollAreaRoot className="h-full">
             <ScrollAreaViewport className="h-full">
               <div className="p-4">

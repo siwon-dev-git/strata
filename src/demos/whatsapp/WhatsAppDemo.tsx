@@ -169,7 +169,7 @@ function ContactItem({
             <Badge
               variant="default"
               size="sm"
-              className="shrink-0 bg-interactive text-fg-on-accent text-[10px] min-w-[18px] justify-center"
+              className="shrink-0 bg-interactive text-fg-on-accent text-[10px] min-w-4.5 justify-center"
             >
               {contact.unread}
             </Badge>
@@ -416,7 +416,7 @@ export function WhatsAppDemo() {
         style={{ width: 375, height: 812 }}
       >
         {/* Notch */}
-        <div className="absolute left-1/2 top-0 z-10 h-[30px] w-[126px] -translate-x-1/2 rounded-b-2xl bg-border-strong" />
+        <div className="absolute left-1/2 top-0 z-10 h-7.5 w-31.5 -translate-x-1/2 rounded-b-2xl bg-border-strong" />
 
         {/* Status Bar */}
         <StatusBar />

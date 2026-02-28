@@ -458,7 +458,7 @@ export function FigmaDemo() {
                   style={{ top: 0, left: 0, width: 500, height: 160 }}
                 >
                   {/* Background */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#1a1a2e] to-[#16213e]" />
+                  <div className="absolute inset-0 rounded-lg bg-linear-to-r from-[#1a1a2e] to-[#16213e]" />
                   {/* Headline */}
                   <div className="absolute left-8 top-8">
                     <div
@@ -472,13 +472,13 @@ export function FigmaDemo() {
                     </div>
                   </div>
                   {/* Subtitle */}
-                  <div className="absolute left-8 top-[68px]">
+                  <div className="absolute left-8 top-17">
                     <div className="text-sm text-fg-muted">
                       A modern design system for the web
                     </div>
                   </div>
                   {/* CTA Button */}
-                  <div className="absolute left-8 top-[100px]">
+                  <div className="absolute left-8 top-25">
                     <div className="rounded-md bg-interactive px-4 py-2 text-xs font-semibold text-white">
                       Get Started
                     </div>
@@ -565,7 +565,7 @@ export function FigmaDemo() {
           </div>
 
           {/* ── Properties Panel (right) ──────────────────────────── */}
-          <div className="flex w-[280px] shrink-0 flex-col border-l border-border-subtle bg-surface-raised overflow-y-auto">
+          <div className="flex w-70 shrink-0 flex-col border-l border-border-subtle bg-surface-raised overflow-y-auto">
             {/* Header tabs */}
             <div className="flex h-9 shrink-0 items-center border-b border-border-subtle px-3">
               <button

@@ -42,7 +42,7 @@ export function TwitterDemo() {
   return (
     <div className="flex h-full bg-surface-base">
       {/* ── Left Nav ──────────────────────────────────────────── */}
-      <nav className="w-[275px] flex flex-col border-r border-border-subtle p-4 shrink-0">
+      <nav className="w-68.75 flex flex-col border-r border-border-subtle p-4 shrink-0">
         {/* Logo */}
         <Text as="span" size="2xl" weight="bold" className="mb-6">
           𝕏
@@ -88,7 +88,7 @@ export function TwitterDemo() {
       </nav>
 
       {/* ── Feed (Center) ─────────────────────────────────────── */}
-      <main className="flex-1 max-w-[600px] border-r border-border-subtle overflow-y-auto">
+      <main className="flex-1 max-w-150 border-r border-border-subtle overflow-y-auto">
         {/* Top Bar */}
         <TopBar className="sticky top-0 z-10">
           <Text as="h1" size="lg" weight="bold">
@@ -123,7 +123,7 @@ export function TwitterDemo() {
       </main>
 
       {/* ── Right Widgets ─────────────────────────────────────── */}
-      <aside className="w-[350px] p-4 shrink-0 overflow-y-auto hidden xl:block">
+      <aside className="w-87.5 p-4 shrink-0 overflow-y-auto hidden xl:block">
         {/* Search */}
         <Input
           placeholder="Search"

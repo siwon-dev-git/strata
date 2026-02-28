@@ -52,7 +52,7 @@ export function SlackDemo() {
       </div>
 
       {/* ── Channel Sidebar ──────────────────────────────────────── */}
-      <div className="w-[220px] bg-surface-raised flex flex-col border-r border-border-subtle shrink-0">
+      <div className="w-55 bg-surface-raised flex flex-col border-r border-border-subtle shrink-0">
         {/* Workspace header */}
         <div className="flex items-center h-[--topbar-height] px-4 gap-2 border-b border-border-subtle shrink-0">
           <Text as="span" size="sm" weight="bold" className="flex-1 truncate">
@@ -126,7 +126,7 @@ export function SlackDemo() {
             <Input
               size="sm"
               placeholder="Search..."
-              className="max-w-[200px] rounded-md"
+              className="max-w-50 rounded-md"
             />
             <IconSearch size="sm" className="text-fg-muted shrink-0" />
           </Stack>

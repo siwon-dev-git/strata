@@ -43,7 +43,7 @@ export function LinearDemo() {
   return (
     <AppShell>
       {/* ── Sidebar (220px) ─────────────────────────────────────────── */}
-      <Sidebar className="w-[220px]">
+      <Sidebar className="w-55">
         <SidebarSection title="Workspace">
           {LINEAR_VIEWS.map((view, i) => (
             <SidebarItem

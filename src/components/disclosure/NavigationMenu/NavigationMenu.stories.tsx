@@ -56,7 +56,7 @@ export const Default: Story = {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Components</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid gap-1 w-[280px] p-2">
+            <div className="grid gap-1 w-70 p-2">
               <NavigationMenuLink href="#primitives">
                 Primitives
               </NavigationMenuLink>

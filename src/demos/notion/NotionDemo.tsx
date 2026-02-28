@@ -276,7 +276,7 @@ export function NotionDemo() {
   return (
     <div className="flex h-full">
       {/* ── Sidebar (240px) ──────────────────────────────────────── */}
-      <Sidebar className="w-[240px]">
+      <Sidebar className="w-60">
         {/* Search */}
         <div className="px-3 pt-3 pb-2">
           <div className="relative">
@@ -357,7 +357,7 @@ export function NotionDemo() {
 
         {/* Page body */}
         <div className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-[720px] px-16 py-10">
+          <div className="mx-auto max-w-180 px-16 py-10">
             {/* Page icon + title */}
             {currentPage && (
               <div className="mb-6">
