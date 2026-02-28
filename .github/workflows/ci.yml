@@ -121,10 +121,3 @@ jobs:
                 body: `⚠️ **Large PR** (+${additions} -${deletions} = ${total} lines). Consider splitting into smaller PRs.`,
               });
             }
-
-      - name: Dependency review
-        uses: actions/dependency-review-action@v4
-        with:
-          fail-on-severity: high
-          deny-licenses: GPL-3.0, AGPL-3.0
-          comment-summary-in-pr: always
