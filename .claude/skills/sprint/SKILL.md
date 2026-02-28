@@ -20,14 +20,14 @@ $ARGUMENTS — unified loop. Single command runs the full cycle.
 
 6 gates govern every cycle. Each gate is binary (PASS/FAIL). Failure blocks downstream.
 
-| Gate | Name     | Check                                         | Fix                            | Retry |
-| ---- | -------- | --------------------------------------------- | ------------------------------ | ----- |
-| G0   | Scope    | scope declared + FMEA checked                 | narrow scope                   | 1     |
+| Gate | Name     | Check                                                                    | Fix                                            | Retry |
+| ---- | -------- | ------------------------------------------------------------------------ | ---------------------------------------------- | ----- |
+| G0   | Scope    | scope declared + FMEA checked                                            | narrow scope                                   | 1     |
 | G1   | Surface  | `pnpm install --frozen-lockfile && pnpm format:check && pnpm lint --fix` | auto (lockfile regen, `format:write`, `--fix`) | 1     |
-| G2   | Static   | `pnpm lint && pnpm typecheck`                 | manual code fix                | 3     |
-| G3   | Runtime  | `pnpm test:ci && pnpm build` + bundle ≤ 512KB | manual code fix                | 3     |
-| G4   | Heritage | retro done if 3+ commits since last           | update ADR + FMEA              | 1     |
-| G5   | CI       | `gh run watch --exit-status`                  | local fix → G1 re-entry        | 3     |
+| G2   | Static   | `pnpm lint && pnpm typecheck`                                            | manual code fix                                | 3     |
+| G3   | Runtime  | `pnpm test:ci && pnpm build` + bundle ≤ 512KB                            | manual code fix                                | 3     |
+| G4   | Heritage | retro done if 3+ commits since last                                      | update ADR + FMEA                              | 1     |
+| G5   | CI       | `gh run watch --exit-status`                                             | local fix → G1 re-entry                        | 3     |
 
 **Universal rules:**
 
@@ -35,6 +35,12 @@ $ARGUMENTS — unified loop. Single command runs the full cycle.
 - Retry exhausted → Status: BLOCKED, stop cycle
 - Never skip a gate. Never use `--no-verify`
 - G5 FAIL → fix locally → re-enter at G1 (full re-validation)
+
+**Context budget rules (token optimization):**
+
+- **Prefer Agent delegation**: Run G1/G2/G3 gate checks via Agent tool (subagent_type: general-purpose). Agent returns pass/fail + error summary only. This prevents verbose command output from accumulating in main context
+- **If running directly**: Pipe long-output commands through `| tail -30` to cap output. Full error context is rarely needed — last 30 lines contain the actionable information
+- **Never re-read heritage files** if already read earlier in the same session. Reference prior read results instead
 
 ## BUILD Mode
 
@@ -53,7 +59,7 @@ G1,G2,G3 ───┘ (git status, falsify) ────┘  G4 ─────�
 ### ❶ FMEA Cross-reference — G0: Scope
 
 0. Scope declaration: goal · in_scope · out_scope · done (3 bullets max)
-1. Cross-reference `heritage/fmea.md` → identify related risk patterns
+1. Cross-reference `heritage/fmea.md` → **selective read**: grep quest keywords (component name, category, failure type) against fmea.md. Read only matching entries, not the full file. If no match → skip (no risk patterns apply)
 2. If matching pattern found → apply known fix preemptively
 3. **G0 check**: scope bounded within 10min/100k? FMEA reviewed? → PASS/FAIL
 
@@ -163,6 +169,8 @@ Health scan → gate-based heal loop. Max: min(N, 10). Early exit on convergence
 
 ### SENSE — Health Scan
 
+**Context optimization**: Run all hard checks via a single Agent (subagent_type: general-purpose) that returns a structured summary: `G1: PASS|FAIL (reason) / G2: PASS|FAIL (reason) / G3: PASS|FAIL (reason)`. This keeps ~3,600 tokens of command output out of main context.
+
 Two-tier check:
 
 **Hard checks** (gate violations — must fix):
@@ -195,17 +203,23 @@ User approval required: typecheck fix, test fix, any semantic code change
 
 ### LEARN
 
-1. Update heritage pattern counts
+1. Update heritage pattern counts — **selective read**: grep relevant keywords against adr.md/fmea.md before reading. Do not re-read full heritage files if already read in this session
 2. Record 1-line cycle insight
 
 ### RECURSE — Convergence
 
-Re-run SENSE →
+**Context budget rule**: Each MAINTAIN cycle consumes ~16-20K tokens. To prevent context exhaustion, enforce session boundary after every cycle (same as BUILD):
 
-- Hard ALL PASS + Soft ALL ✅: **CONVERGED**
-- No improvement from previous cycle: **DIMINISHING**
-- Max cycles reached: **MAX_CYCLE**
-- Otherwise: return to DECIDE
+1. Emit output block with cycle results
+2. If remaining cycles > 0 AND not converged → emit `Session: CLEAR` → instruct user: "Run `/sprint N-1` to continue. `/clear` first."
+3. Do NOT continue to next cycle in the same session
+
+**Convergence detection** (evaluated per-cycle before session boundary):
+
+- Hard ALL PASS + Soft ALL ✅: **CONVERGED** → stop, no further cycles needed
+- No improvement from previous cycle: **DIMINISHING** → stop
+- Max cycles reached: **MAX_CYCLE** → stop
+- Otherwise: session boundary → user re-invokes for next cycle
 
 ## Output Format
 
@@ -223,6 +237,6 @@ Session: CLEAR (BUILD G5 PASS) | CONTINUE (MAINTAIN) | BLOCKED
 
 Scope: 10min/100k per cycle. Self-scoring prohibited (Babel paradox). Ship-loop-harness: evolve within shipping loop. Evaluation must be actionable.
 
-**Session boundary**: BUILD G5 PASS → session ends. Instruct user to `/clear`. Never start a new BUILD quest in the same session. MAINTAIN mode is exempt (convergence loop is self-contained).
+**Session boundary**: Both BUILD and MAINTAIN enforce session boundary per cycle. BUILD: G5 PASS → session ends. MAINTAIN: each cycle ends with `Session: CLEAR` (see RECURSE). Instruct user to `/clear` before next cycle. Never start a new cycle in the same session.
 
 **PR mandatory**: Step ❿ (PR+CI) is never skippable in BUILD mode. G5 is the terminal gate. A BUILD cycle without G5 is INCOMPLETE, not COMPLETE.
