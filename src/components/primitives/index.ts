@@ -107,7 +107,7 @@ export {
   TableHead,
   TableCell,
   TableCaption,
-} from './Table/Table';
+} from './Table';
 export { AspectRatio } from './AspectRatio/AspectRatio';
 export {
   ScrollArea,
