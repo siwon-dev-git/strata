@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { cn } from '@/lib/utils';
 import { DEMO_REGISTRY } from '@/demos/demo-registry';
 import { computeCoverage } from '@/demos/demo-schema';
@@ -54,7 +54,15 @@ export function App() {
       <div className="flex flex-1 overflow-hidden">
         {/* Demo viewport */}
         <div className="flex-1 overflow-hidden">
-          <ActiveDemo />
+          <Suspense
+            fallback={
+              <div className="flex h-full items-center justify-center text-xs text-fg-muted">
+                Loading…
+              </div>
+            }
+          >
+            <ActiveDemo />
+          </Suspense>
         </div>
 
         {/* Coverage side panel */}

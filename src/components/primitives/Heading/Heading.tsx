@@ -20,10 +20,7 @@ export function Heading({
   const Component = as ?? (`h${level}` as const);
 
   return (
-    <Component
-      ref={ref}
-      className={cn(headingVariants({ level }), className)}
-    >
+    <Component ref={ref} className={cn(headingVariants({ level }), className)}>
       {children}
     </Component>
   );

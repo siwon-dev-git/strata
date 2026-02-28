@@ -22,7 +22,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
   args: { children: 'Callout' },
   render: () => (
-    <div className="flex flex-col gap-4 w-[480px]">
+    <div className="flex flex-col gap-4 w-120">
       <Callout variant="info" title="Information">
         Strata uses a 3-layer token architecture for maximum flexibility.
       </Callout>

@@ -47,7 +47,7 @@ export function SpotifyDemo() {
       {/* ── Upper region: sidebar + main ─────────────────────────────── */}
       <div className="flex flex-1 overflow-hidden">
         {/* ── Sidebar (240px) ──────────────────────────────────────── */}
-        <aside className="w-[240px] shrink-0 flex flex-col border-r border-border-subtle bg-surface-base overflow-y-auto">
+        <aside className="w-60 shrink-0 flex flex-col border-r border-border-subtle bg-surface-base overflow-y-auto">
           {/* Nav links */}
           <div className="px-2 pt-4 pb-2">
             {SPOTIFY_NAV.map((item) => (
@@ -234,9 +234,9 @@ export function SpotifyDemo() {
       </div>
 
       {/* ── Now Playing Bar (fixed bottom, 72px) ────────────────────── */}
-      <footer className="h-[72px] shrink-0 border-t border-border-subtle bg-surface-raised flex items-center px-4 gap-4">
+      <footer className="h-18 shrink-0 border-t border-border-subtle bg-surface-raised flex items-center px-4 gap-4">
         {/* Left: current track info */}
-        <div className="flex items-center gap-3 w-[240px] shrink-0 min-w-0">
+        <div className="flex items-center gap-3 w-60 shrink-0 min-w-0">
           <div
             className={`h-12 w-12 rounded shrink-0 ${currentTrack.coverColor}`}
             aria-hidden="true"
@@ -265,7 +265,7 @@ export function SpotifyDemo() {
         </div>
 
         {/* Center: playback controls + progress */}
-        <div className="flex-1 flex flex-col items-center gap-1 max-w-[600px] mx-auto">
+        <div className="flex-1 flex flex-col items-center gap-1 max-w-150 mx-auto">
           {/* Controls row */}
           <div className="flex items-center gap-3">
             <Button
@@ -368,7 +368,7 @@ export function SpotifyDemo() {
         </div>
 
         {/* Right: volume */}
-        <div className="flex items-center gap-2 w-[160px] shrink-0 justify-end">
+        <div className="flex items-center gap-2 w-40 shrink-0 justify-end">
           <Button
             variant="ghost"
             size="sm"

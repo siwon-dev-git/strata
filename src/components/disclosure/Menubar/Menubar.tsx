@@ -74,7 +74,7 @@ export function MenubarContent({
         sideOffset={4}
         align="start"
         className={cn(
-          'z-[--elevation-dropdown] min-w-[180px]',
+          'z-[--elevation-dropdown] min-w-45',
           'rounded-[--menu-radius] bg-[--menu-bg] border border-[--menu-border] shadow-[--menu-shadow]',
           'p-1',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
@@ -110,7 +110,7 @@ export function MenubarItem({
         'flex items-center gap-2 rounded-sm px-2.5 py-1.5',
         'text-sm text-[--menu-item-fg] cursor-pointer outline-none transition-colors',
         'focus:bg-[--menu-item-hover]',
-        'data-[highlighted]:bg-[--menu-item-hover]',
+        'data-highlighted:bg-[--menu-item-hover]',
         className,
       )}
       {...props}

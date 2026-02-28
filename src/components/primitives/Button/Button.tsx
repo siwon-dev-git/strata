@@ -9,8 +9,7 @@ import {
 } from './Button.variant';
 
 interface ButtonProps
-  extends ComponentPropsWithRef<'button'>,
-    ButtonVariantProps {
+  extends ComponentPropsWithRef<'button'>, ButtonVariantProps {
   loading?: boolean;
   asChild?: boolean;
 }

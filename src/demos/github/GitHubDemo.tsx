@@ -197,7 +197,7 @@ export function GitHubDemo() {
           </div>
 
           {/* Search */}
-          <div className="relative max-w-[280px] flex-1">
+          <div className="relative max-w-70 flex-1">
             <IconSearch
               size="sm"
               className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-fg-muted"
@@ -307,7 +307,7 @@ export function GitHubDemo() {
 
       {/* ── Main content ───────────────────────────────────────────── */}
       <div className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-[1200px] px-6 py-4">
+        <div className="mx-auto max-w-300 px-6 py-4">
           <div className="flex gap-6">
             {/* ── File browser + README (left) ──────────────────────── */}
             <div className="flex-1 min-w-0">
@@ -384,7 +384,7 @@ export function GitHubDemo() {
                     <Text
                       as="span"
                       size="sm"
-                      className="w-[160px] shrink-0 text-interactive hover:underline cursor-pointer truncate"
+                      className="w-40 shrink-0 text-interactive hover:underline cursor-pointer truncate"
                     >
                       {file.name}
                     </Text>
@@ -404,7 +404,7 @@ export function GitHubDemo() {
                       as="span"
                       size="xs"
                       color="subtle"
-                      className="shrink-0 text-right w-[80px]"
+                      className="shrink-0 text-right w-20"
                     >
                       {file.updatedAt}
                     </Text>
@@ -427,7 +427,7 @@ export function GitHubDemo() {
             </div>
 
             {/* ── About sidebar (right) ─────────────────────────────── */}
-            <aside className="hidden lg:block w-[280px] shrink-0">
+            <aside className="hidden lg:block w-70 shrink-0">
               <div className="space-y-4">
                 {/* About header */}
                 <div className="flex items-center justify-between">

@@ -144,7 +144,7 @@ function FileTreeNode({
         <CollapsibleTrigger asChild>
           <button
             type="button"
-            className="flex w-full items-center gap-1 py-[2px] text-[13px] text-fg-default hover:bg-surface-overlay"
+            className="flex w-full items-center gap-1 py-0.5 text-[13px] text-fg-default hover:bg-surface-overlay"
             style={{ paddingLeft }}
           >
             {open ? (
@@ -186,7 +186,7 @@ function FileTreeNode({
   return (
     <button
       type="button"
-      className="flex w-full items-center gap-1 py-[2px] text-[13px] text-fg-default hover:bg-surface-overlay"
+      className="flex w-full items-center gap-1 py-0.5 text-[13px] text-fg-default hover:bg-surface-overlay"
       style={{ paddingLeft: paddingLeft + 20 }}
     >
       <IconFile size="sm" className={cn('h-4 w-4 shrink-0', iconColor)} />
@@ -215,7 +215,7 @@ function ActivityIcon({
           className={cn(
             'relative flex h-12 w-full items-center justify-center text-fg-subtle transition-colors hover:text-fg-default',
             active &&
-              'text-fg-default before:absolute before:left-0 before:top-1/2 before:h-6 before:-translate-y-1/2 before:w-[2px] before:bg-fg-default',
+              'text-fg-default before:absolute before:left-0 before:top-1/2 before:h-6 before:-translate-y-1/2 before:w-0.5 before:bg-fg-default',
           )}
         >
           {icon}
@@ -223,7 +223,7 @@ function ActivityIcon({
             <Badge
               variant="default"
               size="sm"
-              className="absolute right-1.5 top-2 min-w-[18px] bg-interactive px-1 text-[10px] font-bold text-white"
+              className="absolute right-1.5 top-2 min-w-4.5 bg-interactive px-1 text-[10px] font-bold text-white"
             >
               {badge}
             </Badge>
@@ -358,7 +358,7 @@ export function VSCodeDemo() {
           </div>
 
           {/* ── Sidebar (260px) ────────────────────────────────────── */}
-          <div className="flex w-[260px] shrink-0 flex-col bg-surface-raised">
+          <div className="flex w-65 shrink-0 flex-col bg-surface-raised">
             {/* Explorer header */}
             <div className="flex h-9 items-center px-5">
               <Text
@@ -435,14 +435,14 @@ export function VSCodeDemo() {
           {/* ── Editor + Panel area ────────────────────────────────── */}
           <div className="flex min-w-0 flex-1 flex-col">
             {/* ── Tab bar ──────────────────────────────────────────── */}
-            <div className="flex h-[35px] shrink-0 items-end bg-surface-overlay">
+            <div className="flex h-8.75 shrink-0 items-end bg-surface-overlay">
               {VSCODE_TABS.map((tab) => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    'group flex h-[35px] items-center gap-1.5 border-r border-border-subtle px-3 text-[13px]',
+                    'group flex h-8.75 items-center gap-1.5 border-r border-border-subtle px-3 text-[13px]',
                     activeTab === tab.id
                       ? 'bg-surface-inset text-white'
                       : 'bg-surface-overlay text-fg-muted hover:bg-surface-overlay',
@@ -471,7 +471,7 @@ export function VSCodeDemo() {
             </div>
 
             {/* ── Breadcrumb bar ────────────────────────────────────── */}
-            <div className="flex h-[22px] items-center gap-1 bg-surface-inset px-3 text-[12px] text-fg-default">
+            <div className="flex h-5.5 items-center gap-1 bg-surface-inset px-3 text-[12px] text-fg-default">
               <span className="text-fg-default">src</span>
               <IconChevronRight size="sm" className="h-3 w-3 text-fg-subtle" />
               <span className="text-fg-default">components</span>
@@ -480,14 +480,14 @@ export function VSCodeDemo() {
             </div>
 
             {/* ── Code editor ──────────────────────────────────────── */}
-            <div className="flex-1 overflow-auto bg-surface-inset px-4 py-2 font-mono text-[13px] leading-[20px]">
+            <div className="flex-1 overflow-auto bg-surface-inset px-4 py-2 font-mono text-[13px] leading-5">
               {highlightCode(VSCODE_CODE)}
             </div>
 
             {/* ── Panel (bottom) ───────────────────────────────────── */}
-            <div className="h-[200px] shrink-0 border-t border-border-default bg-surface-inset">
+            <div className="h-50 shrink-0 border-t border-border-default bg-surface-inset">
               <TabsRoot defaultValue="terminal">
-                <TabsList className="flex h-[35px] items-center gap-0 border-b border-border-default bg-surface-inset px-2">
+                <TabsList className="flex h-8.75 items-center gap-0 border-b border-border-default bg-surface-inset px-2">
                   <TabsTrigger
                     value="problems"
                     className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-1.5 text-[12px] text-fg-muted transition-colors data-[state=active]:border-fg-default data-[state=active]:text-fg-default"
@@ -589,7 +589,7 @@ export function VSCodeDemo() {
         </div>
 
         {/* ── Status Bar (22px, full-width) ────────────────────────── */}
-        <div className="flex h-[22px] shrink-0 items-center justify-between bg-interactive px-2 text-[12px] text-white">
+        <div className="flex h-5.5 shrink-0 items-center justify-between bg-interactive px-2 text-[12px] text-white">
           {/* Left side */}
           <div className="flex items-center gap-3">
             <button

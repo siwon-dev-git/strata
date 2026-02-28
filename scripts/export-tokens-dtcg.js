@@ -33,13 +33,15 @@ function parseCssVars(source) {
 
 function inferType(name, value) {
   if (name.includes('duration') || value.endsWith('ms')) return 'duration';
-  if (name.includes('ease') || value.startsWith('cubic-bezier')) return 'cubicBezier';
+  if (name.includes('ease') || value.startsWith('cubic-bezier'))
+    return 'cubicBezier';
   if (name.includes('radius') || name.includes('space')) return 'dimension';
   if (name.includes('text-') && !name.includes('fg')) return 'dimension';
   if (name.startsWith('sp-z-') || name.includes('elevation')) return 'number';
   if (value.startsWith('oklch')) return 'color';
   if (value.startsWith('0 ') || value.includes('oklch(0 0 0')) return 'shadow';
-  if (value === '0' || value.endsWith('rem') || value.endsWith('px')) return 'dimension';
+  if (value === '0' || value.endsWith('rem') || value.endsWith('px'))
+    return 'dimension';
   if (value.startsWith('var(')) return 'reference';
   return 'string';
 }
@@ -67,8 +69,14 @@ function groupName(varName, prefix) {
 
 /* ── Parse CSS ────────────────────────────────────────────────── */
 
-const layer1 = readFileSync(resolve(root, 'src/tokens/layer1-primitive.css'), 'utf-8');
-const layer2 = readFileSync(resolve(root, 'src/tokens/layer2-semantic.css'), 'utf-8');
+const layer1 = readFileSync(
+  resolve(root, 'src/tokens/layer1-primitive.css'),
+  'utf-8',
+);
+const layer2 = readFileSync(
+  resolve(root, 'src/tokens/layer2-semantic.css'),
+  'utf-8',
+);
 
 // Extract only :root block from layer2 (dark mode defaults)
 const layer2RootMatch = layer2.match(/:root\s*\{([\s\S]*?)\n\}/);
@@ -131,8 +139,12 @@ const outPath = resolve(root, 'tokens.json');
 writeFileSync(outPath, output + '\n');
 
 // Stats
-const primitiveCount = primitiveVars.filter((v) => v.name.startsWith('sp-')).length;
-const semanticCount = semanticVars.filter((v) => !v.name.startsWith('sp-')).length;
+const primitiveCount = primitiveVars.filter((v) =>
+  v.name.startsWith('sp-'),
+).length;
+const semanticCount = semanticVars.filter(
+  (v) => !v.name.startsWith('sp-'),
+).length;
 const groups = new Set([
   ...Object.keys(dtcg.primitive),
   ...Object.keys(dtcg.semantic),

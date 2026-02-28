@@ -32,7 +32,7 @@ export function Textarea({
     <textarea
       ref={ref}
       className={cn(
-        'w-full min-h-[80px] rounded-[--input-radius]',
+        'w-full min-h-20 rounded-[--input-radius]',
         'bg-[--input-bg] text-[--input-fg] border border-[--input-border]',
         'placeholder:text-[--input-placeholder]',
         'transition-colors duration-[--motion-duration-normal]',

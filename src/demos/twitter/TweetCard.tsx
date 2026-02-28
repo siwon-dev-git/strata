@@ -50,7 +50,7 @@ export function TweetCard({ tweet }: { tweet: Tweet }) {
         </Text>
 
         {/* Actions */}
-        <div className="flex justify-between max-w-[400px] mt-2">
+        <div className="flex justify-between max-w-100 mt-2">
           <Button variant="ghost" size="sm" className="gap-1.5 text-fg-subtle">
             <IconMessageCircle size="sm" />
             <Text as="span" size="xs" color="subtle">

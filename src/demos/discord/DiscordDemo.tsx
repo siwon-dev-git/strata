@@ -65,7 +65,7 @@ export function DiscordDemo() {
     <TooltipProvider>
       <div className="flex h-full text-sm">
         {/* ── Server Rail (72px) ────────────────────────────────── */}
-        <div className="flex w-[72px] shrink-0 flex-col items-center gap-2 bg-surface-inset py-3">
+        <div className="flex w-18 shrink-0 flex-col items-center gap-2 bg-surface-inset py-3">
           {/* Home button */}
           <TooltipRoot>
             <TooltipTrigger asChild>

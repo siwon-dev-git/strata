@@ -1,5 +1,8 @@
 import { cn } from '@/lib/utils';
-import { statusDotVariants, type StatusDotVariantProps } from './StatusDot.variant';
+import {
+  statusDotVariants,
+  type StatusDotVariantProps,
+} from './StatusDot.variant';
 
 interface StatusDotProps extends StatusDotVariantProps {
   status: NonNullable<StatusDotVariantProps['status']>;

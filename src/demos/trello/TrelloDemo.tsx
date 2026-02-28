@@ -121,7 +121,7 @@ function TrelloCard({ card }: { card: TrelloCardData }) {
 
 function TrelloListColumn({ list }: { list: TrelloList }) {
   return (
-    <div className="bg-surface-base rounded-xl w-[272px] shrink-0 flex flex-col max-h-full">
+    <div className="bg-surface-base rounded-xl w-68 shrink-0 flex flex-col max-h-full">
       {/* List header */}
       <div className="flex items-center justify-between px-3 py-2.5">
         <Text as="h3" size="sm" weight="semibold">
@@ -167,7 +167,7 @@ export function TrelloDemo() {
           <TrelloListColumn key={list.id} list={list} />
         ))}
         {/* Add list button */}
-        <button className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl w-[272px] shrink-0 px-4 py-3 text-sm text-fg-muted text-left flex items-center gap-2">
+        <button className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl w-68 shrink-0 px-4 py-3 text-sm text-fg-muted text-left flex items-center gap-2">
           <IconPlus size="sm" className="h-4 w-4" />
           Add another list
         </button>

@@ -24,6 +24,9 @@
 ## Strategy
 
 - **ship-loop-harness**: Don't perfect the harness first. Evolve it within the shipping loop. Perfect preparation = time delay risk
+- **6-gate-chain**: G0 Scope → G1 Surface (auto) → G2 Static (manual) → G3 Runtime (manual) → G4 Heritage (conditional) → G5 CI (remote). Gates are sequential, binary, and shared between BUILD and COMMIT. Single source of truth in sprint SKILL.md
+- **hard-soft-separation**: Gate violations (format/lint/typecheck/test/build) are binary hard gates. Health indicators (unreviewed commits, heritage freshness, dead refs) are soft checks with score. Never use a score to govern an invariant
+- **merge-user-authority**: System prepares (CI green, PR ready) but never auto-merges. Merge = user decision. Post-merge cleanup (branch delete, failed run delete) is autonomous
 
 ## Process
 
@@ -32,6 +35,8 @@
 ## Harness
 
 - **coverage-ratchet**: Coverage threshold auto-rises to current - 1%. Only blocks regression, enables natural growth
+- **bundle-budget-g3**: Bundle size (512KB budget) enforced as G3 hard gate extension after `pnpm build`. Measures initial entry bundle (files referenced by index.html), not total dist. Code-split lazy chunks excluded because users load them on demand. >512KB = FAIL. 400-512KB = WARN. Rationale: bundle is a build output metric, not a separate gate. Avoids renumbering G4/G5 and breaking heritage refs
+- **pr-size-precheck**: PR size checked as pre-PR soft gate before push. >500 lines = WARN + user confirm. >1000 lines = BLOCK (user override possible). Not a numbered gate because diff size is contextual, not binary quality. Applies to both `/commit pr` and sprint ❿ PR+CI step
 - **ci-needs-chain**: lint → test/visual dependency required. Static analysis failure blocks downstream job resources
 - **three-loop-selfheal**: Detect (health-check) → Correct (ratchet, auto-baseline) → Defend (dependency-review, actionlint). 3-loop triangle maintains quality floor
 

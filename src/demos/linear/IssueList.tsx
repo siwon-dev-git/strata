@@ -38,7 +38,7 @@ interface IssueListProps {
 
 export function IssueList({ issues, selectedId, onSelect }: IssueListProps) {
   return (
-    <div className="w-[360px] border-r border-border-subtle overflow-y-auto">
+    <div className="w-90 border-r border-border-subtle overflow-y-auto">
       {issues.map((issue) => (
         <button
           key={issue.id}
