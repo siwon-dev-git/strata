@@ -37,7 +37,7 @@ function BoardHeader() {
             name={letter}
             alt={letter}
             size="sm"
-            className="ring-2 ring-[#1d2125] -ml-1 first:ml-0"
+            className="ring-2 ring-surface-inset -ml-1 first:ml-0"
           />
         ))}
       </div>
@@ -51,7 +51,7 @@ function BoardHeader() {
 
 function TrelloCard({ card }: { card: TrelloCardData }) {
   return (
-    <Card className="bg-[#22272b] border-none rounded-lg p-2 cursor-pointer hover:ring-1 hover:ring-[#579dff]/50 transition-all">
+    <Card className="bg-surface-raised border-none rounded-lg p-2 cursor-pointer hover:ring-1 hover:ring-interactive/50 transition-all">
       {/* Color labels */}
       {card.labels.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-2">
@@ -80,7 +80,7 @@ function TrelloCard({ card }: { card: TrelloCardData }) {
               name={m}
               alt={m}
               size="sm"
-              className="ring-1 ring-[#22272b] h-5 w-5 text-[10px]"
+              className="ring-1 ring-surface-raised h-5 w-5 text-[10px]"
             />
           ))}
         </div>
@@ -121,7 +121,7 @@ function TrelloCard({ card }: { card: TrelloCardData }) {
 
 function TrelloListColumn({ list }: { list: TrelloList }) {
   return (
-    <div className="bg-[#101204] rounded-xl w-[272px] shrink-0 flex flex-col max-h-full">
+    <div className="bg-surface-base rounded-xl w-[272px] shrink-0 flex flex-col max-h-full">
       {/* List header */}
       <div className="flex items-center justify-between px-3 py-2.5">
         <Text as="h3" size="sm" weight="semibold">
@@ -160,7 +160,7 @@ function TrelloListColumn({ list }: { list: TrelloList }) {
 
 export function TrelloDemo() {
   return (
-    <div className="h-full bg-[#1d2125] flex flex-col overflow-hidden">
+    <div className="h-full bg-surface-inset flex flex-col overflow-hidden">
       <BoardHeader />
       <div className="flex gap-3 overflow-x-auto p-3 flex-1 items-start">
         {TRELLO_BOARD.map((list) => (
