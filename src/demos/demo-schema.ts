@@ -81,6 +81,28 @@ export type LayoutName = (typeof COMPONENT_CATALOG.layout)[number];
 export type DisclosureName = (typeof COMPONENT_CATALOG.disclosure)[number];
 export type FeedbackName = (typeof COMPONENT_CATALOG.feedback)[number];
 
+/* ── Demo identifiers ────────────────────────────────────────── */
+
+/** All registered demo IDs. Add new entries here when creating demos. */
+export const DEMO_IDS = [
+  'linear',
+  'slack',
+  'twitter',
+  'notion',
+  'spotify',
+  'github',
+  'discord',
+  'figma',
+  'vscode',
+  'trello',
+  'whatsapp',
+  'reddit',
+  'showcase',
+  'character-chat',
+] as const;
+
+export type DemoId = (typeof DEMO_IDS)[number];
+
 /* ── Demo schema ──────────────────────────────────────────────── */
 
 export interface DemoComponentMap {
@@ -91,8 +113,8 @@ export interface DemoComponentMap {
 }
 
 export interface DemoSchema {
-  /** Unique identifier (kebab-case). */
-  id: string;
+  /** Unique identifier (kebab-case). Must match a value in DEMO_IDS. */
+  id: DemoId;
   /** Display label. */
   label: string;
   /** One-line description of what the demo recreates. */
