@@ -47,6 +47,11 @@ const RedditDemo = lazy(() =>
 const ShowcaseDemo = lazy(() =>
   import('./showcase/ShowcaseDemo').then((m) => ({ default: m.ShowcaseDemo })),
 );
+const CharacterChatDemo = lazy(() =>
+  import('./character-chat/CharacterChatDemo').then((m) => ({
+    default: m.CharacterChatDemo,
+  })),
+);
 
 /* ── Registry ─────────────────────────────────────────────────── */
 
@@ -300,6 +305,21 @@ export const DEMO_REGISTRY: DemoSchema[] = [
       feedback: ['Alert', 'Callout', 'EmptyState', 'Skeleton', 'Toast'],
     },
     layout: 'showcase',
+    features: { interactivity: true, density: false },
+  },
+  {
+    id: 'character-chat',
+    label: 'Character Chat',
+    description:
+      'Mobile phone mockup with AI character selection and chat interface.',
+    component: CharacterChatDemo,
+    components: {
+      primitives: ['Button', 'Text'],
+      layout: [],
+      disclosure: [],
+      feedback: [],
+    },
+    layout: 'mobile-frame',
     features: { interactivity: true, density: false },
   },
 ];

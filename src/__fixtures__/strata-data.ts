@@ -1751,3 +1751,309 @@ export const REDDIT_COMMENTS: Record<string, RedditComment[]> = {
     },
   ],
 };
+export interface ChatCharacter {
+  id: string;
+  name: string;
+  avatar: string;
+  color: string;
+  tagline: string;
+  greeting: string;
+  lastMessage: string;
+  lastMessageTime: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'character';
+  content: string;
+  timestamp: string;
+}
+
+export const CHAT_CHARACTERS: ChatCharacter[] = [
+  {
+    id: 'luna',
+    name: 'Luna',
+    avatar: '🌙',
+    color: 'bg-indigo-500',
+    tagline: 'Dreamy storyteller',
+    greeting:
+      'Hey there, traveler. Want to hear a story from the edge of the universe?',
+    lastMessage: 'The stars always remember...',
+    lastMessageTime: '2m',
+  },
+  {
+    id: 'kai',
+    name: 'Kai',
+    avatar: '⚡',
+    color: 'bg-amber-500',
+    tagline: 'Code wizard & mentor',
+    greeting: 'Yo! Ready to write some legendary code today?',
+    lastMessage: 'Try destructuring that object',
+    lastMessageTime: '15m',
+  },
+  {
+    id: 'sage',
+    name: 'Sage',
+    avatar: '🌿',
+    color: 'bg-emerald-500',
+    tagline: 'Mindful philosopher',
+    greeting: 'Welcome. Let us sit with your question for a moment.',
+    lastMessage: 'Balance is not stillness...',
+    lastMessageTime: '1h',
+  },
+  {
+    id: 'nova',
+    name: 'Nova',
+    avatar: '🔥',
+    color: 'bg-rose-500',
+    tagline: 'Fierce debate partner',
+    greeting: "Let's test your ideas. Give me your best argument.",
+    lastMessage: "That premise doesn't hold up",
+    lastMessageTime: '3h',
+  },
+  {
+    id: 'pixel',
+    name: 'Pixel',
+    avatar: '🎨',
+    color: 'bg-violet-500',
+    tagline: 'Creative design companion',
+    greeting:
+      "Colors, shapes, vibes — let's make something beautiful together!",
+    lastMessage: 'Try a softer gradient there',
+    lastMessageTime: '5h',
+  },
+  {
+    id: 'echo',
+    name: 'Echo',
+    avatar: '🔮',
+    color: 'bg-cyan-500',
+    tagline: 'Mysterious oracle',
+    greeting: 'I have been expecting you. Ask, and the echoes shall answer.',
+    lastMessage: 'The answer lies within the question',
+    lastMessageTime: '1d',
+  },
+];
+
+export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
+  luna: [
+    {
+      id: 'l1',
+      role: 'character',
+      content:
+        'Hey there, traveler. Want to hear a story from the edge of the universe?',
+      timestamp: '10:00 AM',
+    },
+    {
+      id: 'l2',
+      role: 'user',
+      content: 'Sure! Tell me about the furthest star.',
+      timestamp: '10:01 AM',
+    },
+    {
+      id: 'l3',
+      role: 'character',
+      content:
+        "There's a star called Icarus — not the myth, the real one. It's 9 billion light-years away. When its light left, the Earth didn't even exist yet. Imagine... the photons you'd see were born before our sun.",
+      timestamp: '10:01 AM',
+    },
+    {
+      id: 'l4',
+      role: 'user',
+      content: "That's wild. So we're literally looking at the past?",
+      timestamp: '10:02 AM',
+    },
+    {
+      id: 'l5',
+      role: 'character',
+      content:
+        "Always. Every time you look at the sky, you're a time traveler. The moon you see is 1.3 seconds ago. The sun, 8 minutes. Andromeda? 2.5 million years. The sky is a museum, and you have a front-row seat.",
+      timestamp: '10:02 AM',
+    },
+    {
+      id: 'l6',
+      role: 'user',
+      content: 'What about the stars that have already died?',
+      timestamp: '10:03 AM',
+    },
+    {
+      id: 'l7',
+      role: 'character',
+      content:
+        "The stars always remember... even after they're gone, their light keeps traveling. Ghost light, I call it. Some of the brightest things you see tonight might already be gone. Beautiful, isn't it? To shine even after you stop existing.",
+      timestamp: '10:03 AM',
+    },
+  ],
+  kai: [
+    {
+      id: 'k1',
+      role: 'character',
+      content: 'Yo! Ready to write some legendary code today?',
+      timestamp: '2:00 PM',
+    },
+    {
+      id: 'k2',
+      role: 'user',
+      content:
+        "I'm struggling with TypeScript generics. They feel so abstract.",
+      timestamp: '2:01 PM',
+    },
+    {
+      id: 'k3',
+      role: 'character',
+      content:
+        "Think of generics like a box factory. You don't build a box for apples and another for oranges — you build a Box<T> that works for anything. The T is just a placeholder until someone actually uses it.",
+      timestamp: '2:01 PM',
+    },
+    {
+      id: 'k4',
+      role: 'user',
+      content: 'OK that makes sense. But what about constraints? Like extends?',
+      timestamp: '2:02 PM',
+    },
+    {
+      id: 'k5',
+      role: 'character',
+      content:
+        'That\'s where it gets fun. `<T extends { id: string }>` means: "I\'ll accept any type, but it MUST have an id field." It\'s like saying "any fruit is fine, but it must be washable." Try destructuring that object — it\'ll click when you see the autocomplete.',
+      timestamp: '2:02 PM',
+    },
+  ],
+  sage: [
+    {
+      id: 's1',
+      role: 'character',
+      content: 'Welcome. Let us sit with your question for a moment.',
+      timestamp: '8:00 AM',
+    },
+    {
+      id: 's2',
+      role: 'user',
+      content: "I've been feeling overwhelmed with too many things to learn.",
+      timestamp: '8:01 AM',
+    },
+    {
+      id: 's3',
+      role: 'character',
+      content:
+        'The river does not try to carry all its water at once. It simply flows. You are not behind — you are exactly where your journey has brought you.',
+      timestamp: '8:01 AM',
+    },
+    {
+      id: 's4',
+      role: 'user',
+      content: 'But everyone seems to know so much more.',
+      timestamp: '8:02 AM',
+    },
+    {
+      id: 's5',
+      role: 'character',
+      content:
+        "Comparison is the thief of presence. Others' knowledge does not diminish yours. Balance is not stillness... it is the courage to move forward at your own pace, without the weight of someone else's timeline.",
+      timestamp: '8:02 AM',
+    },
+  ],
+  nova: [
+    {
+      id: 'n1',
+      role: 'character',
+      content: "Let's test your ideas. Give me your best argument.",
+      timestamp: '6:00 PM',
+    },
+    {
+      id: 'n2',
+      role: 'user',
+      content:
+        'I think AI will replace most software engineers within 10 years.',
+      timestamp: '6:01 PM',
+    },
+    {
+      id: 'n3',
+      role: 'character',
+      content:
+        "Bold claim. But here's the flaw: software engineering isn't just writing code. It's understanding ambiguous requirements, navigating organizational politics, making tradeoffs with incomplete information. AI can generate code, sure — but can it sit in a meeting and figure out what the stakeholder actually wants vs. what they said?",
+      timestamp: '6:01 PM',
+    },
+    {
+      id: 'n4',
+      role: 'user',
+      content: 'Fair point. But the coding part will definitely be automated.',
+      timestamp: '6:02 PM',
+    },
+    {
+      id: 'n5',
+      role: 'character',
+      content:
+        "That premise doesn't hold up completely. The \"coding part\" isn't separable from the \"thinking part.\" Writing code IS thinking. When you refactor, you're discovering new abstractions. When you debug, you're building mental models. Automate the typing? Sure. Automate the understanding? That's a different game entirely.",
+      timestamp: '6:02 PM',
+    },
+  ],
+  pixel: [
+    {
+      id: 'p1',
+      role: 'character',
+      content:
+        "Colors, shapes, vibes — let's make something beautiful together!",
+      timestamp: '11:00 AM',
+    },
+    {
+      id: 'p2',
+      role: 'user',
+      content: 'I need help picking a color palette for a fintech app.',
+      timestamp: '11:01 AM',
+    },
+    {
+      id: 'p3',
+      role: 'character',
+      content:
+        'Fintech = trust + clarity. Start with a deep navy (#1a1f36) as your base — it signals stability. Pair it with a clean teal (#0ea5e9) for interactive elements. For success/money states, use emerald (#10b981) sparingly. And please, no bright red for negative balances — use a muted coral instead. Less panic, more information.',
+      timestamp: '11:01 AM',
+    },
+    {
+      id: 'p4',
+      role: 'user',
+      content: 'What about the typography?',
+      timestamp: '11:02 AM',
+    },
+    {
+      id: 'p5',
+      role: 'character',
+      content:
+        'Try a softer gradient there between your heading and body weights. Inter for UI, with 500 weight for labels and 600 for headings. Numbers should use tabular figures — nothing looks worse than a dashboard where the digits dance around. Monospace for transaction amounts, proportional for everything else.',
+      timestamp: '11:02 AM',
+    },
+  ],
+  echo: [
+    {
+      id: 'e1',
+      role: 'character',
+      content: 'I have been expecting you. Ask, and the echoes shall answer.',
+      timestamp: '11:30 PM',
+    },
+    {
+      id: 'e2',
+      role: 'user',
+      content: 'Will my project succeed?',
+      timestamp: '11:31 PM',
+    },
+    {
+      id: 'e3',
+      role: 'character',
+      content:
+        "Success is a mirror, not a destination. The question you should ask is not 'will it succeed?' but 'am I building something I would use myself?' The answer to that question contains all the prophecy you need.",
+      timestamp: '11:31 PM',
+    },
+    {
+      id: 'e4',
+      role: 'user',
+      content: "That's cryptic. Can you be more specific?",
+      timestamp: '11:32 PM',
+    },
+    {
+      id: 'e5',
+      role: 'character',
+      content:
+        'The answer lies within the question itself. You seek certainty in an uncertain world. Build not for success, but for truth. The rest follows — not because fate decrees it, but because authentic work attracts authentic resonance.',
+      timestamp: '11:32 PM',
+    },
+  ],
+};
