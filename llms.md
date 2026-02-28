@@ -22,7 +22,7 @@
 - [AvatarGroup](src/components/primitives/AvatarGroup/AvatarGroup.md): Stacks multiple Avatar components with overlap and an optional overflow counter.
 - [Badge](src/components/primitives/Badge/Badge.md): Renders a small inline label for status, category, or count.
 - [Breadcrumb](src/components/primitives/Breadcrumb/Breadcrumb.md): Renders a navigational breadcrumb trail with links, separators, and a current page indicator.
-- [Button](src/components/primitives/Button/Button.md): Primary interactive element for triggering actions, with variant styling and loading state.
+- [Button](src/components/primitives/Button/Button.md): Primary interactive element for triggering actions, with variant styling, loading state, and icon-only support.
 - [Card](src/components/primitives/Card/Card.md): Container component for grouping related content with optional header and footer sections.
 - [Checkbox](src/components/primitives/Checkbox/Checkbox.md): Binary toggle input built on Radix Checkbox with custom styling and check indicator.
 - [Code](src/components/primitives/Code/Code.md): Inline code snippet with monospace font and subtle background.
