@@ -3,10 +3,6 @@ name: CI
 on:
   pull_request:
     branches: [main]
-    paths-ignore:
-      - '**/*.md'
-      - 'LICENSE'
-      - '.claude/**'
   push:
     branches: [main]
     paths-ignore:
@@ -18,44 +14,117 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
-  lint:
-    name: Format · Lint · Typecheck
+  # ── Quality Gate ─────────────────────────────────
+  # Single job: format → lint → typecheck → test → build
+  # One checkout + setup instead of three.
+  quality:
+    name: Quality Gate
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-strata
 
-      - name: Prettier — format check
+      - name: Format
         run: pnpm format:check
 
-      - name: ESLint
+      - name: Lint
         run: pnpm lint
 
-      - name: TypeScript — type check
+      - name: Typecheck
         run: pnpm typecheck
 
-  test:
-    name: Unit tests
-    needs: lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-strata
-
-      - name: Unit tests
+      - name: Test
         run: pnpm test:ci
-
-  build:
-    name: Build
-    needs: lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-strata
 
       - name: Build
         run: pnpm build
+
+      - name: Bundle size
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        env:
+          BUNDLE_KB: ${{ steps.build.outputs.size }}
+        with:
+          script: |
+            const { execSync } = require('child_process');
+            const size = execSync('du -sk dist | cut -f1').toString().trim();
+            const kb = parseInt(size);
+            const status = kb > 512 ? '🔴' : kb > 400 ? '🟡' : '✅';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `${status} **Bundle:** ${kb}KB / 512KB budget`,
+            });
+
+  # ── PR Checks ────────────────────────────────────
+  # Size label + dependency review. Only on pull_request.
+  pr-checks:
+    name: PR Checks
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Label PR size
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { additions, deletions } = context.payload.pull_request;
+            const total = additions + deletions;
+
+            const sizes = [
+              { label: 'size/XS', max: 10 },
+              { label: 'size/S',  max: 50 },
+              { label: 'size/M',  max: 200 },
+              { label: 'size/L',  max: 500 },
+              { label: 'size/XL', max: Infinity },
+            ];
+
+            const match = sizes.find(s => total <= s.max);
+            const allLabels = sizes.map(s => s.label);
+
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            for (const l of currentLabels.filter(l => allLabels.includes(l.name))) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: l.name,
+              });
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [match.label],
+            });
+
+            if (total > 500) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `⚠️ **Large PR** (+${additions} -${deletions} = ${total} lines). Consider splitting into smaller PRs.`,
+              });
+            }
+
+      - name: Dependency review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+          deny-licenses: GPL-3.0, AGPL-3.0
+          comment-summary-in-pr: always
