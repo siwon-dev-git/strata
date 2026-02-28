@@ -12,7 +12,7 @@ Stage, commit, and optionally PR with enforced convention format.
 
 - (no args) → Analyze staged + unstaged changes, commit by domain
 - `pr` → Commit + create PR
-- `pr merge` → Commit + create PR + merge when CI green
+- `pr merge` → Commit + create PR + wait CI + cleanup after user merges
 
 ## Commit Message Format
 
@@ -58,11 +58,10 @@ Optional. Component or area name in lowercase:
 ### Default (`/commit`)
 
 1. Run `git status` + `git diff` to understand all changes
-2. **Pre-flight gate** (must ALL PASS before any commit):
-   - `pnpm format:check` — FAIL → `pnpm format:write` → re-check
-   - `pnpm lint` — FAIL → fix → re-check
-   - `pnpm typecheck` — FAIL → fix → re-check
-   - Any still failing → HALT, do not commit
+2. **Pre-flight gate** (uses sprint gate chain G1→G2):
+   - **G1 Surface**: `pnpm format:check` — FAIL → `pnpm format:write` → re-verify
+   - **G2 Static**: `pnpm lint` — FAIL → fix → re-check. `pnpm typecheck` — FAIL → fix → re-check
+   - Any still failing after 3 attempts → HALT, do not commit
 3. Group changes by domain (components, ci, docs, etc.)
 4. For each domain group:
    - Stage relevant files
@@ -85,10 +84,10 @@ Optional. Component or area name in lowercase:
 
 1. Execute PR flow
 2. Wait for CI with `gh run watch --exit-status`
-3. If CI fails → diagnose → fix locally → re-run pre-flight gate (step 2 of Default) → push → re-watch
-4. **Never merge with CI red.** Max 3 CI fix attempts → BLOCKED
-5. On green → `gh pr merge --squash --delete-branch`
-6. Switch to main + pull
+3. If CI fails → diagnose → fix locally → re-enter G1→G2 pre-flight → push → re-watch
+4. **Never merge with CI red.** Max 3 CI fix rounds → BLOCKED
+5. On green → report PR URL. **Merge is user's decision. Never auto-merge.**
+6. After user merges → cleanup: delete stale branches + failed action runs, switch to main + pull
 
 ## Output Format
 
