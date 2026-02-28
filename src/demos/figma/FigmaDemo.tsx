@@ -170,7 +170,7 @@ function LayerItem({
         <button
           type="button"
           className={`shrink-0 opacity-0 transition-opacity group-hover:opacity-100 ${
-            !layer.visible ? '!opacity-100 text-fg-disabled' : 'text-fg-subtle'
+            !layer.visible ? 'opacity-100! text-fg-disabled' : 'text-fg-subtle'
           }`}
           onClick={(e) => e.stopPropagation()}
         >
