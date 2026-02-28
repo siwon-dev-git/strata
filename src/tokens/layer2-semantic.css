@@ -52,6 +52,20 @@
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.4);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.5);
 
+  /* Density — comfortable (default) */
+  --density-gap: var(--sp-space-3);
+  --density-padding-x: var(--sp-space-4);
+  --density-padding-y: var(--sp-space-2);
+  --density-item-height: 2.25rem;
+
+  /* Typography — semantic scale */
+  --type-display: var(--sp-text-4xl);
+  --type-title: var(--sp-text-2xl);
+  --type-heading: var(--sp-text-xl);
+  --type-body: var(--sp-text-base);
+  --type-label: var(--sp-text-sm);
+  --type-caption: var(--sp-text-xs);
+
   /* Motion — semantic intent */
   --motion-duration-fast: var(--sp-duration-100);
   --motion-duration-normal: var(--sp-duration-150);
@@ -145,4 +159,29 @@
   --color-interactive-hover: var(--sp-green-500);
   --color-interactive-subtle: oklch(0.55 0.19 155 / 10%);
   --border-interactive: var(--sp-green-600);
+}
+
+/* ── Density: compact ──────────────────────────────────────── */
+[data-density='compact'] {
+  --density-gap: var(--sp-space-1_5);
+  --density-padding-x: var(--sp-space-2);
+  --density-padding-y: var(--sp-space-1);
+  --density-item-height: 1.75rem;
+}
+
+/* ── Density: spacious ─────────────────────────────────────── */
+[data-density='spacious'] {
+  --density-gap: var(--sp-space-4);
+  --density-padding-x: var(--sp-space-6);
+  --density-padding-y: var(--sp-space-3);
+  --density-item-height: 2.75rem;
+}
+
+/* ── Responsive typography ─────────────────────────────────── */
+@media (max-width: 640px) {
+  :root {
+    --type-display: var(--sp-text-2xl);
+    --type-title: var(--sp-text-xl);
+    --type-heading: var(--sp-text-lg);
+  }
 }

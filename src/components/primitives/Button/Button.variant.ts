@@ -22,7 +22,7 @@ export const buttonVariants = cva(
       },
       size: {
         sm: 'h-7 px-3 text-xs gap-1.5',
-        md: 'h-9 px-4 text-sm gap-2',
+        md: 'h-[--density-item-height] px-[--density-padding-x] text-sm gap-[--density-gap]',
         lg: 'h-11 px-5 text-base gap-2.5',
       },
     },
