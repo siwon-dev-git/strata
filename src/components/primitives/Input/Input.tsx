@@ -32,7 +32,7 @@ export function Input({
         'w-full rounded-[--input-radius]',
         'bg-[--input-bg] text-[--input-fg] border border-[--input-border]',
         'placeholder:text-[--input-placeholder]',
-        'transition-colors duration-150',
+        'transition-colors duration-[--motion-duration-normal]',
         'focus:outline-none focus:ring-2 focus:ring-[--input-ring] focus:border-[--input-border-focus]',
         'disabled:pointer-events-none disabled:opacity-40',
         error && 'border-[--input-border-error]',

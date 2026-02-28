@@ -26,7 +26,7 @@ export function Slider({ className, ref, ...props }: SliderProps) {
             'block h-4 w-4 rounded-full',
             'bg-[--slider-thumb] border-2 border-[--slider-range]',
             'shadow-sm',
-            'transition-colors duration-150',
+            'transition-colors duration-[--motion-duration-normal]',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--border-interactive]',
           )}
         />

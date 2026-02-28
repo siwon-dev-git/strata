@@ -9,7 +9,7 @@ const VARIANT_MAP: Record<CardVariant, string> = {
   interactive: [
     'bg-[--card-bg] border border-[--card-border] rounded-[--card-radius]',
     'hover:bg-[--card-bg-hover] hover:border-[--card-border-hover]',
-    'cursor-pointer transition-colors duration-150',
+    'cursor-pointer transition-colors duration-[--motion-duration-normal]',
   ].join(' '),
 };
 

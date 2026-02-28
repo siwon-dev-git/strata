@@ -54,7 +54,7 @@ export function AccordionTrigger({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-4 w-4 shrink-0 transition-transform duration-200 data-[state=open]:rotate-180"
+          className="h-4 w-4 shrink-0 transition-transform duration-[--motion-duration-entrance] data-[state=open]:rotate-180"
           aria-hidden="true"
         >
           <path d="m6 9 6 6 6-6" />
@@ -77,7 +77,8 @@ export function AccordionContent({
       ref={ref}
       className={cn(
         'overflow-hidden text-sm',
-        'data-[state=open]:animate-[accordion-down_200ms] data-[state=closed]:animate-[accordion-up_200ms]',
+        'data-[state=open]:animate-[accordion-down_var(--motion-duration-entrance)_var(--motion-ease-entrance)]',
+        'data-[state=closed]:animate-[accordion-up_var(--motion-duration-exit)_var(--motion-ease-exit)]',
         className,
       )}
       {...props}
