@@ -46,6 +46,12 @@
 - **fsd-segment-naming**: File suffixes map to FSD segments (.tsx=ui, .type.ts=model, .variant.ts=config, .hook.ts=model, .policy.ts=lib, .const.ts=config, index.ts=api). Does not change file names — clarifies architectural role
 - **template-safe-commands**: SKILL.md code blocks must avoid `$N` (numeric positional) patterns. Use letter-named bash variables ($s, $n, $f) which are not expanded by the skill template engine
 
+## Library Publishing
+
+- **dual-build-target**: Dev build (vite.config.ts for storybook/demo) and lib build (vite.lib.config.ts + tsconfig.build.json for npm) are separate pipelines. Changes must pass both. `pnpm build` ≠ `pnpm build:lib`
+- **declaration-emit-explicit**: Barrel files re-exporting Radix primitives need explicit type annotations for declaration emit. `export const X = RadixX` fails without `satisfies typeof RadixX` or explicit typing. Caught in menubar barrel
+- **consumer-feedback-loop**: Build external consumer → collect friction points → strengthen library. Feedback splits into: real gaps (implement), already-addressed (document better), out-of-scope (provide recipes). Never accept feedback uncritically
+
 ## Component Design
 
 - **svg-first-viz**: No external chart libraries. React+SVG+Tailwind for visualization. stroke-dasharray for donut/gauge, polygon for radar, polyline for sparkline. Zero bundle dependency
