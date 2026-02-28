@@ -33,8 +33,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, 'src/index.ts'),
       formats: ['es'],
+      cssFileName: 'styles',
     },
-    cssFileName: 'styles',
     rollupOptions: {
       external: (id) =>
         externalDeps.some((dep) => id === dep || id.startsWith(dep + '/')),
