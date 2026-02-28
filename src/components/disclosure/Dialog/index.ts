@@ -8,6 +8,7 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  SimpleDialog,
 } from './Dialog';
 
 import {
@@ -20,6 +21,7 @@ import {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  SimpleDialog,
 } from './Dialog';
 
 export const Dialog = {
@@ -32,4 +34,5 @@ export const Dialog = {
   Footer: DialogFooter,
   Title: DialogTitle,
   Description: DialogDescription,
+  Simple: SimpleDialog,
 };

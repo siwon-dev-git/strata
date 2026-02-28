@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
 import type {
@@ -138,5 +139,56 @@ export function DialogDescription({
     >
       {children}
     </RadixDialog.Description>
+  );
+}
+
+/* ----- SimpleDialog — convenience wrapper -------------------------------- */
+
+interface SimpleDialogProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  trigger?: ReactNode;
+  title: string;
+  description?: string;
+  children: ReactNode;
+  footer?: ReactNode;
+  className?: string;
+}
+
+/**
+ * Convenience wrapper for common dialog patterns.
+ * Composes DialogRoot + DialogContent + DialogHeader + DialogTitle + DialogBody
+ * into a single component.
+ *
+ * For advanced layouts, use the compound API (DialogRoot, DialogContent, etc.) directly.
+ */
+export function SimpleDialog({
+  open,
+  onOpenChange,
+  trigger,
+  title,
+  description,
+  children,
+  footer,
+  className,
+}: SimpleDialogProps) {
+  return (
+    <DialogRoot open={open} onOpenChange={onOpenChange}>
+      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
+      <DialogContent className={className}>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+        </DialogHeader>
+        <DialogBody>
+          {description && (
+            <DialogDescription className="mb-3">
+              {description}
+            </DialogDescription>
+          )}
+          {children}
+        </DialogBody>
+        {footer && <DialogFooter>{footer}</DialogFooter>}
+      </DialogContent>
+    </DialogRoot>
   );
 }

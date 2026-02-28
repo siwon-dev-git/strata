@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   SelectRoot,
   SelectTrigger,
@@ -53,5 +54,39 @@ describe('Select', () => {
       </SelectRoot>,
     );
     expect(screen.getByRole('combobox')).toHaveTextContent('Bravo');
+  });
+
+  // ── Action failure scenarios ──────────────────────────────────────
+
+  it('does not open when disabled', async () => {
+    render(
+      <SelectRoot disabled>
+        <SelectTrigger>
+          <SelectValue placeholder="Choose..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="a">Alpha</SelectItem>
+        </SelectContent>
+      </SelectRoot>,
+    );
+    await userEvent.click(screen.getByRole('combobox'));
+    expect(screen.queryByText('Alpha')).not.toBeInTheDocument();
+  });
+
+  it('calls onValueChange when item is selected', async () => {
+    const onValueChange = vi.fn();
+    render(
+      <SelectRoot defaultOpen onValueChange={onValueChange}>
+        <SelectTrigger>
+          <SelectValue placeholder="Choose..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="a">Alpha</SelectItem>
+          <SelectItem value="b">Bravo</SelectItem>
+        </SelectContent>
+      </SelectRoot>,
+    );
+    await userEvent.click(screen.getByText('Alpha'));
+    expect(onValueChange).toHaveBeenCalledWith('a');
   });
 });

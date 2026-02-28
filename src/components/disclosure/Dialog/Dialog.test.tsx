@@ -1,11 +1,13 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   DialogRoot,
   DialogTrigger,
   DialogContent,
   DialogTitle,
   DialogDescription,
+  SimpleDialog,
 } from './Dialog';
 
 describe('Dialog', () => {
@@ -46,5 +48,40 @@ describe('Dialog', () => {
       </DialogRoot>,
     );
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  // ── Action failure scenarios ──────────────────────────────────────
+
+  it('calls onOpenChange when closed via Escape key', async () => {
+    const onOpenChange = vi.fn();
+    render(
+      <DialogRoot defaultOpen onOpenChange={onOpenChange}>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Title</DialogTitle>
+        </DialogContent>
+      </DialogRoot>,
+    );
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    await userEvent.keyboard('{Escape}');
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it('renders SimpleDialog with all sections', () => {
+    render(
+      <SimpleDialog
+        open
+        title="Confirm"
+        description="Are you sure?"
+        footer={<button>OK</button>}
+      >
+        <p>Body content</p>
+      </SimpleDialog>,
+    );
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Confirm')).toBeInTheDocument();
+    expect(screen.getByText('Are you sure?')).toBeInTheDocument();
+    expect(screen.getByText('Body content')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'OK' })).toBeInTheDocument();
   });
 });

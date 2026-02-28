@@ -46,6 +46,12 @@
 - **fsd-segment-naming**: File suffixes map to FSD segments (.tsx=ui, .type.ts=model, .variant.ts=config, .hook.ts=model, .policy.ts=lib, .const.ts=config, index.ts=api). Does not change file names — clarifies architectural role
 - **template-safe-commands**: SKILL.md code blocks must avoid `$N` (numeric positional) patterns. Use letter-named bash variables ($s, $n, $f) which are not expanded by the skill template engine
 
+## Library Publishing
+
+- **dual-build-target**: Dev build (vite.config.ts for storybook/demo) and lib build (vite.lib.config.ts + tsconfig.build.json for npm) are separate pipelines. Changes must pass both. `pnpm build` ≠ `pnpm build:lib`
+- **declaration-emit-explicit**: Barrel files re-exporting Radix primitives need explicit type annotations for declaration emit. `export const X = RadixX` fails without `satisfies typeof RadixX` or explicit typing. Caught in menubar barrel
+- **consumer-feedback-loop**: Build external consumer → collect friction points → strengthen library. Feedback splits into: real gaps (implement), already-addressed (document better), out-of-scope (provide recipes). Never accept feedback uncritically
+
 ## Component Design
 
 - **svg-first-viz**: No external chart libraries. React+SVG+Tailwind for visualization. stroke-dasharray for donut/gauge, polygon for radar, polyline for sparkline. Zero bundle dependency
@@ -54,3 +60,5 @@
 - **interaction-play-behavioral**: play functions go beyond structure verification (role exists) to behavioral verification (click→sort, hover→dim). userEvent.click/hover + state change assert
 - **global-css-motion-gate**: prefers-reduced-motion applied globally via single CSS media query (covers transition/animation). But rAF-based JS animations bypass CSS queries, so rAF hooks must call usePrefersReducedMotion
 - **evaluation-actionable**: Design system evaluation reports must include specific fix code + file paths + difficulty. Non-actionable reports = debt
+- **test-scope-sixfold**: Every component test must cover 6 categories: rendering, props, happy-path interaction, action failure (disabled/loading), keyboard navigation, ARIA attributes. Convention template silence caused happy-path-only pattern to propagate across 52 test files. Fix: documented in CONTRIBUTING.md Testing Guide
+- **jsdom-polyfill-register**: Radix primitives require browser APIs absent from jsdom (ResizeObserver, scrollIntoView, pointerCapture). Register polyfills in `src/__tests__/setup.ts` immediately when adding interaction tests. Don't debug per-test — centralize in setup
