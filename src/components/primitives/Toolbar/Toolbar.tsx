@@ -1,15 +1,15 @@
-import type React from 'react';
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixToolbar from '@radix-ui/react-toolbar';
 import { cn } from '@/lib/utils';
+import type {
+  ToolbarRootProps,
+  ToolbarButtonProps,
+  ToolbarSeparatorProps,
+  ToolbarToggleGroupProps,
+  ToolbarToggleItemProps,
+  ToolbarLinkProps,
+} from './Toolbar.type';
 
 /* ----- Root ---------------------------------------------------------------- */
-
-interface ToolbarRootProps extends ComponentPropsWithRef<
-  typeof RadixToolbar.Root
-> {
-  children: ReactNode;
-}
 
 export function ToolbarRoot({
   className,
@@ -32,12 +32,6 @@ export function ToolbarRoot({
 }
 
 /* ----- Button -------------------------------------------------------------- */
-
-interface ToolbarButtonProps extends ComponentPropsWithRef<
-  typeof RadixToolbar.Button
-> {
-  children: ReactNode;
-}
 
 export function ToolbarButton({
   className,
@@ -65,10 +59,6 @@ export function ToolbarButton({
 
 /* ----- Separator ----------------------------------------------------------- */
 
-type ToolbarSeparatorProps = ComponentPropsWithRef<
-  typeof RadixToolbar.Separator
->;
-
 export function ToolbarSeparator({
   className,
   ref,
@@ -84,12 +74,6 @@ export function ToolbarSeparator({
 }
 
 /* ----- ToggleGroup --------------------------------------------------------- */
-
-type ToolbarToggleGroupProps = React.ComponentProps<
-  typeof RadixToolbar.ToggleGroup
-> & {
-  ref?: React.Ref<HTMLDivElement>;
-};
 
 export function ToolbarToggleGroup({
   className,
@@ -109,12 +93,6 @@ export function ToolbarToggleGroup({
 }
 
 /* ----- ToggleItem ---------------------------------------------------------- */
-
-interface ToolbarToggleItemProps extends ComponentPropsWithRef<
-  typeof RadixToolbar.ToggleItem
-> {
-  children: ReactNode;
-}
 
 export function ToolbarToggleItem({
   className,
@@ -142,12 +120,6 @@ export function ToolbarToggleItem({
 }
 
 /* ----- Link ---------------------------------------------------------------- */
-
-interface ToolbarLinkProps extends ComponentPropsWithRef<
-  typeof RadixToolbar.Link
-> {
-  children: ReactNode;
-}
 
 export function ToolbarLink({
   className,

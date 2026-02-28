@@ -1,42 +1,14 @@
-import type React from 'react';
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import { cn } from '@/lib/utils';
-
-/* ----- Variant / Size maps ---------------------------------------------- */
-
-const VARIANT_MAP = {
-  default: [
-    'bg-[--toggle-bg]',
-    'hover:bg-[--toggle-active-bg]',
-    'data-[state=on]:bg-[--toggle-active-bg] data-[state=on]:text-[--toggle-active-fg]',
-  ].join(' '),
-  outline: [
-    'bg-[--toggle-bg] border border-[--toggle-border]',
-    'hover:bg-[--toggle-active-bg]',
-    'data-[state=on]:bg-[--toggle-active-bg] data-[state=on]:text-[--toggle-active-fg]',
-  ].join(' '),
-} as const;
-
-const SIZE_MAP = {
-  sm: 'h-7 px-2 text-xs gap-1',
-  md: 'h-9 px-3 text-sm gap-1.5',
-  lg: 'h-11 px-4 text-base gap-2',
-} as const;
-
-type ToggleVariant = keyof typeof VARIANT_MAP;
-type ToggleSize = keyof typeof SIZE_MAP;
+import { VARIANT_MAP, SIZE_MAP } from './ToggleGroup.variant';
+import type {
+  ToggleProps,
+  ToggleGroupRootProps,
+  ToggleGroupItemProps,
+} from './ToggleGroup.type';
 
 /* ----- Toggle (single) -------------------------------------------------- */
-
-interface ToggleProps extends ComponentPropsWithRef<
-  typeof TogglePrimitive.Root
-> {
-  variant?: ToggleVariant;
-  size?: ToggleSize;
-  children: ReactNode;
-}
 
 export function Toggle({
   variant = 'default',
@@ -67,12 +39,6 @@ export function Toggle({
 
 /* ----- ToggleGroupRoot --------------------------------------------------- */
 
-type ToggleGroupRootProps = React.ComponentProps<
-  typeof ToggleGroupPrimitive.Root
-> & {
-  ref?: React.Ref<HTMLDivElement>;
-};
-
 export function ToggleGroupRoot({
   className,
   children,
@@ -91,14 +57,6 @@ export function ToggleGroupRoot({
 }
 
 /* ----- ToggleGroupItem --------------------------------------------------- */
-
-interface ToggleGroupItemProps extends ComponentPropsWithRef<
-  typeof ToggleGroupPrimitive.Item
-> {
-  variant?: ToggleVariant;
-  size?: ToggleSize;
-  children: ReactNode;
-}
 
 export function ToggleGroupItem({
   variant = 'default',

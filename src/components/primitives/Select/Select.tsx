@@ -1,6 +1,12 @@
-import type { ComponentPropsWithRef } from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { cn } from '@/lib/utils';
+import type {
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectLabelProps,
+  SelectSeparatorProps,
+} from './Select.type';
 
 /* ------------------------------------------------------------------ */
 /*  Re-exports                                                         */
@@ -13,8 +19,6 @@ export const SelectGroup = SelectPrimitive.Group;
 /* ------------------------------------------------------------------ */
 /*  SelectTrigger                                                      */
 /* ------------------------------------------------------------------ */
-
-type SelectTriggerProps = ComponentPropsWithRef<typeof SelectPrimitive.Trigger>;
 
 export function SelectTrigger({
   className,
@@ -59,8 +63,6 @@ export function SelectTrigger({
 /*  SelectContent                                                      */
 /* ------------------------------------------------------------------ */
 
-type SelectContentProps = ComponentPropsWithRef<typeof SelectPrimitive.Content>;
-
 export function SelectContent({
   className,
   children,
@@ -91,8 +93,6 @@ export function SelectContent({
 /* ------------------------------------------------------------------ */
 /*  SelectItem                                                         */
 /* ------------------------------------------------------------------ */
-
-type SelectItemProps = ComponentPropsWithRef<typeof SelectPrimitive.Item>;
 
 export function SelectItem({
   className,
@@ -136,8 +136,6 @@ export function SelectItem({
 /*  SelectLabel                                                        */
 /* ------------------------------------------------------------------ */
 
-type SelectLabelProps = ComponentPropsWithRef<typeof SelectPrimitive.Label>;
-
 export function SelectLabel({ className, ref, ...props }: SelectLabelProps) {
   return (
     <SelectPrimitive.Label
@@ -151,10 +149,6 @@ export function SelectLabel({ className, ref, ...props }: SelectLabelProps) {
 /* ------------------------------------------------------------------ */
 /*  SelectSeparator                                                    */
 /* ------------------------------------------------------------------ */
-
-type SelectSeparatorProps = ComponentPropsWithRef<
-  typeof SelectPrimitive.Separator
->;
 
 export function SelectSeparator({
   className,

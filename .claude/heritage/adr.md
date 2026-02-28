@@ -16,10 +16,10 @@
 
 ## AI Integration
 
-- **llms-txt-auto-gen**: llms.txt and llms-full.txt auto-generated from component .md files via `pnpm generate:llms`. Manual authoring = sync drift
-- **three-tier-ai-consumption**: llms.txt (index, ~2K tokens) + Storybook MCP (real-time query) + component .md (deep context). Each tier serves different AI consumers
+- **llms-txt-auto-gen**: llms.md and llms-full.md auto-generated from component .md files via `pnpm generate:llms`. Manual authoring = sync drift
+- **three-tier-ai-consumption**: llms.md (index, ~2K tokens) + Storybook MCP (real-time query) + component .md (deep context). Each tier serves different AI consumers
 - **skills-mcp-complement**: Skills = internal workflow orchestration (few hundred tokens). MCP = external data access standard (thousands of tokens). Not interchangeable
-- **storybook-mcp-experimental**: @storybook/addon-mcp is experimental. llms.txt provides stable fallback. Both channels maintained
+- **storybook-mcp-experimental**: @storybook/addon-mcp is experimental. llms.md provides stable fallback. Both channels maintained
 
 ## Strategy
 

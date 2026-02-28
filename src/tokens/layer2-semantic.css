@@ -89,3 +89,37 @@
   --shadow-md: 0 4px 6px oklch(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
 }
+
+/* ── Theme: Blue → purple accent (dark) ────────────────────── */
+[data-theme='blue'] {
+  --color-interactive: var(--sp-purple-500);
+  --color-interactive-hover: var(--sp-purple-400);
+  --color-interactive-subtle: oklch(0.62 0.24 305 / 12%);
+  --border-interactive: var(--sp-purple-500);
+}
+
+/* ── Theme: Blue → purple accent (light) ───────────────────── */
+:root:not(.dark)[data-theme='blue'],
+:root:not(.dark) [data-theme='blue'] {
+  --color-interactive: var(--sp-purple-600);
+  --color-interactive-hover: var(--sp-purple-500);
+  --color-interactive-subtle: oklch(0.52 0.24 305 / 10%);
+  --border-interactive: var(--sp-purple-600);
+}
+
+/* ── Theme: Green (dark) ───────────────────────────────────── */
+[data-theme='green'] {
+  --color-interactive: var(--sp-green-500);
+  --color-interactive-hover: var(--sp-green-400);
+  --color-interactive-subtle: oklch(0.65 0.19 155 / 12%);
+  --border-interactive: var(--sp-green-500);
+}
+
+/* ── Theme: Green (light) ──────────────────────────────────── */
+:root:not(.dark)[data-theme='green'],
+:root:not(.dark) [data-theme='green'] {
+  --color-interactive: var(--sp-green-600);
+  --color-interactive-hover: var(--sp-green-500);
+  --color-interactive-subtle: oklch(0.55 0.19 155 / 10%);
+  --border-interactive: var(--sp-green-600);
+}

@@ -1320,310 +1320,434 @@ export const TRELLO_BOARD: TrelloList[] = [
   },
 ];
 
-// ── Character Chat Demo Data ───────────────────────────────────
-export interface ChatCharacter {
+// ── WhatsApp Demo Data ────────────────────────────────────────
+export interface WhatsAppContact {
   id: string;
   name: string;
   avatar: string;
-  color: string;
-  tagline: string;
-  greeting: string;
   lastMessage: string;
   lastMessageTime: string;
+  unread?: number;
+  online?: boolean;
 }
 
-export interface ChatMessage {
+export interface WhatsAppMessage {
   id: string;
-  role: 'user' | 'character';
+  role: 'sent' | 'received';
   content: string;
   timestamp: string;
+  status?: 'sent' | 'delivered' | 'read';
 }
 
-export const CHAT_CHARACTERS: ChatCharacter[] = [
+export const WHATSAPP_CONTACTS: WhatsAppContact[] = [
   {
-    id: 'luna',
-    name: 'Luna',
-    avatar: '🌙',
-    color: 'bg-indigo-500',
-    tagline: 'Dreamy storyteller',
-    greeting:
-      'Hey there, traveler. Want to hear a story from the edge of the universe?',
-    lastMessage: 'The stars always remember...',
-    lastMessageTime: '2m',
-  },
-  {
-    id: 'kai',
-    name: 'Kai',
-    avatar: '⚡',
-    color: 'bg-amber-500',
-    tagline: 'Code wizard & mentor',
-    greeting: 'Yo! Ready to write some legendary code today?',
-    lastMessage: 'Try destructuring that object',
-    lastMessageTime: '15m',
-  },
-  {
-    id: 'sage',
-    name: 'Sage',
-    avatar: '🌿',
-    color: 'bg-emerald-500',
-    tagline: 'Mindful philosopher',
-    greeting: 'Welcome. Let us sit with your question for a moment.',
-    lastMessage: 'Balance is not stillness...',
-    lastMessageTime: '1h',
-  },
-  {
-    id: 'nova',
-    name: 'Nova',
-    avatar: '🔥',
-    color: 'bg-rose-500',
-    tagline: 'Fierce debate partner',
-    greeting: "Let's test your ideas. Give me your best argument.",
-    lastMessage: "That premise doesn't hold up",
-    lastMessageTime: '3h',
-  },
-  {
-    id: 'pixel',
-    name: 'Pixel',
+    id: 'design-team',
+    name: 'Design Team',
     avatar: '🎨',
-    color: 'bg-violet-500',
-    tagline: 'Creative design companion',
-    greeting:
-      "Colors, shapes, vibes — let's make something beautiful together!",
-    lastMessage: 'Try a softer gradient there',
-    lastMessageTime: '5h',
+    lastMessage: 'Alex: New component specs are ready!',
+    lastMessageTime: '10:42 AM',
+    unread: 3,
+    online: true,
   },
   {
-    id: 'echo',
-    name: 'Echo',
-    avatar: '🔮',
-    color: 'bg-cyan-500',
-    tagline: 'Mysterious oracle',
-    greeting: 'I have been expecting you. Ask, and the echoes shall answer.',
-    lastMessage: 'The answer lies within the question',
-    lastMessageTime: '1d',
+    id: 'sarah',
+    name: 'Sarah Chen',
+    avatar: 'SC',
+    lastMessage: 'Sounds good, let me review the PR',
+    lastMessageTime: '9:15 AM',
+    online: true,
+  },
+  {
+    id: 'dev-standup',
+    name: 'Dev Standup',
+    avatar: '💻',
+    lastMessage: 'Mike: Deployed to staging ✅',
+    lastMessageTime: 'Yesterday',
+    unread: 12,
+  },
+  {
+    id: 'james',
+    name: 'James Park',
+    avatar: 'JP',
+    lastMessage: 'Can you check the token mapping?',
+    lastMessageTime: 'Yesterday',
+  },
+  {
+    id: 'product',
+    name: 'Product Launch',
+    avatar: '🚀',
+    lastMessage: 'You: Updated the timeline',
+    lastMessageTime: 'Tuesday',
+  },
+  {
+    id: 'emma',
+    name: 'Emma Wilson',
+    avatar: 'EW',
+    lastMessage: 'Thanks for the feedback!',
+    lastMessageTime: 'Monday',
+    online: true,
+  },
+  {
+    id: 'ux-review',
+    name: 'UX Review',
+    avatar: '🔍',
+    lastMessage: 'Lisa: Accessibility audit passed',
+    lastMessageTime: 'Monday',
   },
 ];
 
-export const CHAT_CONVERSATIONS: Record<string, ChatMessage[]> = {
-  luna: [
+export const WHATSAPP_MESSAGES: WhatsAppMessage[] = [
+  {
+    id: 'w1',
+    role: 'received',
+    content: 'Hey! Have you seen the new Strata components?',
+    timestamp: '9:00 AM',
+  },
+  {
+    id: 'w2',
+    role: 'sent',
+    content:
+      'Yes! The token system is really elegant. Three layers of abstraction.',
+    timestamp: '9:01 AM',
+    status: 'read',
+  },
+  {
+    id: 'w3',
+    role: 'received',
+    content:
+      'Right? OKLch primitives → semantic tokens → component tokens. Makes theming so much cleaner.',
+    timestamp: '9:02 AM',
+  },
+  {
+    id: 'w4',
+    role: 'sent',
+    content:
+      'I especially like how the semantic layer maps intent. bg-surface-base, text-fg-muted — you always know what a token means.',
+    timestamp: '9:03 AM',
+    status: 'read',
+  },
+  {
+    id: 'w5',
+    role: 'received',
+    content:
+      'Exactly. And switching themes is just changing the data-theme attribute. No component changes needed.',
+    timestamp: '9:05 AM',
+  },
+  {
+    id: 'w6',
+    role: 'sent',
+    content:
+      "I'll push the PR with the updated demos today. All semantic tokens now 🎉",
+    timestamp: '9:06 AM',
+    status: 'delivered',
+  },
+  {
+    id: 'w7',
+    role: 'received',
+    content: 'Amazing! Let me know when it is ready for review.',
+    timestamp: '9:08 AM',
+  },
+  {
+    id: 'w8',
+    role: 'sent',
+    content: 'Will do. Should be done in about an hour.',
+    timestamp: '9:10 AM',
+    status: 'sent',
+  },
+];
+
+// ── Reddit Demo Data ──────────────────────────────────────────
+export interface RedditPost {
+  id: string;
+  title: string;
+  author: string;
+  subreddit: string;
+  content: string;
+  upvotes: number;
+  commentCount: number;
+  flair?: { label: string; color: string };
+  timeAgo: string;
+  isUpvoted: boolean;
+  isDownvoted: boolean;
+}
+
+export interface RedditComment {
+  id: string;
+  author: string;
+  content: string;
+  upvotes: number;
+  timeAgo: string;
+  replies: RedditComment[];
+}
+
+export interface RedditSubreddit {
+  id: string;
+  name: string;
+  members: number;
+  description: string;
+}
+
+export const REDDIT_SUBREDDITS: RedditSubreddit[] = [
+  {
+    id: 'ts',
+    name: 'r/typescript',
+    members: 245000,
+    description:
+      'TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Subtypes, generics, conditional types — discuss it all here.',
+  },
+  {
+    id: 'reactjs',
+    name: 'r/reactjs',
+    members: 412000,
+    description:
+      'A community for learning and developing web applications using React by Meta. Hooks, Server Components, and more.',
+  },
+  {
+    id: 'webdev',
+    name: 'r/webdev',
+    members: 1890000,
+    description:
+      'A community dedicated to all things web development: both front-end and back-end. Share articles, tutorials, and discuss best practices.',
+  },
+  {
+    id: 'programming',
+    name: 'r/programming',
+    members: 5700000,
+    description:
+      'Computer programming news, articles, and discussion. Not for simple questions — see r/learnprogramming for that.',
+  },
+  {
+    id: 'designsystems',
+    name: 'r/designsystems',
+    members: 32000,
+    description:
+      'Discussion of design systems, component libraries, design tokens, and the intersection of design and engineering.',
+  },
+];
+
+export const REDDIT_POSTS: RedditPost[] = [
+  {
+    id: 'p1',
+    title: 'TypeScript 5.9 is officially released — here are the highlights',
+    author: 'ts_enthusiast',
+    subreddit: 'r/typescript',
+    content:
+      'The new release includes isolated declarations, the --erasableSyntaxOnly flag, and improved type narrowing in control flow. Performance benchmarks show a 10-15% speedup in large monorepos.',
+    upvotes: 2847,
+    commentCount: 312,
+    flair: { label: 'Release', color: 'bg-[--color-success-subtle]' },
+    timeAgo: '4h',
+    isUpvoted: true,
+    isDownvoted: false,
+  },
+  {
+    id: 'p2',
+    title:
+      'I built a design system with 27 Radix primitives and Tailwind v4 — AMA',
+    author: 'component_crafter',
+    subreddit: 'r/reactjs',
+    content:
+      'After 6 months of work, our team shipped an open-source design system using Radix UI for headless behavior and Tailwind CSS v4 for styling. We use a 3-layer token architecture: OKLCh primitives, semantic tokens, and component tokens. Happy to answer questions about our approach.',
+    upvotes: 1523,
+    commentCount: 187,
+    flair: { label: 'AMA', color: 'bg-[--color-interactive-subtle]' },
+    timeAgo: '6h',
+    isUpvoted: false,
+    isDownvoted: false,
+  },
+  {
+    id: 'p3',
+    title:
+      'Why we migrated from CSS-in-JS to Tailwind CSS and never looked back',
+    author: 'pragmatic_dev',
+    subreddit: 'r/webdev',
+    content:
+      'Our team of 12 spent 3 weeks migrating a 200k LOC codebase from styled-components to Tailwind v4. Build times dropped 40%, bundle size went down 28%, and developer onboarding time was cut in half. Here is our full migration guide.',
+    upvotes: 987,
+    commentCount: 445,
+    timeAgo: '8h',
+    isUpvoted: false,
+    isDownvoted: false,
+  },
+  {
+    id: 'p4',
+    title:
+      'React Server Components finally clicked for me — here is my mental model',
+    author: 'fullstack_sam',
+    subreddit: 'r/reactjs',
+    content:
+      'After struggling with RSC for months, I realized the key insight: think of the server component tree as a data-fetching layer that serializes its output to the client. Client components are "holes" in that tree. Once I drew it as a diagram, everything made sense.',
+    upvotes: 3210,
+    commentCount: 267,
+    flair: { label: 'Discussion', color: 'bg-[--color-warning-subtle]' },
+    timeAgo: '12h',
+    isUpvoted: true,
+    isDownvoted: false,
+  },
+  {
+    id: 'p5',
+    title: 'The hidden cost of design tokens nobody talks about',
+    author: 'design_token_nerd',
+    subreddit: 'r/designsystems',
+    content:
+      'Everyone talks about the benefits of design tokens, but nobody mentions the governance overhead. Who decides when a token changes? How do you version them? What about breaking changes downstream? After running tokens at scale for 2 years, here are the hard lessons we learned.',
+    upvotes: 756,
+    commentCount: 134,
+    timeAgo: '1d',
+    isUpvoted: false,
+    isDownvoted: false,
+  },
+  {
+    id: 'p6',
+    title:
+      'Show r/programming: A CLI tool that generates llms.txt from your codebase',
+    author: 'ai_toolsmith',
+    subreddit: 'r/programming',
+    content:
+      'I wrote a small Node script that walks your component source and generates an AI-readable manifest (llms.txt). It parses JSDoc, extracts prop types, and links to Storybook stories. Great for AI-assisted development. GitHub link in comments.',
+    upvotes: 412,
+    commentCount: 89,
+    flair: { label: 'Show', color: 'bg-[--color-danger-subtle]' },
+    timeAgo: '1d',
+    isUpvoted: false,
+    isDownvoted: false,
+  },
+  {
+    id: 'p7',
+    title: 'Vitest 4 benchmarks: 3x faster than Jest on our monorepo',
+    author: 'testing_champion',
+    subreddit: 'r/webdev',
+    content:
+      'We finally switched from Jest to Vitest 4 across our 8-package monorepo. Test suite went from 4m30s to 1m20s. The native ESM support and Vite-powered transforms are game-changers. Here is our config and gotchas we hit.',
+    upvotes: 1890,
+    commentCount: 203,
+    flair: { label: 'Benchmark', color: 'bg-[--color-success-subtle]' },
+    timeAgo: '2d',
+    isUpvoted: false,
+    isDownvoted: false,
+  },
+];
+
+export const REDDIT_COMMENTS: Record<string, RedditComment[]> = {
+  p1: [
     {
-      id: 'l1',
-      role: 'character',
+      id: 'c1',
+      author: 'type_wizard',
       content:
-        'Hey there, traveler. Want to hear a story from the edge of the universe?',
-      timestamp: '10:00 AM',
+        'The isolated declarations feature alone is worth the upgrade. We can finally generate .d.ts files without running the full type checker. Huge win for monorepo build performance.',
+      upvotes: 342,
+      timeAgo: '3h',
+      replies: [
+        {
+          id: 'c1-1',
+          author: 'ts_enthusiast',
+          content:
+            'Exactly! We measured a 60% reduction in CI build time for our declaration-only packages. The --erasableSyntaxOnly flag pairs nicely with this too.',
+          upvotes: 156,
+          timeAgo: '2h',
+          replies: [
+            {
+              id: 'c1-1-1',
+              author: 'compiler_nerd',
+              content:
+                'Does this work well with project references? We have about 30 packages and tsc -b was already our bottleneck.',
+              upvotes: 45,
+              timeAgo: '1h',
+              replies: [],
+            },
+          ],
+        },
+        {
+          id: 'c1-2',
+          author: 'monorepo_mike',
+          content:
+            'We had some issues with generic type inference in isolated mode. Make sure your exported functions have explicit return types, otherwise the declarations might be incomplete.',
+          upvotes: 89,
+          timeAgo: '2h',
+          replies: [],
+        },
+      ],
     },
     {
-      id: 'l2',
-      role: 'user',
-      content: 'Sure! Tell me about the furthest star.',
-      timestamp: '10:01 AM',
-    },
-    {
-      id: 'l3',
-      role: 'character',
+      id: 'c2',
+      author: 'js_purist',
       content:
-        "There's a star called Icarus — not the myth, the real one. It's 9 billion light-years away. When its light left, the Earth didn't even exist yet. Imagine... the photons you'd see were born before our sun.",
-      timestamp: '10:01 AM',
-    },
-    {
-      id: 'l4',
-      role: 'user',
-      content: "That's wild. So we're literally looking at the past?",
-      timestamp: '10:02 AM',
-    },
-    {
-      id: 'l5',
-      role: 'character',
-      content:
-        "Always. Every time you look at the sky, you're a time traveler. The moon you see is 1.3 seconds ago. The sun, 8 minutes. Andromeda? 2.5 million years. The sky is a museum, and you have a front-row seat.",
-      timestamp: '10:02 AM',
-    },
-    {
-      id: 'l6',
-      role: 'user',
-      content: 'What about the stars that have already died?',
-      timestamp: '10:03 AM',
-    },
-    {
-      id: 'l7',
-      role: 'character',
-      content:
-        "The stars always remember... even after they're gone, their light keeps traveling. Ghost light, I call it. Some of the brightest things you see tonight might already be gone. Beautiful, isn't it? To shine even after you stop existing.",
-      timestamp: '10:03 AM',
+        'Unpopular opinion: the control flow narrowing improvements are the most impactful change. The number of unnecessary type assertions I can remove now is incredible.',
+      upvotes: 201,
+      timeAgo: '3h',
+      replies: [
+        {
+          id: 'c2-1',
+          author: 'type_guard_fan',
+          content:
+            'Agreed. The narrowing through switch-case with discriminated unions is much smarter now. Pattern matching when?',
+          upvotes: 78,
+          timeAgo: '2h',
+          replies: [],
+        },
+      ],
     },
   ],
-  kai: [
+  p2: [
     {
-      id: 'k1',
-      role: 'character',
-      content: 'Yo! Ready to write some legendary code today?',
-      timestamp: '2:00 PM',
-    },
-    {
-      id: 'k2',
-      role: 'user',
+      id: 'c3',
+      author: 'headless_fan',
       content:
-        "I'm struggling with TypeScript generics. They feel so abstract.",
-      timestamp: '2:01 PM',
-    },
-    {
-      id: 'k3',
-      role: 'character',
-      content:
-        "Think of generics like a box factory. You don't build a box for apples and another for oranges — you build a Box<T> that works for anything. The T is just a placeholder until someone actually uses it.",
-      timestamp: '2:01 PM',
-    },
-    {
-      id: 'k4',
-      role: 'user',
-      content: 'OK that makes sense. But what about constraints? Like extends?',
-      timestamp: '2:02 PM',
-    },
-    {
-      id: 'k5',
-      role: 'character',
-      content:
-        'That\'s where it gets fun. `<T extends { id: string }>` means: "I\'ll accept any type, but it MUST have an id field." It\'s like saying "any fruit is fine, but it must be washable." Try destructuring that object — it\'ll click when you see the autocomplete.',
-      timestamp: '2:02 PM',
+        'How do you handle the token naming convention? We struggled with deciding between semantic names (--color-danger) vs component-scoped names (--button-bg-danger).',
+      upvotes: 67,
+      timeAgo: '5h',
+      replies: [
+        {
+          id: 'c3-1',
+          author: 'component_crafter',
+          content:
+            'We use both! Layer 2 is semantic (--color-danger, --fg-default), and Layer 3 is component-scoped (--button-bg, --card-border). Component tokens reference semantic tokens, so changes cascade naturally.',
+          upvotes: 112,
+          timeAgo: '4h',
+          replies: [
+            {
+              id: 'c3-1-1',
+              author: 'css_architect',
+              content:
+                'This is the way. We adopted the same pattern and it scaled beautifully to 50+ components. The indirection is worth it for theming.',
+              upvotes: 34,
+              timeAgo: '3h',
+              replies: [],
+            },
+          ],
+        },
+      ],
     },
   ],
-  sage: [
+  p4: [
     {
-      id: 's1',
-      role: 'character',
-      content: 'Welcome. Let us sit with your question for a moment.',
-      timestamp: '8:00 AM',
-    },
-    {
-      id: 's2',
-      role: 'user',
-      content: "I've been feeling overwhelmed with too many things to learn.",
-      timestamp: '8:01 AM',
-    },
-    {
-      id: 's3',
-      role: 'character',
+      id: 'c4',
+      author: 'ssr_skeptic',
       content:
-        'The river does not try to carry all its water at once. It simply flows. You are not behind — you are exactly where your journey has brought you.',
-      timestamp: '8:01 AM',
-    },
-    {
-      id: 's4',
-      role: 'user',
-      content: 'But everyone seems to know so much more.',
-      timestamp: '8:02 AM',
-    },
-    {
-      id: 's5',
-      role: 'character',
-      content:
-        "Comparison is the thief of presence. Others' knowledge does not diminish yours. Balance is not stillness... it is the courage to move forward at your own pace, without the weight of someone else's timeline.",
-      timestamp: '8:02 AM',
-    },
-  ],
-  nova: [
-    {
-      id: 'n1',
-      role: 'character',
-      content: "Let's test your ideas. Give me your best argument.",
-      timestamp: '6:00 PM',
-    },
-    {
-      id: 'n2',
-      role: 'user',
-      content:
-        'I think AI will replace most software engineers within 10 years.',
-      timestamp: '6:01 PM',
-    },
-    {
-      id: 'n3',
-      role: 'character',
-      content:
-        "Bold claim. But here's the flaw: software engineering isn't just writing code. It's understanding ambiguous requirements, navigating organizational politics, making tradeoffs with incomplete information. AI can generate code, sure — but can it sit in a meeting and figure out what the stakeholder actually wants vs. what they said?",
-      timestamp: '6:01 PM',
-    },
-    {
-      id: 'n4',
-      role: 'user',
-      content: 'Fair point. But the coding part will definitely be automated.',
-      timestamp: '6:02 PM',
-    },
-    {
-      id: 'n5',
-      role: 'character',
-      content:
-        "That premise doesn't hold up completely. The \"coding part\" isn't separable from the \"thinking part.\" Writing code IS thinking. When you refactor, you're discovering new abstractions. When you debug, you're building mental models. Automate the typing? Sure. Automate the understanding? That's a different game entirely.",
-      timestamp: '6:02 PM',
-    },
-  ],
-  pixel: [
-    {
-      id: 'p1',
-      role: 'character',
-      content:
-        "Colors, shapes, vibes — let's make something beautiful together!",
-      timestamp: '11:00 AM',
-    },
-    {
-      id: 'p2',
-      role: 'user',
-      content: 'I need help picking a color palette for a fintech app.',
-      timestamp: '11:01 AM',
-    },
-    {
-      id: 'p3',
-      role: 'character',
-      content:
-        'Fintech = trust + clarity. Start with a deep navy (#1a1f36) as your base — it signals stability. Pair it with a clean teal (#0ea5e9) for interactive elements. For success/money states, use emerald (#10b981) sparingly. And please, no bright red for negative balances — use a muted coral instead. Less panic, more information.',
-      timestamp: '11:01 AM',
-    },
-    {
-      id: 'p4',
-      role: 'user',
-      content: 'What about the typography?',
-      timestamp: '11:02 AM',
-    },
-    {
-      id: 'p5',
-      role: 'character',
-      content:
-        'Try a softer gradient there between your heading and body weights. Inter for UI, with 500 weight for labels and 600 for headings. Numbers should use tabular figures — nothing looks worse than a dashboard where the digits dance around. Monospace for transaction amounts, proportional for everything else.',
-      timestamp: '11:02 AM',
-    },
-  ],
-  echo: [
-    {
-      id: 'e1',
-      role: 'character',
-      content: 'I have been expecting you. Ask, and the echoes shall answer.',
-      timestamp: '11:30 PM',
-    },
-    {
-      id: 'e2',
-      role: 'user',
-      content: 'Will my project succeed?',
-      timestamp: '11:31 PM',
-    },
-    {
-      id: 'e3',
-      role: 'character',
-      content:
-        "Success is a mirror, not a destination. The question you should ask is not 'will it succeed?' but 'am I building something I would use myself?' The answer to that question contains all the prophecy you need.",
-      timestamp: '11:31 PM',
-    },
-    {
-      id: 'e4',
-      role: 'user',
-      content: "That's cryptic. Can you be more specific?",
-      timestamp: '11:32 PM',
-    },
-    {
-      id: 'e5',
-      role: 'character',
-      content:
-        'The answer lies within the question itself. You seek certainty in an uncertain world. Build not for success, but for truth. The rest follows — not because fate decrees it, but because authentic work attracts authentic resonance.',
-      timestamp: '11:32 PM',
+        'I appreciate the explanation, but the mental overhead is still real. Now I need to think about which components can be server vs client, data serialization boundaries, and "use client" placement. Is the DX really better?',
+      upvotes: 189,
+      timeAgo: '11h',
+      replies: [
+        {
+          id: 'c4-1',
+          author: 'fullstack_sam',
+          content:
+            'Fair point. I think it gets easier once you internalize the boundary model. The trick is: start everything as server, only add "use client" when you need interactivity. It is the same mindset shift as going from class components to hooks.',
+          upvotes: 234,
+          timeAgo: '10h',
+          replies: [
+            {
+              id: 'c4-1-1',
+              author: 'next_dev',
+              content:
+                'This. Also, if you find yourself passing tons of props across the boundary, you are probably splitting wrong. Server components should own their own data.',
+              upvotes: 56,
+              timeAgo: '9h',
+              replies: [],
+            },
+          ],
+        },
+      ],
     },
   ],
 };

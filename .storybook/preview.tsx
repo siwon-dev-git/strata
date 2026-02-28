@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import type { Preview } from '@storybook/react-vite';
 import type { ThemeName, ThemeMode } from '../src/themes';
 import '../src/index.css';
@@ -50,11 +51,15 @@ const preview: Preview = {
     (Story, context) => {
       const theme = (context.globals.theme ?? 'default') as ThemeName;
       const mode = (context.globals.mode ?? 'dark') as ThemeMode;
+
+      useEffect(() => {
+        const root = document.documentElement;
+        root.classList.toggle('dark', mode === 'dark');
+        root.setAttribute('data-theme', theme);
+      }, [theme, mode]);
+
       return (
-        <div
-          data-theme={theme}
-          className={`${mode === 'dark' ? 'dark' : ''} bg-surface-base text-fg-default min-h-screen p-6`}
-        >
+        <div className="bg-surface-base text-fg-default min-h-screen p-6">
           <Story />
         </div>
       );

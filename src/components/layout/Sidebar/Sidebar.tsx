@@ -1,17 +1,13 @@
-import type { ReactNode } from 'react';
-
 import { cn } from '@/lib/utils';
+import type {
+  SidebarProps,
+  SidebarSectionProps,
+  SidebarItemProps,
+} from './Sidebar.type';
 
 // ---------------------------------------------------------------------------
 // Sidebar
 // ---------------------------------------------------------------------------
-
-interface SidebarProps {
-  collapsed?: boolean;
-  width?: string;
-  className?: string;
-  children?: ReactNode;
-}
 
 export function Sidebar({
   collapsed = false,
@@ -39,11 +35,6 @@ export function Sidebar({
 // SidebarSection
 // ---------------------------------------------------------------------------
 
-interface SidebarSectionProps {
-  title: string;
-  children?: ReactNode;
-}
-
 export function SidebarSection({ title, children }: SidebarSectionProps) {
   return (
     <div>
@@ -58,14 +49,6 @@ export function SidebarSection({ title, children }: SidebarSectionProps) {
 // ---------------------------------------------------------------------------
 // SidebarItem
 // ---------------------------------------------------------------------------
-
-interface SidebarItemProps {
-  icon?: ReactNode;
-  label: string;
-  active?: boolean;
-  badge?: string | number;
-  onClick?: () => void;
-}
 
 export function SidebarItem({
   icon,

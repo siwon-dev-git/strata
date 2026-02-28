@@ -1,16 +1,16 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixTabs from '@radix-ui/react-tabs';
 import { cn } from '@/lib/utils';
+import type {
+  TabsListProps,
+  TabsTriggerProps,
+  TabsContentProps,
+} from './Tabs.type';
 
 /* ----- Root -------------------------------------------------------------- */
 
 export const TabsRoot = RadixTabs.Root;
 
 /* ----- List -------------------------------------------------------------- */
-
-interface TabsListProps extends ComponentPropsWithRef<typeof RadixTabs.List> {
-  children: ReactNode;
-}
 
 export function TabsList({
   className,
@@ -30,12 +30,6 @@ export function TabsList({
 }
 
 /* ----- Trigger ----------------------------------------------------------- */
-
-interface TabsTriggerProps extends ComponentPropsWithRef<
-  typeof RadixTabs.Trigger
-> {
-  children: ReactNode;
-}
 
 export function TabsTrigger({
   className,
@@ -63,12 +57,6 @@ export function TabsTrigger({
 }
 
 /* ----- Content ----------------------------------------------------------- */
-
-interface TabsContentProps extends ComponentPropsWithRef<
-  typeof RadixTabs.Content
-> {
-  children: ReactNode;
-}
 
 export function TabsContent({
   className,

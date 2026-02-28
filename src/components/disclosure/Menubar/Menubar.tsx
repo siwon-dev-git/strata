@@ -1,14 +1,15 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixMenubar from '@radix-ui/react-menubar';
 import { cn } from '@/lib/utils';
+import type {
+  MenubarRootProps,
+  MenubarTriggerProps,
+  MenubarContentProps,
+  MenubarItemProps,
+  MenubarSeparatorProps,
+  MenubarLabelProps,
+} from './Menubar.type';
 
 /* ----- Root -------------------------------------------------------------- */
-
-interface MenubarRootProps extends ComponentPropsWithRef<
-  typeof RadixMenubar.Root
-> {
-  children: ReactNode;
-}
 
 export function MenubarRoot({
   className,
@@ -36,12 +37,6 @@ export const MenubarMenu = RadixMenubar.Menu;
 
 /* ----- Trigger ----------------------------------------------------------- */
 
-interface MenubarTriggerProps extends ComponentPropsWithRef<
-  typeof RadixMenubar.Trigger
-> {
-  children: ReactNode;
-}
-
 export function MenubarTrigger({
   className,
   children,
@@ -65,12 +60,6 @@ export function MenubarTrigger({
 }
 
 /* ----- Content ----------------------------------------------------------- */
-
-interface MenubarContentProps extends ComponentPropsWithRef<
-  typeof RadixMenubar.Content
-> {
-  children: ReactNode;
-}
 
 export function MenubarContent({
   className,
@@ -106,14 +95,6 @@ export function MenubarContent({
 
 /* ----- Item -------------------------------------------------------------- */
 
-interface MenubarItemProps extends ComponentPropsWithRef<
-  typeof RadixMenubar.Item
-> {
-  icon?: ReactNode;
-  shortcut?: string;
-  children: ReactNode;
-}
-
 export function MenubarItem({
   className,
   icon,
@@ -147,10 +128,6 @@ export function MenubarItem({
 
 /* ----- Separator --------------------------------------------------------- */
 
-type MenubarSeparatorProps = ComponentPropsWithRef<
-  typeof RadixMenubar.Separator
->;
-
 export function MenubarSeparator({
   className,
   ref,
@@ -166,12 +143,6 @@ export function MenubarSeparator({
 }
 
 /* ----- Label ------------------------------------------------------------- */
-
-interface MenubarLabelProps extends ComponentPropsWithRef<
-  typeof RadixMenubar.Label
-> {
-  children: ReactNode;
-}
 
 export function MenubarLabel({
   className,

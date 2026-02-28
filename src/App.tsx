@@ -10,7 +10,8 @@ import { SpotifyDemo } from '@/demos/spotify/SpotifyDemo';
 import { TwitterDemo } from '@/demos/twitter/TwitterDemo';
 import { TrelloDemo } from '@/demos/trello/TrelloDemo';
 import { VSCodeDemo } from '@/demos/vscode/VSCodeDemo';
-import { CharacterChatDemo } from '@/demos/character-chat/CharacterChatDemo';
+import { WhatsAppDemo } from '@/demos/whatsapp/WhatsAppDemo';
+import { RedditDemo } from '@/demos/reddit/RedditDemo';
 
 const DEMOS = {
   linear: { label: 'Linear', component: LinearDemo },
@@ -23,7 +24,8 @@ const DEMOS = {
   figma: { label: 'Figma', component: FigmaDemo },
   vscode: { label: 'VS Code', component: VSCodeDemo },
   trello: { label: 'Trello', component: TrelloDemo },
-  characterChat: { label: 'Character Chat', component: CharacterChatDemo },
+  whatsapp: { label: 'WhatsApp', component: WhatsAppDemo },
+  reddit: { label: 'Reddit', component: RedditDemo },
 } as const;
 
 type DemoId = keyof typeof DEMOS;

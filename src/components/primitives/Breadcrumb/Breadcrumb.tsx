@@ -1,11 +1,14 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import type {
+  BreadcrumbProps,
+  BreadcrumbListProps,
+  BreadcrumbItemProps,
+  BreadcrumbLinkProps,
+  BreadcrumbSeparatorProps,
+  BreadcrumbPageProps,
+} from './Breadcrumb.type';
 
 /* ----- Breadcrumb (nav wrapper) ------------------------------------------ */
-
-interface BreadcrumbProps extends ComponentPropsWithRef<'nav'> {
-  children: ReactNode;
-}
 
 export function Breadcrumb({
   className,
@@ -21,10 +24,6 @@ export function Breadcrumb({
 }
 
 /* ----- BreadcrumbList ---------------------------------------------------- */
-
-interface BreadcrumbListProps extends ComponentPropsWithRef<'ol'> {
-  children: ReactNode;
-}
 
 export function BreadcrumbList({
   className,
@@ -45,10 +44,6 @@ export function BreadcrumbList({
 
 /* ----- BreadcrumbItem ---------------------------------------------------- */
 
-interface BreadcrumbItemProps extends ComponentPropsWithRef<'li'> {
-  children: ReactNode;
-}
-
 export function BreadcrumbItem({
   className,
   children,
@@ -67,10 +62,6 @@ export function BreadcrumbItem({
 }
 
 /* ----- BreadcrumbLink ---------------------------------------------------- */
-
-interface BreadcrumbLinkProps extends ComponentPropsWithRef<'a'> {
-  children: ReactNode;
-}
 
 export function BreadcrumbLink({
   className,
@@ -94,10 +85,6 @@ export function BreadcrumbLink({
 }
 
 /* ----- BreadcrumbSeparator ----------------------------------------------- */
-
-interface BreadcrumbSeparatorProps extends ComponentPropsWithRef<'li'> {
-  children?: ReactNode;
-}
 
 export function BreadcrumbSeparator({
   className,
@@ -131,10 +118,6 @@ export function BreadcrumbSeparator({
 }
 
 /* ----- BreadcrumbPage ---------------------------------------------------- */
-
-interface BreadcrumbPageProps extends ComponentPropsWithRef<'span'> {
-  children: ReactNode;
-}
 
 export function BreadcrumbPage({
   className,

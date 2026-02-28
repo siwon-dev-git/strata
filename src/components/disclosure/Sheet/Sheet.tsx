@@ -1,7 +1,13 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
 import { IconX } from '@/components/primitives/Icon/Icon';
+import type {
+  Side,
+  SheetContentProps,
+  SheetSectionProps,
+  SheetTitleProps,
+  SheetDescriptionProps,
+} from './Sheet.type';
 
 /* ----- Root / Trigger / Close — pass-through ----------------------------- */
 
@@ -11,8 +17,6 @@ export const SheetClose = RadixDialog.Close;
 
 /* ----- Content (Portal + Overlay + Content) ------------------------------ */
 
-type Side = 'left' | 'right' | 'top' | 'bottom';
-
 const SIDE_CLASSES: Record<Side, string> = {
   right:
     'inset-y-0 right-0 w-full max-w-sm data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right',
@@ -21,13 +25,6 @@ const SIDE_CLASSES: Record<Side, string> = {
   bottom:
     'inset-x-0 bottom-0 h-auto max-h-[50vh] data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom',
 };
-
-interface SheetContentProps extends ComponentPropsWithRef<
-  typeof RadixDialog.Content
-> {
-  children: ReactNode;
-  side?: Side;
-}
 
 export function SheetContent({
   side = 'right',
@@ -74,10 +71,6 @@ export function SheetContent({
 }
 
 /* ----- Header / Body / Footer -------------------------------------------- */
-
-interface SheetSectionProps extends ComponentPropsWithRef<'div'> {
-  children: ReactNode;
-}
 
 export function SheetHeader({
   className,
@@ -134,12 +127,6 @@ export function SheetFooter({
 
 /* ----- Title / Description ----------------------------------------------- */
 
-interface SheetTitleProps extends ComponentPropsWithRef<
-  typeof RadixDialog.Title
-> {
-  children: ReactNode;
-}
-
 export function SheetTitle({
   className,
   children,
@@ -155,12 +142,6 @@ export function SheetTitle({
       {children}
     </RadixDialog.Title>
   );
-}
-
-interface SheetDescriptionProps extends ComponentPropsWithRef<
-  typeof RadixDialog.Description
-> {
-  children: ReactNode;
 }
 
 export function SheetDescription({

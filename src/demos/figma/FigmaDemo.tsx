@@ -133,8 +133,8 @@ function LayerItem({
         onKeyDown={(e) => e.key === 'Enter' && onSelect(layer.id)}
         className={`group flex h-7 cursor-pointer items-center gap-1 pr-2 transition-colors ${
           isSelected
-            ? 'bg-[#0d99ff33] text-white'
-            : 'text-[#ffffffcc] hover:bg-[#ffffff0d]'
+            ? 'bg-interactive-subtle text-white'
+            : 'text-fg-default hover:bg-white/5'
         }`}
         style={{ paddingLeft: `${depth * 16 + 8}px` }}
       >
@@ -146,7 +146,7 @@ function LayerItem({
               e.stopPropagation();
               setOpen(!open);
             }}
-            className="flex h-4 w-4 shrink-0 items-center justify-center text-[#ffffff66] hover:text-[#ffffffcc]"
+            className="flex h-4 w-4 shrink-0 items-center justify-center text-fg-subtle hover:text-fg-default"
           >
             {open ? (
               <IconChevronDown size="sm" className="h-3 w-3" />
@@ -159,7 +159,7 @@ function LayerItem({
         )}
 
         {/* Layer type icon */}
-        <span className={isSelected ? 'text-[#0d99ff]' : 'text-[#ffffff66]'}>
+        <span className={isSelected ? 'text-interactive' : 'text-fg-subtle'}>
           <LayerIcon type={layer.type} />
         </span>
 
@@ -170,9 +170,7 @@ function LayerItem({
         <button
           type="button"
           className={`shrink-0 opacity-0 transition-opacity group-hover:opacity-100 ${
-            !layer.visible
-              ? '!opacity-100 text-[#ffffff33]'
-              : 'text-[#ffffff66]'
+            !layer.visible ? '!opacity-100 text-fg-disabled' : 'text-fg-subtle'
           }`}
           onClick={(e) => e.stopPropagation()}
         >
@@ -181,7 +179,7 @@ function LayerItem({
 
         {/* Lock indicator */}
         {layer.locked && (
-          <span className="shrink-0 text-[#ffffff33]">
+          <span className="shrink-0 text-fg-disabled">
             <IconLock size="sm" className="h-3 w-3" />
           </span>
         )}
@@ -217,11 +215,11 @@ function PropertySection({
 }) {
   return (
     <CollapsibleRoot defaultOpen={defaultOpen}>
-      <CollapsibleTrigger className="group flex h-8 w-full items-center justify-between px-4 text-xs font-semibold text-[#ffffffcc] hover:bg-[#ffffff0d]">
+      <CollapsibleTrigger className="group flex h-8 w-full items-center justify-between px-4 text-xs font-semibold text-fg-default hover:bg-white/5">
         <span>{title}</span>
         <IconChevronDown
           size="sm"
-          className="h-3 w-3 text-[#ffffff66] transition-transform group-data-[state=closed]:-rotate-90"
+          className="h-3 w-3 text-fg-subtle transition-transform group-data-[state=closed]:-rotate-90"
         />
       </CollapsibleTrigger>
       <CollapsibleContent>
@@ -243,13 +241,13 @@ function PropInput({
 }) {
   return (
     <div className={`flex flex-col gap-0.5 ${className ?? ''}`}>
-      <Text as="span" size="xs" className="text-[#ffffff66]">
+      <Text as="span" size="xs" className="text-fg-subtle">
         {label}
       </Text>
       <Input
         size="sm"
         defaultValue={value}
-        className="h-6 rounded bg-[#ffffff0d] text-xs text-[#ffffffcc] border-transparent focus:border-[#0d99ff] focus:ring-[#0d99ff]"
+        className="h-6 rounded bg-white/5 text-xs text-fg-default border-transparent focus:border-interactive focus:ring-interactive"
       />
     </div>
   );
@@ -268,18 +266,18 @@ function ColorInput({
   return (
     <div className="flex items-center gap-2">
       <div
-        className="h-6 w-6 shrink-0 rounded border border-[#ffffff1a]"
+        className="h-6 w-6 shrink-0 rounded border border-border-default"
         style={{ backgroundColor: color }}
       />
       <Input
         size="sm"
         defaultValue={hex}
-        className="h-6 flex-1 rounded bg-[#ffffff0d] text-xs text-[#ffffffcc] border-transparent focus:border-[#0d99ff] focus:ring-[#0d99ff]"
+        className="h-6 flex-1 rounded bg-white/5 text-xs text-fg-default border-transparent focus:border-interactive focus:ring-interactive"
       />
       <Input
         size="sm"
         defaultValue={`${opacity}%`}
-        className="h-6 w-12 rounded bg-[#ffffff0d] text-xs text-[#ffffffcc] border-transparent focus:border-[#0d99ff] focus:ring-[#0d99ff]"
+        className="h-6 w-12 rounded bg-white/5 text-xs text-fg-default border-transparent focus:border-interactive focus:ring-interactive"
       />
     </div>
   );
@@ -297,11 +295,11 @@ export function FigmaDemo() {
         style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
       >
         {/* ── Menubar ─────────────────────────────────────────────── */}
-        <div className="flex h-8 shrink-0 items-center bg-[#2c2c2c] border-b border-[#181818]">
+        <div className="flex h-8 shrink-0 items-center bg-surface-raised border-b border-border-subtle">
           {/* Left: Figma logo + file name */}
           <div className="flex items-center gap-2 px-3">
             {/* Figma logo placeholder */}
-            <div className="flex h-5 w-5 items-center justify-center rounded bg-[#0d99ff]">
+            <div className="flex h-5 w-5 items-center justify-center rounded bg-interactive">
               <svg
                 className="h-3 w-3 text-white"
                 viewBox="0 0 12 12"
@@ -318,7 +316,7 @@ export function FigmaDemo() {
               <button
                 key={item}
                 type="button"
-                className="rounded px-2.5 py-1 text-[11px] text-[#ffffffcc] transition-colors hover:bg-[#ffffff1a]"
+                className="rounded px-2.5 py-1 text-[11px] text-fg-default transition-colors hover:bg-white/10"
               >
                 {item}
               </button>
@@ -327,13 +325,13 @@ export function FigmaDemo() {
 
           {/* Center: File name */}
           <div className="ml-4 flex items-center gap-2">
-            <Text as="span" size="xs" className="text-[#ffffffcc]">
+            <Text as="span" size="xs" className="text-fg-default">
               Strata Landing Page
             </Text>
             <Badge
               variant="default"
               size="sm"
-              className="bg-[#0d99ff33] text-[#0d99ff] text-[10px]"
+              className="bg-interactive-subtle text-interactive text-[10px]"
             >
               Saved
             </Badge>
@@ -344,7 +342,7 @@ export function FigmaDemo() {
             <Button
               variant="solid"
               size="sm"
-              className="h-6 rounded-md bg-[#0d99ff] px-3 text-[11px] font-semibold text-white hover:bg-[#0b8ae0]"
+              className="h-6 rounded-md bg-interactive px-3 text-[11px] font-semibold text-white hover:bg-interactive-hover"
             >
               Share
             </Button>
@@ -358,7 +356,7 @@ export function FigmaDemo() {
         </div>
 
         {/* ── Toolbar ─────────────────────────────────────────────── */}
-        <div className="flex h-10 shrink-0 items-center gap-1 border-b border-[#181818] bg-[#2c2c2c] px-3">
+        <div className="flex h-10 shrink-0 items-center gap-1 border-b border-border-subtle bg-surface-raised px-3">
           {FIGMA_TOOLS.map((tool) => (
             <TooltipRoot key={tool.id}>
               <TooltipTrigger asChild>
@@ -367,8 +365,8 @@ export function FigmaDemo() {
                   onClick={() => setActiveTool(tool.id)}
                   className={`flex h-7 w-7 items-center justify-center rounded transition-colors ${
                     activeTool === tool.id
-                      ? 'bg-[#0d99ff] text-white'
-                      : 'text-[#ffffffcc] hover:bg-[#ffffff1a]'
+                      ? 'bg-interactive text-white'
+                      : 'text-fg-default hover:bg-white/10'
                   }`}
                 >
                   <ToolIcon id={tool.id} />
@@ -376,7 +374,7 @@ export function FigmaDemo() {
               </TooltipTrigger>
               <TooltipContent side="bottom" className="flex items-center gap-2">
                 <span>{tool.name}</span>
-                <kbd className="rounded bg-[#ffffff1a] px-1 text-[10px] text-[#ffffff99]">
+                <kbd className="rounded bg-white/10 px-1 text-[10px] text-fg-muted">
                   {tool.shortcut}
                 </kbd>
               </TooltipContent>
@@ -385,14 +383,14 @@ export function FigmaDemo() {
 
           <Divider
             orientation="vertical"
-            className="mx-2 h-5 border-[#ffffff1a]"
+            className="mx-2 h-5 border-border-default"
           />
 
           {/* Zoom controls */}
           <div className="ml-auto flex items-center gap-1">
             <button
               type="button"
-              className="rounded px-2 py-1 text-[11px] text-[#ffffffcc] hover:bg-[#ffffff1a]"
+              className="rounded px-2 py-1 text-[11px] text-fg-default hover:bg-white/10"
             >
               100%
             </button>
@@ -402,20 +400,20 @@ export function FigmaDemo() {
         {/* ── Main content ────────────────────────────────────────── */}
         <div className="flex flex-1 overflow-hidden">
           {/* ── Layers Panel (left) ───────────────────────────────── */}
-          <div className="flex w-60 shrink-0 flex-col border-r border-[#181818] bg-[#252525]">
+          <div className="flex w-60 shrink-0 flex-col border-r border-border-subtle bg-surface-raised">
             {/* Layers header */}
-            <div className="flex h-9 shrink-0 items-center justify-between border-b border-[#181818] px-3">
+            <div className="flex h-9 shrink-0 items-center justify-between border-b border-border-subtle px-3">
               <Text
                 as="span"
                 size="xs"
                 weight="semibold"
-                className="text-[#ffffffcc]"
+                className="text-fg-default"
               >
                 Layers
               </Text>
               <button
                 type="button"
-                className="text-[#ffffff66] transition-colors hover:text-[#ffffffcc]"
+                className="text-fg-subtle transition-colors hover:text-fg-default"
               >
                 <IconSearch size="sm" className="h-3.5 w-3.5" />
               </button>
@@ -435,8 +433,8 @@ export function FigmaDemo() {
             </div>
 
             {/* Pages section at bottom */}
-            <div className="border-t border-[#181818] px-3 py-2">
-              <Text as="span" size="xs" className="text-[#ffffff66]">
+            <div className="border-t border-border-subtle px-3 py-2">
+              <Text as="span" size="xs" className="text-fg-subtle">
                 Page 1
               </Text>
             </div>
@@ -444,7 +442,7 @@ export function FigmaDemo() {
 
           {/* ── Canvas (center) ───────────────────────────────────── */}
           <div
-            className="relative flex-1 overflow-hidden bg-[#1e1e1e]"
+            className="relative flex-1 overflow-hidden bg-surface-inset"
             style={{
               backgroundImage:
                 'radial-gradient(circle, #ffffff08 1px, transparent 1px)',
@@ -456,7 +454,7 @@ export function FigmaDemo() {
               <div className="relative" style={{ width: 500, height: 380 }}>
                 {/* Hero Section frame */}
                 <div
-                  className="absolute rounded-lg border border-dashed border-[#ffffff22]"
+                  className="absolute rounded-lg border border-dashed border-border-default"
                   style={{ top: 0, left: 0, width: 500, height: 160 }}
                 >
                   {/* Background */}
@@ -466,7 +464,7 @@ export function FigmaDemo() {
                     <div
                       className={`text-2xl font-bold text-white ${
                         selectedLayer === '1-2'
-                          ? 'ring-2 ring-[#0d99ff] ring-offset-1 ring-offset-transparent'
+                          ? 'ring-2 ring-interactive ring-offset-1 ring-offset-transparent'
                           : ''
                       }`}
                     >
@@ -475,13 +473,13 @@ export function FigmaDemo() {
                   </div>
                   {/* Subtitle */}
                   <div className="absolute left-8 top-[68px]">
-                    <div className="text-sm text-[#ffffff99]">
+                    <div className="text-sm text-fg-muted">
                       A modern design system for the web
                     </div>
                   </div>
                   {/* CTA Button */}
                   <div className="absolute left-8 top-[100px]">
-                    <div className="rounded-md bg-[#0d99ff] px-4 py-2 text-xs font-semibold text-white">
+                    <div className="rounded-md bg-interactive px-4 py-2 text-xs font-semibold text-white">
                       Get Started
                     </div>
                   </div>
@@ -489,7 +487,7 @@ export function FigmaDemo() {
                   <Text
                     as="span"
                     size="xs"
-                    className="absolute -top-5 left-0 text-[#0d99ff]"
+                    className="absolute -top-5 left-0 text-interactive"
                   >
                     Hero Section
                   </Text>
@@ -497,7 +495,7 @@ export function FigmaDemo() {
 
                 {/* Features Grid frame */}
                 <div
-                  className="absolute rounded-lg border border-dashed border-[#ffffff22]"
+                  className="absolute rounded-lg border border-dashed border-border-default"
                   style={{ top: 180, left: 0, width: 500, height: 120 }}
                 >
                   <div className="flex h-full items-center justify-center gap-4 p-4">
@@ -509,15 +507,15 @@ export function FigmaDemo() {
                     ].map((card) => (
                       <div
                         key={card.label}
-                        className={`flex h-20 w-36 flex-col items-center justify-center rounded-lg ${card.bg} border border-[#ffffff11]`}
+                        className={`flex h-20 w-36 flex-col items-center justify-center rounded-lg ${card.bg} border border-border-subtle`}
                       >
-                        <div className="mb-2 h-8 w-8 rounded-full bg-[#0d99ff33] flex items-center justify-center">
+                        <div className="mb-2 h-8 w-8 rounded-full bg-interactive-subtle flex items-center justify-center">
                           <IconCircle
                             size="sm"
-                            className="h-4 w-4 text-[#0d99ff]"
+                            className="h-4 w-4 text-interactive"
                           />
                         </div>
-                        <span className="text-xs text-[#ffffffcc]">
+                        <span className="text-xs text-fg-default">
                           {card.label}
                         </span>
                       </div>
@@ -526,7 +524,7 @@ export function FigmaDemo() {
                   <Text
                     as="span"
                     size="xs"
-                    className="absolute -top-5 left-0 text-[#ffffff66]"
+                    className="absolute -top-5 left-0 text-fg-subtle"
                   >
                     Features Grid
                   </Text>
@@ -534,14 +532,14 @@ export function FigmaDemo() {
 
                 {/* Footer frame */}
                 <div
-                  className="absolute rounded-lg border border-dashed border-[#ffffff22]"
+                  className="absolute rounded-lg border border-dashed border-border-default"
                   style={{ top: 320, left: 0, width: 500, height: 50 }}
                 >
                   <div className="flex h-full items-center justify-between px-8">
-                    <div className="h-5 w-16 rounded bg-[#ffffff1a]" />
+                    <div className="h-5 w-16 rounded bg-white/10" />
                     <div className="flex gap-4">
                       {['Docs', 'GitHub', 'Twitter'].map((link) => (
-                        <span key={link} className="text-xs text-[#ffffff66]">
+                        <span key={link} className="text-xs text-fg-subtle">
                           {link}
                         </span>
                       ))}
@@ -550,7 +548,7 @@ export function FigmaDemo() {
                   <Text
                     as="span"
                     size="xs"
-                    className="absolute -top-5 left-0 text-[#ffffff66]"
+                    className="absolute -top-5 left-0 text-fg-subtle"
                   >
                     Footer
                   </Text>
@@ -559,39 +557,39 @@ export function FigmaDemo() {
             </div>
 
             {/* Zoom indicator at bottom */}
-            <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded bg-[#2c2c2c] px-2 py-1">
-              <Text as="span" size="xs" className="text-[#ffffffcc]">
+            <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded bg-surface-raised px-2 py-1">
+              <Text as="span" size="xs" className="text-fg-default">
                 100%
               </Text>
             </div>
           </div>
 
           {/* ── Properties Panel (right) ──────────────────────────── */}
-          <div className="flex w-[280px] shrink-0 flex-col border-l border-[#181818] bg-[#252525] overflow-y-auto">
+          <div className="flex w-[280px] shrink-0 flex-col border-l border-border-subtle bg-surface-raised overflow-y-auto">
             {/* Header tabs */}
-            <div className="flex h-9 shrink-0 items-center border-b border-[#181818] px-3">
+            <div className="flex h-9 shrink-0 items-center border-b border-border-subtle px-3">
               <button
                 type="button"
-                className="mr-3 text-xs font-semibold text-[#ffffffcc] border-b-2 border-[#0d99ff] pb-1"
+                className="mr-3 text-xs font-semibold text-fg-default border-b-2 border-interactive pb-1"
               >
                 Design
               </button>
               <button
                 type="button"
-                className="mr-3 text-xs text-[#ffffff66] pb-1 hover:text-[#ffffffcc]"
+                className="mr-3 text-xs text-fg-subtle pb-1 hover:text-fg-default"
               >
                 Prototype
               </button>
               <button
                 type="button"
-                className="text-xs text-[#ffffff66] pb-1 hover:text-[#ffffffcc]"
+                className="text-xs text-fg-subtle pb-1 hover:text-fg-default"
               >
                 Inspect
               </button>
             </div>
 
             {/* Alignment tools row */}
-            <div className="flex items-center justify-between border-b border-[#181818] px-4 py-2">
+            <div className="flex items-center justify-between border-b border-border-subtle px-4 py-2">
               {[
                 'align-left',
                 'align-center',
@@ -603,7 +601,7 @@ export function FigmaDemo() {
                 <button
                   key={align}
                   type="button"
-                  className="flex h-6 w-6 items-center justify-center rounded text-[#ffffff66] hover:bg-[#ffffff0d] hover:text-[#ffffffcc]"
+                  className="flex h-6 w-6 items-center justify-center rounded text-fg-subtle hover:bg-white/5 hover:text-fg-default"
                 >
                   <svg
                     className="h-3.5 w-3.5"
@@ -627,7 +625,7 @@ export function FigmaDemo() {
               </div>
             </PropertySection>
 
-            <Divider className="border-[#181818]" />
+            <Divider className="border-border-subtle" />
 
             <PropertySection title="Size">
               <div className="grid grid-cols-2 gap-2">
@@ -640,14 +638,14 @@ export function FigmaDemo() {
               </div>
             </PropertySection>
 
-            <Divider className="border-[#181818]" />
+            <Divider className="border-border-subtle" />
 
             {/* Auto Layout */}
             <PropertySection title="Auto layout">
               <div className="flex items-center gap-2">
-                <div className="flex h-6 items-center gap-1 rounded bg-[#ffffff0d] px-2">
+                <div className="flex h-6 items-center gap-1 rounded bg-white/5 px-2">
                   <svg
-                    className="h-3 w-3 text-[#ffffff66]"
+                    className="h-3 w-3 text-fg-subtle"
                     viewBox="0 0 12 12"
                     fill="none"
                     stroke="currentColor"
@@ -657,7 +655,7 @@ export function FigmaDemo() {
                     <polyline points="3 4 6 1 9 4" />
                     <polyline points="3 8 6 11 9 8" />
                   </svg>
-                  <Text as="span" size="xs" className="text-[#ffffffcc]">
+                  <Text as="span" size="xs" className="text-fg-default">
                     Vertical
                   </Text>
                 </div>
@@ -666,14 +664,14 @@ export function FigmaDemo() {
               </div>
             </PropertySection>
 
-            <Divider className="border-[#181818]" />
+            <Divider className="border-border-subtle" />
 
             {/* Fill */}
             <PropertySection title="Fill">
               <ColorInput color="#1a1a2e" hex="1A1A2E" />
             </PropertySection>
 
-            <Divider className="border-[#181818]" />
+            <Divider className="border-border-subtle" />
 
             {/* Stroke */}
             <PropertySection title="Stroke">
@@ -681,35 +679,35 @@ export function FigmaDemo() {
               <div className="mt-2 grid grid-cols-2 gap-2">
                 <PropInput label="Width" value="1" />
                 <div className="flex flex-col gap-0.5">
-                  <Text as="span" size="xs" className="text-[#ffffff66]">
+                  <Text as="span" size="xs" className="text-fg-subtle">
                     Style
                   </Text>
-                  <div className="flex h-6 items-center rounded bg-[#ffffff0d] px-2 text-xs text-[#ffffffcc]">
+                  <div className="flex h-6 items-center rounded bg-white/5 px-2 text-xs text-fg-default">
                     Solid
                   </div>
                 </div>
               </div>
             </PropertySection>
 
-            <Divider className="border-[#181818]" />
+            <Divider className="border-border-subtle" />
 
             {/* Effects */}
             <PropertySection title="Effects" defaultOpen={false}>
               <button
                 type="button"
-                className="flex w-full items-center justify-center gap-1 rounded border border-dashed border-[#ffffff1a] py-1.5 text-xs text-[#ffffff66] hover:border-[#ffffff33] hover:text-[#ffffffcc]"
+                className="flex w-full items-center justify-center gap-1 rounded border border-dashed border-border-default py-1.5 text-xs text-fg-subtle hover:border-border-strong hover:text-fg-default"
               >
                 <span>+</span> Add effect
               </button>
             </PropertySection>
 
-            <Divider className="border-[#181818]" />
+            <Divider className="border-border-subtle" />
 
             {/* Export */}
             <PropertySection title="Export" defaultOpen={false}>
               <button
                 type="button"
-                className="flex w-full items-center justify-center gap-1 rounded border border-dashed border-[#ffffff1a] py-1.5 text-xs text-[#ffffff66] hover:border-[#ffffff33] hover:text-[#ffffffcc]"
+                className="flex w-full items-center justify-center gap-1 rounded border border-dashed border-border-default py-1.5 text-xs text-fg-subtle hover:border-border-strong hover:text-fg-default"
               >
                 <span>+</span> Add export
               </button>

@@ -65,13 +65,13 @@ export function DiscordDemo() {
     <TooltipProvider>
       <div className="flex h-full text-sm">
         {/* ── Server Rail (72px) ────────────────────────────────── */}
-        <div className="flex w-[72px] shrink-0 flex-col items-center gap-2 bg-[#1e1f22] py-3">
+        <div className="flex w-[72px] shrink-0 flex-col items-center gap-2 bg-surface-inset py-3">
           {/* Home button */}
           <TooltipRoot>
             <TooltipTrigger asChild>
               <button
                 type="button"
-                className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#5865f2] text-white transition-all hover:rounded-xl"
+                className="flex h-12 w-12 items-center justify-center rounded-2xl bg-interactive text-fg-on-accent transition-all hover:rounded-xl"
               >
                 <IconHome />
               </button>
@@ -79,7 +79,7 @@ export function DiscordDemo() {
             <TooltipContent side="right">Direct Messages</TooltipContent>
           </TooltipRoot>
 
-          <Divider className="mx-auto w-8 border-[#35363c]" />
+          <Divider className="mx-auto w-8 border-border-default" />
 
           {/* Server icons */}
           {DISCORD_SERVERS.map((server) => (
@@ -98,14 +98,14 @@ export function DiscordDemo() {
             </TooltipRoot>
           ))}
 
-          <Divider className="mx-auto w-8 border-[#35363c]" />
+          <Divider className="mx-auto w-8 border-border-default" />
 
           {/* Add server */}
           <TooltipRoot>
             <TooltipTrigger asChild>
               <button
                 type="button"
-                className="flex h-12 w-12 items-center justify-center rounded-3xl bg-[#313338] text-green-500 transition-all hover:rounded-xl hover:bg-green-500 hover:text-white"
+                className="flex h-12 w-12 items-center justify-center rounded-3xl bg-surface-base text-green-500 transition-all hover:rounded-xl hover:bg-green-500 hover:text-white"
               >
                 <IconPlus size="md" />
               </button>
@@ -115,21 +115,21 @@ export function DiscordDemo() {
         </div>
 
         {/* ── Channel Sidebar (240px) ──────────────────────────── */}
-        <div className="flex w-60 shrink-0 flex-col bg-[#2b2d31]">
+        <div className="flex w-60 shrink-0 flex-col bg-surface-raised">
           {/* Server name header */}
           <button
             type="button"
-            className="flex h-12 items-center justify-between border-b border-[#1f2023] px-4 shadow-sm transition-colors hover:bg-[#35373c]"
+            className="flex h-12 items-center justify-between border-b border-border-subtle px-4 shadow-sm transition-colors hover:bg-surface-overlay"
           >
             <Text
               as="span"
               size="sm"
               weight="bold"
-              className="truncate text-white"
+              className="truncate text-fg-default"
             >
               Strata
             </Text>
-            <IconChevronDown size="sm" className="text-[#b5bac1]" />
+            <IconChevronDown size="sm" className="text-fg-muted" />
           </button>
 
           {/* Channel list */}
@@ -138,7 +138,7 @@ export function DiscordDemo() {
               <div key={category} className="mb-4">
                 <button
                   type="button"
-                  className="mb-1 flex w-full items-center gap-0.5 px-0.5 text-[11px] font-bold uppercase tracking-wide text-[#949ba4] transition-colors hover:text-[#dbdee1]"
+                  className="mb-1 flex w-full items-center gap-0.5 px-0.5 text-[11px] font-bold uppercase tracking-wide text-fg-muted transition-colors hover:text-fg-default"
                 >
                   <IconChevronDown size="sm" className="h-3 w-3 shrink-0" />
                   {category}
@@ -149,8 +149,8 @@ export function DiscordDemo() {
                     type="button"
                     className={`group flex w-full items-center gap-1.5 rounded px-2 py-1.5 transition-colors ${
                       ch.id === '1'
-                        ? 'bg-[#404249] text-white'
-                        : 'text-[#949ba4] hover:bg-[#35373c] hover:text-[#dbdee1]'
+                        ? 'bg-surface-overlay text-fg-default'
+                        : 'text-fg-muted hover:bg-surface-overlay hover:text-fg-default'
                     }`}
                   >
                     {ch.type === 'text' ? (
@@ -171,7 +171,7 @@ export function DiscordDemo() {
           </div>
 
           {/* User area at bottom */}
-          <div className="flex items-center gap-2 bg-[#232428] px-2 py-2">
+          <div className="flex items-center gap-2 bg-surface-inset px-2 py-2">
             <div className="relative">
               <Avatar
                 name="You"
@@ -179,28 +179,28 @@ export function DiscordDemo() {
                 size="sm"
                 className="h-8 w-8"
               />
-              <span className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-[#232428] bg-green-500" />
+              <span className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-surface-inset bg-green-500" />
             </div>
             <div className="min-w-0 flex-1">
               <Text
                 as="span"
                 size="xs"
                 weight="bold"
-                className="block truncate text-white"
+                className="block truncate text-fg-default"
               >
                 You
               </Text>
               <Text
                 as="span"
                 size="xs"
-                className="block truncate text-[#949ba4]"
+                className="block truncate text-fg-muted"
               >
                 Online
               </Text>
             </div>
             <button
               type="button"
-              className="rounded p-1 text-[#b5bac1] transition-colors hover:bg-[#35373c]"
+              className="rounded p-1 text-fg-muted transition-colors hover:bg-surface-overlay"
             >
               <IconSettings size="sm" />
             </button>
@@ -208,40 +208,36 @@ export function DiscordDemo() {
         </div>
 
         {/* ── Message Area (flex-1) ────────────────────────────── */}
-        <div className="flex min-w-0 flex-1 flex-col bg-[#313338]">
+        <div className="flex min-w-0 flex-1 flex-col bg-surface-base">
           {/* Channel header */}
-          <div className="flex h-12 shrink-0 items-center gap-2 border-b border-[#1f2023] px-4 shadow-sm">
-            <IconHash size="sm" className="text-[#80848e]" />
-            <Text as="span" size="sm" weight="bold" className="text-white">
+          <div className="flex h-12 shrink-0 items-center gap-2 border-b border-border-subtle px-4 shadow-sm">
+            <IconHash size="sm" className="text-fg-subtle" />
+            <Text as="span" size="sm" weight="bold" className="text-fg-default">
               general
             </Text>
             <Divider
               orientation="vertical"
-              className="mx-2 h-6 border-[#3f4147]"
+              className="mx-2 h-6 border-border-default"
             />
-            <Text
-              as="span"
-              size="xs"
-              className="flex-1 truncate text-[#949ba4]"
-            >
+            <Text as="span" size="xs" className="flex-1 truncate text-fg-muted">
               General discussion about the Strata design system
             </Text>
-            <div className="flex items-center gap-3 text-[#b5bac1]">
+            <div className="flex items-center gap-3 text-fg-muted">
               <button
                 type="button"
-                className="transition-colors hover:text-[#dbdee1]"
+                className="transition-colors hover:text-fg-default"
               >
                 <IconBell size="sm" />
               </button>
               <button
                 type="button"
-                className="transition-colors hover:text-[#dbdee1]"
+                className="transition-colors hover:text-fg-default"
               >
                 <IconInbox size="sm" />
               </button>
               <button
                 type="button"
-                className="transition-colors hover:text-[#dbdee1]"
+                className="transition-colors hover:text-fg-default"
               >
                 <IconUser size="sm" />
               </button>
@@ -249,11 +245,11 @@ export function DiscordDemo() {
                 <Input
                   size="sm"
                   placeholder="Search"
-                  className="h-6 w-36 rounded bg-[#1e1f22] text-xs placeholder:text-[#949ba4]"
+                  className="h-6 w-36 rounded bg-surface-inset text-xs placeholder:text-fg-muted"
                 />
                 <IconSearch
                   size="sm"
-                  className="pointer-events-none absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#949ba4]"
+                  className="pointer-events-none absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-muted"
                 />
               </div>
             </div>
@@ -268,7 +264,7 @@ export function DiscordDemo() {
               return (
                 <div
                   key={msg.id}
-                  className={`group relative flex gap-4 rounded px-2 py-0.5 hover:bg-[#2e3035] ${
+                  className={`group relative flex gap-4 rounded px-2 py-0.5 hover:bg-surface-raised ${
                     !isGrouped ? 'mt-4 first:mt-0' : ''
                   }`}
                 >
@@ -327,13 +323,13 @@ export function DiscordDemo() {
                         >
                           {msg.author}
                         </Text>
-                        <Text as="span" size="xs" className="text-[#949ba4]">
+                        <Text as="span" size="xs" className="text-fg-muted">
                           {msg.timestamp}
                         </Text>
                       </div>
                     )}
 
-                    <Text as="p" size="sm" className="text-[#dbdee1]">
+                    <Text as="p" size="sm" className="text-fg-default">
                       {msg.content}
                     </Text>
 
@@ -344,15 +340,15 @@ export function DiscordDemo() {
                           <button
                             key={r.emoji}
                             type="button"
-                            className="flex items-center gap-1 rounded-full bg-[#2b2d31] px-2 py-0.5 text-xs text-[#dbdee1] transition-colors hover:border-[#5865f2] hover:bg-[#373a40]"
+                            className="flex items-center gap-1 rounded-full bg-surface-raised px-2 py-0.5 text-xs text-fg-default transition-colors hover:border-interactive hover:bg-surface-overlay"
                           >
                             <span>{r.emoji}</span>
-                            <span className="text-[#b5bac1]">{r.count}</span>
+                            <span className="text-fg-muted">{r.count}</span>
                           </button>
                         ))}
                         <button
                           type="button"
-                          className="flex h-6 w-6 items-center justify-center rounded-full bg-[#2b2d31] text-[#b5bac1] opacity-0 transition-all group-hover:opacity-100 hover:bg-[#373a40]"
+                          className="flex h-6 w-6 items-center justify-center rounded-full bg-surface-raised text-fg-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-surface-overlay"
                         >
                           <IconPlus size="sm" className="h-3 w-3" />
                         </button>
@@ -366,24 +362,24 @@ export function DiscordDemo() {
 
           {/* Message input */}
           <div className="shrink-0 px-4 pb-6">
-            <div className="flex items-center gap-2 rounded-lg bg-[#383a40] px-4 py-2.5">
+            <div className="flex items-center gap-2 rounded-lg bg-surface-overlay px-4 py-2.5">
               <button
                 type="button"
-                className="shrink-0 text-[#b5bac1] transition-colors hover:text-[#dbdee1]"
+                className="shrink-0 text-fg-muted transition-colors hover:text-fg-default"
               >
                 <IconPlus size="md" />
               </button>
               <input
                 type="text"
                 placeholder="Message #general"
-                className="min-w-0 flex-1 bg-transparent text-sm text-[#dbdee1] placeholder:text-[#6d6f78] outline-none"
+                className="min-w-0 flex-1 bg-transparent text-sm text-fg-default placeholder:text-fg-subtle outline-none"
               />
             </div>
           </div>
         </div>
 
         {/* ── Member List (240px) ──────────────────────────────── */}
-        <div className="w-60 shrink-0 overflow-y-auto bg-[#2b2d31] px-2 pt-6">
+        <div className="w-60 shrink-0 overflow-y-auto bg-surface-raised px-2 pt-6">
           {[...memberGroups.entries()].map(([role, members]) => {
             const onlineCount = members.filter(
               (m) => m.status !== 'offline',
@@ -395,7 +391,7 @@ export function DiscordDemo() {
                   as="span"
                   size="xs"
                   weight="bold"
-                  className="mb-1 block px-2 uppercase tracking-wide text-[#949ba4]"
+                  className="mb-1 block px-2 uppercase tracking-wide text-fg-muted"
                 >
                   {role} &mdash; {onlineCount}
                 </Text>
@@ -403,7 +399,7 @@ export function DiscordDemo() {
                   <button
                     key={member.id}
                     type="button"
-                    className="flex w-full items-center gap-3 rounded px-2 py-1.5 transition-colors hover:bg-[#35373c]"
+                    className="flex w-full items-center gap-3 rounded px-2 py-1.5 transition-colors hover:bg-surface-overlay"
                   >
                     <div className="relative shrink-0">
                       <div
@@ -428,7 +424,7 @@ export function DiscordDemo() {
                         {member.avatar}
                       </div>
                       <span
-                        className={`absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-[#2b2d31] ${STATUS_COLOR[member.status]}`}
+                        className={`absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-surface-raised ${STATUS_COLOR[member.status]}`}
                       />
                     </div>
                     <Text
@@ -436,8 +432,8 @@ export function DiscordDemo() {
                       size="sm"
                       className={
                         member.status === 'offline'
-                          ? 'text-[#6d6f78]'
-                          : 'text-[#949ba4]'
+                          ? 'text-fg-subtle'
+                          : 'text-fg-muted'
                       }
                     >
                       {member.name}
@@ -446,7 +442,7 @@ export function DiscordDemo() {
                       <Badge
                         variant="default"
                         size="sm"
-                        className="ml-auto bg-[#5865f2] text-[10px] text-white"
+                        className="ml-auto bg-interactive text-[10px] text-fg-on-accent"
                       >
                         Admin
                       </Badge>

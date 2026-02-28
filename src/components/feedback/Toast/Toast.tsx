@@ -1,14 +1,19 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { cn } from '@/lib/utils';
+import type {
+  ToastViewportProps,
+  ToastRootProps,
+  ToastTitleProps,
+  ToastDescriptionProps,
+  ToastActionProps,
+  ToastCloseProps,
+} from './Toast.type';
 
 /* ----- Provider — pass-through ------------------------------------------- */
 
 export const ToastProvider = ToastPrimitive.Provider;
 
 /* ----- Viewport ---------------------------------------------------------- */
-
-type ToastViewportProps = ComponentPropsWithRef<typeof ToastPrimitive.Viewport>;
 
 export function ToastViewport({
   className,
@@ -28,12 +33,6 @@ export function ToastViewport({
 }
 
 /* ----- Root -------------------------------------------------------------- */
-
-interface ToastRootProps extends ComponentPropsWithRef<
-  typeof ToastPrimitive.Root
-> {
-  children: ReactNode;
-}
 
 export function ToastRoot({
   className,
@@ -59,12 +58,6 @@ export function ToastRoot({
 
 /* ----- Title ------------------------------------------------------------- */
 
-interface ToastTitleProps extends ComponentPropsWithRef<
-  typeof ToastPrimitive.Title
-> {
-  children: ReactNode;
-}
-
 export function ToastTitle({
   className,
   children,
@@ -84,12 +77,6 @@ export function ToastTitle({
 
 /* ----- Description ------------------------------------------------------- */
 
-interface ToastDescriptionProps extends ComponentPropsWithRef<
-  typeof ToastPrimitive.Description
-> {
-  children: ReactNode;
-}
-
 export function ToastDescription({
   className,
   children,
@@ -108,12 +95,6 @@ export function ToastDescription({
 }
 
 /* ----- Action ------------------------------------------------------------ */
-
-interface ToastActionProps extends ComponentPropsWithRef<
-  typeof ToastPrimitive.Action
-> {
-  children: ReactNode;
-}
 
 export function ToastAction({
   className,
@@ -137,8 +118,6 @@ export function ToastAction({
 }
 
 /* ----- Close ------------------------------------------------------------- */
-
-type ToastCloseProps = ComponentPropsWithRef<typeof ToastPrimitive.Close>;
 
 export function ToastClose({ className, ref, ...props }: ToastCloseProps) {
   return (

@@ -1,6 +1,12 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
 import { cn } from '@/lib/utils';
+import type {
+  AlertDialogContentProps,
+  AlertDialogTitleProps,
+  AlertDialogDescriptionProps,
+  AlertDialogActionProps,
+  AlertDialogCancelProps,
+} from './AlertDialog.type';
 
 /* ----- Root / Trigger — pass-through -------------------------------------- */
 
@@ -8,12 +14,6 @@ export const AlertDialogRoot = RadixAlertDialog.Root;
 export const AlertDialogTrigger = RadixAlertDialog.Trigger;
 
 /* ----- Content (Portal + Overlay + Content) ------------------------------- */
-
-interface AlertDialogContentProps extends ComponentPropsWithRef<
-  typeof RadixAlertDialog.Content
-> {
-  children: ReactNode;
-}
 
 export function AlertDialogContent({
   className,
@@ -52,12 +52,6 @@ export function AlertDialogContent({
 
 /* ----- Title -------------------------------------------------------------- */
 
-interface AlertDialogTitleProps extends ComponentPropsWithRef<
-  typeof RadixAlertDialog.Title
-> {
-  children: ReactNode;
-}
-
 export function AlertDialogTitle({
   className,
   children,
@@ -77,12 +71,6 @@ export function AlertDialogTitle({
 
 /* ----- Description -------------------------------------------------------- */
 
-interface AlertDialogDescriptionProps extends ComponentPropsWithRef<
-  typeof RadixAlertDialog.Description
-> {
-  children: ReactNode;
-}
-
 export function AlertDialogDescription({
   className,
   children,
@@ -101,12 +89,6 @@ export function AlertDialogDescription({
 }
 
 /* ----- Action ------------------------------------------------------------- */
-
-interface AlertDialogActionProps extends ComponentPropsWithRef<
-  typeof RadixAlertDialog.Action
-> {
-  children: ReactNode;
-}
 
 export function AlertDialogAction({
   className,
@@ -131,12 +113,6 @@ export function AlertDialogAction({
 }
 
 /* ----- Cancel ------------------------------------------------------------- */
-
-interface AlertDialogCancelProps extends ComponentPropsWithRef<
-  typeof RadixAlertDialog.Cancel
-> {
-  children: ReactNode;
-}
 
 export function AlertDialogCancel({
   className,

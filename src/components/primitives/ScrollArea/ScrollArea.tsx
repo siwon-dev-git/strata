@@ -1,14 +1,14 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixScrollArea from '@radix-ui/react-scroll-area';
 import { cn } from '@/lib/utils';
+import type {
+  ScrollAreaRootProps,
+  ScrollAreaViewportProps,
+  ScrollAreaScrollbarProps,
+  ScrollAreaThumbProps,
+  ScrollAreaProps,
+} from './ScrollArea.type';
 
 /* ----- Root -------------------------------------------------------------- */
-
-interface ScrollAreaRootProps extends ComponentPropsWithRef<
-  typeof RadixScrollArea.Root
-> {
-  children: ReactNode;
-}
 
 export function ScrollAreaRoot({
   className,
@@ -29,12 +29,6 @@ export function ScrollAreaRoot({
 
 /* ----- Viewport ---------------------------------------------------------- */
 
-interface ScrollAreaViewportProps extends ComponentPropsWithRef<
-  typeof RadixScrollArea.Viewport
-> {
-  children: ReactNode;
-}
-
 export function ScrollAreaViewport({
   className,
   children,
@@ -53,10 +47,6 @@ export function ScrollAreaViewport({
 }
 
 /* ----- Scrollbar --------------------------------------------------------- */
-
-type ScrollAreaScrollbarProps = ComponentPropsWithRef<
-  typeof RadixScrollArea.Scrollbar
->;
 
 export function ScrollAreaScrollbar({
   className,
@@ -83,8 +73,6 @@ export function ScrollAreaScrollbar({
 
 /* ----- Thumb ------------------------------------------------------------- */
 
-type ScrollAreaThumbProps = ComponentPropsWithRef<typeof RadixScrollArea.Thumb>;
-
 export function ScrollAreaThumb({
   className,
   ref,
@@ -104,13 +92,6 @@ export function ScrollAreaThumb({
 }
 
 /* ----- Convenience component --------------------------------------------- */
-
-interface ScrollAreaProps extends ComponentPropsWithRef<
-  typeof RadixScrollArea.Root
-> {
-  children: ReactNode;
-  orientation?: 'vertical' | 'horizontal' | 'both';
-}
 
 export function ScrollArea({
   className,
