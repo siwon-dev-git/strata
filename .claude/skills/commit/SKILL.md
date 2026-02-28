@@ -59,7 +59,7 @@ Optional. Component or area name in lowercase:
 
 1. Run `git status` + `git diff` to understand all changes
 2. **Pre-flight gate** (uses sprint gate chain G1→G2):
-   - **G1 Surface**: `pnpm format:check` — FAIL → `pnpm format:write` → re-verify
+   - **G1 Surface**: `pnpm install --frozen-lockfile` — FAIL → `pnpm install` → commit lockfile → re-verify. `pnpm format:check` — FAIL → `pnpm format:write` → re-verify
    - **G2 Static**: `pnpm lint` — FAIL → fix → re-check. `pnpm typecheck` — FAIL → fix → re-check
    - Any still failing after 3 attempts → HALT, do not commit
 3. Group changes by domain (components, ci, docs, etc.)

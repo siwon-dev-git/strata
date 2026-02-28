@@ -11,12 +11,14 @@
   --color-interactive-hover: var(--sp-blue-400);
   --color-interactive-fg: oklch(0.98 0 0);
   --color-interactive-subtle: oklch(0.62 0.21 260 / 12%);
+  --color-interactive-active: var(--sp-blue-600);
 
   /* Status: danger / success / warning */
   --color-danger: var(--sp-red-500);
   --color-danger-hover: var(--sp-red-400);
   --color-danger-fg: oklch(0.98 0 0);
   --color-danger-subtle: oklch(0.63 0.24 25 / 12%);
+  --color-danger-active: var(--sp-red-600);
 
   --color-success: var(--sp-green-400);
   --color-success-fg: oklch(0.08 0.01 250);
@@ -110,10 +112,12 @@
   --color-interactive: var(--sp-blue-600);
   --color-interactive-hover: var(--sp-blue-500);
   --color-interactive-subtle: oklch(0.54 0.2 260 / 10%);
+  --color-interactive-active: var(--sp-blue-700);
 
   --color-danger: var(--sp-red-600);
   --color-danger-hover: var(--sp-red-500);
   --color-danger-subtle: oklch(0.5 0.24 25 / 10%);
+  --color-danger-active: var(--sp-red-700);
 
   --color-success: var(--sp-green-600);
   --color-success-subtle: oklch(0.55 0.19 155 / 10%);
@@ -148,6 +152,7 @@
   --color-interactive: var(--sp-purple-500);
   --color-interactive-hover: var(--sp-purple-400);
   --color-interactive-subtle: oklch(0.62 0.24 305 / 12%);
+  --color-interactive-active: var(--sp-purple-600);
   --border-interactive: var(--sp-purple-500);
 }
 
@@ -157,6 +162,7 @@
   --color-interactive: var(--sp-purple-600);
   --color-interactive-hover: var(--sp-purple-500);
   --color-interactive-subtle: oklch(0.52 0.24 305 / 10%);
+  --color-interactive-active: var(--sp-purple-700);
   --border-interactive: var(--sp-purple-600);
 }
 
@@ -165,6 +171,7 @@
   --color-interactive: var(--sp-green-500);
   --color-interactive-hover: var(--sp-green-400);
   --color-interactive-subtle: oklch(0.65 0.19 155 / 12%);
+  --color-interactive-active: var(--sp-green-600);
   --border-interactive: var(--sp-green-500);
 }
 
@@ -174,6 +181,7 @@
   --color-interactive: var(--sp-green-600);
   --color-interactive-hover: var(--sp-green-500);
   --color-interactive-subtle: oklch(0.55 0.19 155 / 10%);
+  --color-interactive-active: var(--sp-green-700);
   --border-interactive: var(--sp-green-600);
 }
 

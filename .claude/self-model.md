@@ -40,6 +40,6 @@ Idea (quantity) → Insight (1-sentence compression) → Design (minimum verifia
 ## Current State (Self-reference)
 
 - **Self-sufficiency**: B→C transition. `/sprint` single command runs full cycle (BUILD: 11-step ❶FMEA→❷Plan→❸Execute→❹Collect→❺Review→❻Hygiene→❼Commit→❽Heritage→❾Rebase→❿PR+CI→⓫Cleanup, MAINTAIN: sense→decide→execute→learn→recurse) autonomously. Only semantic code changes/L1 changes require user approval
-- **Heritage**: ADR 29 + FMEA 21 = 50 patterns. Strength distribution: 0.3~0.5 majority, 0.7 (auto-propagation) minority
+- **Heritage**: ADR 31 + FMEA 15 = 46 active patterns (20 archived/hardened in archive.md). Strength distribution: 0.3~0.5 majority, 0.7 (auto-propagation) minority
 - **Evolution mechanism**: `/sprint` MAINTAIN mode with hard/soft 2-tier health check (hard gates = binary pass/fail, soft = health indicators). Self-verification possible but self-scoring bias exists (Babel paradox)
 - **Experience base**: Strata 58 components (SVG+Tailwind, zero external dependencies), 6-gate chain (G0-G5), CI green

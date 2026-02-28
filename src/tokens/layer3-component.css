@@ -16,6 +16,15 @@
   --btn-danger-bg: var(--color-danger);
   --btn-danger-bg-hover: var(--color-danger-hover);
   --btn-danger-fg: var(--color-danger-fg);
+  --btn-solid-bg-active: var(--color-interactive-active);
+  --btn-ghost-bg-active: var(--color-interactive-subtle);
+  --btn-outline-bg-active: var(--color-interactive-subtle);
+  --btn-danger-bg-active: var(--color-danger-active);
+  --btn-focus-ring-width: var(--focus-ring-width);
+  --btn-focus-ring-color: var(--focus-ring-color);
+  --btn-focus-ring-offset: var(--focus-ring-offset);
+  --btn-disabled-opacity: 0.4;
+  --btn-touch-target: 2.75rem;
   --btn-radius: var(--sp-radius-md);
 
   /* ── Input ─────────────────────────────────────────────────── */

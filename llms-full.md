@@ -154,12 +154,14 @@
   --color-interactive-hover: var(--sp-blue-400);
   --color-interactive-fg: oklch(0.98 0 0);
   --color-interactive-subtle: oklch(0.62 0.21 260 / 12%);
+  --color-interactive-active: var(--sp-blue-600);
 
   /* Status: danger / success / warning */
   --color-danger: var(--sp-red-500);
   --color-danger-hover: var(--sp-red-400);
   --color-danger-fg: oklch(0.98 0 0);
   --color-danger-subtle: oklch(0.63 0.24 25 / 12%);
+  --color-danger-active: var(--sp-red-600);
 
   --color-success: var(--sp-green-400);
   --color-success-fg: oklch(0.08 0.01 250);
@@ -253,10 +255,12 @@
   --color-interactive: var(--sp-blue-600);
   --color-interactive-hover: var(--sp-blue-500);
   --color-interactive-subtle: oklch(0.54 0.2 260 / 10%);
+  --color-interactive-active: var(--sp-blue-700);
 
   --color-danger: var(--sp-red-600);
   --color-danger-hover: var(--sp-red-500);
   --color-danger-subtle: oklch(0.5 0.24 25 / 10%);
+  --color-danger-active: var(--sp-red-700);
 
   --color-success: var(--sp-green-600);
   --color-success-subtle: oklch(0.55 0.19 155 / 10%);
@@ -291,6 +295,7 @@
   --color-interactive: var(--sp-purple-500);
   --color-interactive-hover: var(--sp-purple-400);
   --color-interactive-subtle: oklch(0.62 0.24 305 / 12%);
+  --color-interactive-active: var(--sp-purple-600);
   --border-interactive: var(--sp-purple-500);
 }
 
@@ -300,6 +305,7 @@
   --color-interactive: var(--sp-purple-600);
   --color-interactive-hover: var(--sp-purple-500);
   --color-interactive-subtle: oklch(0.52 0.24 305 / 10%);
+  --color-interactive-active: var(--sp-purple-700);
   --border-interactive: var(--sp-purple-600);
 }
 
@@ -308,6 +314,7 @@
   --color-interactive: var(--sp-green-500);
   --color-interactive-hover: var(--sp-green-400);
   --color-interactive-subtle: oklch(0.65 0.19 155 / 12%);
+  --color-interactive-active: var(--sp-green-600);
   --border-interactive: var(--sp-green-500);
 }
 
@@ -317,6 +324,7 @@
   --color-interactive: var(--sp-green-600);
   --color-interactive-hover: var(--sp-green-500);
   --color-interactive-subtle: oklch(0.55 0.19 155 / 10%);
+  --color-interactive-active: var(--sp-green-700);
   --border-interactive: var(--sp-green-600);
 }
 
@@ -367,6 +375,15 @@
   --btn-danger-bg: var(--color-danger);
   --btn-danger-bg-hover: var(--color-danger-hover);
   --btn-danger-fg: var(--color-danger-fg);
+  --btn-solid-bg-active: var(--color-interactive-active);
+  --btn-ghost-bg-active: var(--color-interactive-subtle);
+  --btn-outline-bg-active: var(--color-interactive-subtle);
+  --btn-danger-bg-active: var(--color-danger-active);
+  --btn-focus-ring-width: var(--focus-ring-width);
+  --btn-focus-ring-color: var(--focus-ring-color);
+  --btn-focus-ring-offset: var(--focus-ring-offset);
+  --btn-disabled-opacity: 0.4;
+  --btn-touch-target: 2.75rem;
   --btn-radius: var(--sp-radius-md);
 
   /* ── Input ─────────────────────────────────────────────────── */
@@ -706,7 +723,7 @@ Renders a navigational breadcrumb trail with links, separators, and a current pa
 
 ## Role
 
-Primary interactive element for triggering actions, with variant styling and loading state.
+Primary interactive element for triggering actions, with variant styling, loading state, and icon-only support.
 
 ## Tier
 
@@ -718,22 +735,35 @@ Primary interactive element for triggering actions, with variant styling and loa
 - `--btn-solid-bg` — solid variant background
 - `--btn-solid-fg` — solid variant foreground
 - `--btn-solid-bg-hover` — solid variant hover background
+- `--btn-solid-bg-active` — solid variant active/pressed background
 - `--btn-ghost-fg` — ghost variant foreground
 - `--btn-ghost-bg-hover` — ghost variant hover background
+- `--btn-ghost-bg-active` — ghost variant active/pressed background
 - `--btn-outline-border` — outline variant border color
 - `--btn-outline-hover` — outline variant hover background
+- `--btn-outline-bg-active` — outline variant active/pressed background
 - `--btn-danger-bg` — danger variant background
 - `--btn-danger-fg` — danger variant foreground
 - `--btn-danger-bg-hover` — danger variant hover background
-- `--border-interactive` — focus ring color
+- `--btn-danger-bg-active` — danger variant active/pressed background
+- `--btn-focus-ring-width` — focus ring width (aligned with Input/Select)
+- `--btn-focus-ring-color` — focus ring color
+- `--btn-focus-ring-offset` — focus ring offset from edge
+- `--btn-disabled-opacity` — opacity for disabled state
+- `--btn-touch-target` — minimum touch target size (WCAG 2.5.8)
+- `--border-interactive` — (L2) focus ring color source
 
 ## Constraints
 
 - `loading` prop disables the button and shows a `Spinner` before children
 - `asChild` delegates rendering to `@radix-ui/react-slot` for polymorphism
-- `disabled || loading` disables pointer events and reduces opacity to 40%
+- `disabled || loading` disables pointer events and reduces opacity via `--btn-disabled-opacity`
 - `aria-busy` set when loading
-- Focus ring uses `focus-visible` for keyboard-only indication
+- Focus ring uses `focus-visible` with ring-offset, aligned with Input/Select/Textarea pattern
+- Icon-only (`size="icon"`) requires `aria-label` or `aria-labelledby` (dev warning)
+- All sizes meet 44px minimum touch target via invisible pseudo-element expansion
+- `type="button"` default prevents accidental form submission
+- Active/pressed state uses `--motion-duration-fast` for immediate feedback
 
 ## Variants
 
@@ -744,9 +774,19 @@ Primary interactive element for triggering actions, with variant styling and loa
 | outline | Bordered transparent button                 |
 | danger  | Destructive action with danger color scheme |
 
+## Sizes
+
+| size | height               | use case                         |
+| ---- | -------------------- | -------------------------------- |
+| sm   | 28px                 | Compact contexts, inline actions |
+| md   | density-aware        | Default, adapts to density mode  |
+| lg   | 44px                 | Primary CTAs, mobile-friendly    |
+| icon | density-aware square | Icon-only buttons, toolbars      |
+
 ## History
 
 - Sprint 1: Initial implementation
+- MAINTAIN 10-cycle: Token foundation (active/focus/disabled), focus ring alignment, active states, keyboard tests, variant override tests, touch targets, icon-only support, ARIA tests, type="button" default, density stories, documentation
 
 ---
 
