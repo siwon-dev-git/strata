@@ -57,6 +57,14 @@
   /* Scrim overlay */
   --surface-scrim: oklch(0 0 0 / 50%);
 
+  /* Radius */
+  --radius-none: var(--sp-radius-none);
+  --radius-sm: var(--sp-radius-sm);
+  --radius-md: var(--sp-radius-md);
+  --radius-lg: var(--sp-radius-lg);
+  --radius-xl: var(--sp-radius-xl);
+  --radius-full: var(--sp-radius-full);
+
   /* Border */
   --border-subtle: var(--sp-gray-800);
   --border-default: var(--sp-gray-700);
