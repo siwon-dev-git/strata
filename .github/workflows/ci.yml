@@ -44,11 +44,11 @@ jobs:
 
       - name: Token layer lint
         run: |
-          # L3 must not reference L1 primitives (--sp-gray-) or hardcode oklch()
-          VIOLATIONS=$(grep -cE '\-\-sp-gray-|oklch\(' src/tokens/layer3-component.css || true)
+          # L3 must not reference L1 primitives (--sp-*) or hardcode oklch()
+          VIOLATIONS=$(grep -cE '\-\-sp-|oklch\(' src/tokens/layer3-component.css || true)
           if [ "$VIOLATIONS" -gt 0 ]; then
             echo "::error::L3 token layer violations found: $VIOLATIONS references to L1 primitives or hardcoded oklch()"
-            grep -nE '\-\-sp-gray-|oklch\(' src/tokens/layer3-component.css
+            grep -nE '\-\-sp-|oklch\(' src/tokens/layer3-component.css
             exit 1
           fi
 
