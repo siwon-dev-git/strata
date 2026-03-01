@@ -7,8 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- L3 radius tokens now route through L2 semantic layer (13 violations resolved)
+- Package name references unified to `@siwon-dev-npm/strata`
+- CONTRIBUTING.md `pnpm dev` description corrected to "Start Vite dev server"
+
 ### Added
 
+- L2 radius semantic tokens (`--radius-none` through `--radius-full`)
+- Pre-stable alpha warning banner in README
+- ROADMAP.md with version policy and v1.0 milestone criteria
+- CI token lint now catches all L1 references (`--sp-*`), not just `--sp-gray-`
+- Publish workflow auto-detects dist-tag from version string (alpha/beta/rc → `next`)
 - `createTheme()` utility for programmatic theme generation
 - `injectTheme()` for runtime theme injection
 - `StrataServerProvider` for RSC/SSR environments

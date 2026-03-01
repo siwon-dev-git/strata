@@ -6,7 +6,7 @@
 
 React 19 + Radix UI + Tailwind CSS v4 + OKLch Tokens
 
-[![npm](https://img.shields.io/npm/v/@strata-ds/core?color=blue)](https://www.npmjs.com/package/@strata-ds/core)
+[![npm](https://img.shields.io/npm/v/@siwon-dev-npm/strata?color=blue)](https://www.npmjs.com/package/@siwon-dev-npm/strata)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb)](https://react.dev/)
@@ -21,6 +21,10 @@ React 19 + Radix UI + Tailwind CSS v4 + OKLch Tokens
 </div>
 
 ---
+
+> [!WARNING]
+> **Alpha** — Strata is in active development (`0.x`). APIs may change between minor versions.
+> See [ROADMAP.md](ROADMAP.md) for the path to v1.0.
 
 ## Why Strata?
 
@@ -185,50 +189,7 @@ pnpm generate:llms  # Regenerate llms.md + llms-full.md
 
 ## Roadmap
 
-### Phase 1 — Foundation Hardening `(current)`
-
-Establishing production-grade reliability and adoption readiness.
-
-- [x] 57 components with full test coverage (52 test files)
-- [x] 3-layer OKLch token system
-- [x] 12 real-world demo applications
-- [x] AI three-tier consumption (llms.md + llms-full.md + Storybook MCP)
-- [x] Convention system with tier-based audit
-- [x] Heritage registry (ADR + FMEA)
-- [ ] npm publish pipeline (`@strata-ds/core` on npm)
-- [ ] Documentation site (beyond Storybook)
-- [ ] Component expansion: Table, DatePicker, Combobox, Command Palette
-- [ ] CI/CD: coverage ratchet, visual regression, a11y audit automation
-
-### Phase 2 — AI Ecosystem Play
-
-Becoming the design system AI tools reach for first.
-
-- [ ] **`@strata-ds/mcp`** — Standalone MCP server package for IDE integration (Cursor, VS Code, Claude Code)
-- [ ] **AI codegen presets** — Pre-built templates for v0, Bolt, Claude Artifacts
-- [ ] **llms.txt standard contribution** — Driving adoption of the [llmstxt.org](https://llmstxt.org) specification
-- [ ] **AI accuracy benchmark** — Measuring AI-generated UI correctness against Strata components
-- [ ] **Framework adapters** — Vue, Svelte, and Solid adapters via headless core extraction
-
-### Phase 3 — Commercial Layer
-
-Open-source core with premium tooling.
-
-- [ ] **Theme Studio** — Visual token editor with OKLch palette generation (SaaS)
-- [ ] **Enterprise MCP** — Connect internal design systems to AI tools via MCP protocol
-- [ ] **Pro Components** — DataGrid, Chart, Calendar, Rich Text Editor (paid package)
-- [ ] **Audit Dashboard** — Team-level Convention + ADR + FMEA management (SaaS)
-- [ ] **Design-to-Code** — Figma plugin that maps designs to Strata tokens and components
-
-```
-Roadmap Timeline
-
-Phase 1 ████████████░░░░░░░░░░░░░░░░░░  Foundation
-Phase 2 ░░░░░░░░░░░░████████████░░░░░░  AI Ecosystem
-Phase 3 ░░░░░░░░░░░░░░░░░░░░░░████████  Commercial
-         ──────────────────────────────→
-         Now                       Future
-```
+See **[ROADMAP.md](ROADMAP.md)** for the full roadmap, version policy, and v1.0 milestone criteria.
 
 ## Contributing
 

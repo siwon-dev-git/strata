@@ -19,8 +19,11 @@ cd strata
 # Install dependencies
 pnpm install
 
-# Start Storybook (development server)
+# Start Vite dev server
 pnpm dev
+
+# Start Storybook (component explorer)
+pnpm storybook
 
 # Run all checks
 pnpm typecheck && pnpm test:ci && pnpm build
@@ -30,7 +33,8 @@ pnpm typecheck && pnpm test:ci && pnpm build
 
 | Command             | Description                         |
 | ------------------- | ----------------------------------- |
-| `pnpm dev`          | Start Storybook dev server          |
+| `pnpm dev`          | Start Vite dev server               |
+| `pnpm storybook`    | Start Storybook dev server          |
 | `pnpm build`        | Build production bundle             |
 | `pnpm typecheck`    | TypeScript type checking (`tsc -b`) |
 | `pnpm test:ci`      | Run all tests once                  |
