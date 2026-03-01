@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentPropsWithRef } from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '@/lib/utils';

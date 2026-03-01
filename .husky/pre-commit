@@ -1,12 +1,5 @@
-cd projects/pulse-ui && npx lint-staged
+#!/usr/bin/env sh
 
-# baseline-drift guard: warn when component visuals change without baseline update
-VISUAL_CHANGED=$(git diff --cached --name-only -- 'projects/pulse-ui/src/components/pulse/' | grep -E '\.tsx$' | head -1)
-BASELINE_CHANGED=$(git diff --cached --name-only -- 'projects/pulse-ui/e2e/__screenshots__/' | head -1)
-if [ -n "$VISUAL_CHANGED" ] && [ -z "$BASELINE_CHANGED" ]; then
-  echo ""
-  echo "⚠️  Component .tsx change detected without baseline update."
-  echo "   If visual output changed, run:"
-  echo "   cd projects/pulse-ui && pnpm build-storybook && pnpm test:visual:update"
-  echo ""
-fi
+pnpm format:check
+pnpm lint
+pnpm typecheck

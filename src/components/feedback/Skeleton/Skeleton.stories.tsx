@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 
 import { Skeleton } from './Skeleton';
 
@@ -15,6 +16,11 @@ export const Text: Story = {
   args: {
     variant: 'text',
     width: 200,
+  },
+  play: async ({ canvasElement }) => {
+    const skeleton = canvasElement.querySelector('[aria-hidden="true"]');
+    await expect(skeleton).not.toBeNull();
+    await expect(skeleton).toHaveAttribute('aria-hidden', 'true');
   },
 };
 

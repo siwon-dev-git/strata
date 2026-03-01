@@ -1,7 +1,7 @@
 {
   "name": "@siwon-dev-npm/strata",
   "private": false,
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -26,7 +26,15 @@
     "./tokens/component": "./dist/tokens/layer3-component.css",
     "./tokens.json": "./tokens.json",
     "./styles": "./dist/styles.css",
-    "./preset": "./dist/preset.css"
+    "./preset": "./dist/preset.css",
+    "./icons": {
+      "types": "./dist/components/primitives/Icon/icons/index.d.ts",
+      "import": "./dist/components/primitives/Icon/icons/index.js"
+    },
+    "./recipes": {
+      "types": "./dist/recipes/index.d.ts",
+      "import": "./dist/recipes/index.js"
+    }
   },
   "files": [
     "dist",
@@ -35,13 +43,18 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "browserslist": [
+    "defaults and fully supports es6-module",
+    "maintained node versions"
+  ],
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-llms-txt.js",
     "build": "tsc -b && vite build",
     "build:lib": "vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && mkdir -p dist/tokens && cp src/tokens/*.css dist/tokens/ && printf '@import \"./tokens/layer1-primitive.css\";\\n@import \"./tokens/layer2-semantic.css\";\\n@import \"./tokens/layer3-component.css\";\\n' > dist/styles.css && cp src/preset.css dist/preset.css",
     "lint": "eslint .",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6007",
+    "storybook": "lsof -ti:6007 | xargs kill -9 2>/dev/null; storybook dev -p 6007",
     "build-storybook": "storybook build",
     "test": "vitest",
     "test:ci": "vitest run",
@@ -51,7 +64,9 @@
     "typecheck": "tsc -b",
     "generate:llms": "node scripts/generate-llms-txt.js",
     "demo:coverage": "node scripts/demo-coverage.js",
-    "tokens:export": "node scripts/export-tokens-dtcg.js"
+    "tokens:export": "node scripts/export-tokens-dtcg.js",
+    "test:vrt": "playwright test",
+    "test:vrt:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 import { useState } from 'react';
 
 import {
@@ -45,6 +46,15 @@ export const Default: Story = {
         </ToastRoot>
       </>
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /show toast/i });
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    const toast = await body.findByText('Changes saved');
+    await expect(toast).toBeVisible();
   },
 };
 

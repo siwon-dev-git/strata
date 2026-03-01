@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import { Container } from './Container';
 import { Text } from '@/components/primitives';
@@ -19,6 +20,10 @@ export const Default: Story = {
         <Text>Container with default (lg) max-width.</Text>
       </div>
     ),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText(/container with default/i)).toBeVisible();
   },
 };
 

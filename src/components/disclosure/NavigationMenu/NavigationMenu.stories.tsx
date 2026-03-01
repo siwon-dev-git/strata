@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import {
   NavigationMenuRoot,
@@ -21,6 +22,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: null,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nav = canvas.getByRole('navigation');
+    await expect(nav).toBeInTheDocument();
+
+    const links = canvas.getAllByRole('link');
+    await expect(links.length).toBeGreaterThan(0);
   },
   render: () => (
     <NavigationMenuRoot>

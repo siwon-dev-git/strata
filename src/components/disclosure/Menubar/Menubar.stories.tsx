@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   MenubarRoot,
@@ -21,6 +22,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: null,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('menuitem', { name: /file/i });
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    const menu = await body.findByRole('menu');
+    await expect(menu).toBeVisible();
   },
   render: () => (
     <MenubarRoot>

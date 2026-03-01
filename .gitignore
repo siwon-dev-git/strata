@@ -15,6 +15,9 @@ test-results/
 playwright-report/
 blob-report/
 
+# Playwright VRT snapshots (platform-specific, regenerated in CI)
+/e2e/*.vrt.ts-snapshots/
+
 # Environment
 .env
 .env.*

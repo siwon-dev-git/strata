@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   Select,
@@ -8,6 +9,7 @@ import {
   SelectContent,
   SelectItem,
 } from '.';
+import { FormField } from '@/components/primitives/FormField/FormField';
 
 const meta = {
   title: 'Primitives/Select',
@@ -32,6 +34,15 @@ export const Default: Story = {
       </SelectContent>
     </SelectRoot>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('combobox');
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    const listbox = await body.findByRole('listbox');
+    await expect(listbox).toBeVisible();
+  },
 };
 
 export const WithGroups: Story = {
@@ -66,6 +77,46 @@ export const Disabled: Story = {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="a">Option A</SelectItem>
+      </SelectContent>
+    </SelectRoot>
+  ),
+};
+
+export const WithError: Story = {
+  render: () => (
+    <FormField label="Country" error="Please select a country" required>
+      {(ids) => (
+        <SelectRoot>
+          <SelectTrigger
+            className="w-48 border-[--input-border-error]"
+            aria-describedby={ids.describedBy}
+            aria-invalid
+          >
+            <SelectValue placeholder="Select a country" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="kr">South Korea</SelectItem>
+            <SelectItem value="us">United States</SelectItem>
+            <SelectItem value="jp">Japan</SelectItem>
+          </SelectContent>
+        </SelectRoot>
+      )}
+    </FormField>
+  ),
+};
+
+export const DisabledItems: Story = {
+  render: () => (
+    <SelectRoot>
+      <SelectTrigger className="w-48">
+        <SelectValue placeholder="Choose a plan" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="free">Free</SelectItem>
+        <SelectItem value="pro">Pro</SelectItem>
+        <SelectItem value="enterprise" disabled>
+          Enterprise (Coming soon)
+        </SelectItem>
       </SelectContent>
     </SelectRoot>
   ),

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 import { useState } from 'react';
 
 import { RadioGroupRoot, RadioGroupItem } from './RadioGroup';
@@ -38,6 +39,14 @@ export const Default: Story = {
         </div>
       </>
     ),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const radios = canvas.getAllByRole('radio');
+    await expect(radios).toHaveLength(3);
+
+    await userEvent.click(canvas.getByLabelText('Option 2'));
+    await expect(canvas.getByLabelText('Option 2')).toBeChecked();
   },
 };
 

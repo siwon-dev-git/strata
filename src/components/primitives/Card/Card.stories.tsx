@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import { Card, CardHeader, CardBody, CardFooter } from './Card';
 import { Text } from '../Text/Text';
@@ -31,6 +32,13 @@ export const Default: Story = {
       </CardFooter>
     </Card>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText('Card Title')).toBeInTheDocument();
+    await expect(
+      canvas.getByRole('button', { name: /action/i }),
+    ).toBeInTheDocument();
+  },
 };
 
 export const Interactive: Story = {

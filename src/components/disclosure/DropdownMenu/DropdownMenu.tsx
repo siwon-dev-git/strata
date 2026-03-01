@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { cn } from '@/lib/utils';
 import type {

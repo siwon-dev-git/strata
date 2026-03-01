@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { cn } from '@/lib/utils';
 import type {

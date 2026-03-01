@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 
 import {
   PopoverRoot,
@@ -41,4 +42,13 @@ export const Default: Story = {
       </PopoverContent>
     </PopoverRoot>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('button', { name: /open popover/i });
+    await userEvent.click(trigger);
+
+    const body = within(document.body);
+    const popover = await body.findByRole('dialog');
+    await expect(popover).toBeVisible();
+  },
 };

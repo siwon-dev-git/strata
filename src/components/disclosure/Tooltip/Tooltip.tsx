@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import { cn } from '@/lib/utils';
 import type { TooltipContentProps, SimpleTooltipProps } from './Tooltip.type';

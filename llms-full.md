@@ -26,7 +26,7 @@
   --sp-gray-700: oklch(0.28 0.01 250);
   --sp-gray-800: oklch(0.2 0.008 250);
   --sp-gray-900: oklch(0.13 0.006 250);
-  --sp-gray-950: oklch(0.08 0.004 250);
+  --sp-gray-950: oklch(0.06 0.004 250);
 
   /* ── Blue ──────────────────────────────────────────────────── */
   --sp-blue-50: oklch(0.97 0.02 260);
@@ -63,21 +63,38 @@
   /* ── Yellow ────────────────────────────────────────────────── */
   --sp-yellow-50: oklch(0.97 0.02 85);
   --sp-yellow-100: oklch(0.93 0.05 85);
+  --sp-yellow-200: oklch(0.87 0.09 85);
+  --sp-yellow-300: oklch(0.83 0.13 85);
   --sp-yellow-400: oklch(0.8 0.16 85);
   --sp-yellow-500: oklch(0.72 0.16 85);
   --sp-yellow-600: oklch(0.6 0.16 85);
+  --sp-yellow-700: oklch(0.5 0.14 85);
+  --sp-yellow-800: oklch(0.4 0.11 85);
+  --sp-yellow-900: oklch(0.3 0.07 85);
 
   /* ── Purple ────────────────────────────────────────────────── */
   --sp-purple-50: oklch(0.97 0.02 305);
   --sp-purple-100: oklch(0.93 0.05 305);
+  --sp-purple-200: oklch(0.87 0.09 305);
+  --sp-purple-300: oklch(0.79 0.14 305);
   --sp-purple-400: oklch(0.7 0.2 305);
   --sp-purple-500: oklch(0.62 0.24 305);
   --sp-purple-600: oklch(0.52 0.24 305);
+  --sp-purple-700: oklch(0.43 0.2 305);
+  --sp-purple-800: oklch(0.34 0.16 305);
+  --sp-purple-900: oklch(0.25 0.1 305);
 
   /* ── Orange ────────────────────────────────────────────────── */
+  --sp-orange-50: oklch(0.97 0.02 55);
+  --sp-orange-100: oklch(0.93 0.05 55);
+  --sp-orange-200: oklch(0.87 0.09 55);
+  --sp-orange-300: oklch(0.81 0.13 55);
   --sp-orange-400: oklch(0.76 0.16 55);
   --sp-orange-500: oklch(0.72 0.19 55);
   --sp-orange-600: oklch(0.58 0.19 55);
+  --sp-orange-700: oklch(0.48 0.16 55);
+  --sp-orange-800: oklch(0.38 0.12 55);
+  --sp-orange-900: oklch(0.28 0.08 55);
 
   /* ── Spacing scale ─────────────────────────────────────────── */
   --sp-space-0: 0;
@@ -103,6 +120,14 @@
   --sp-text-2xl: 1.5rem;
   --sp-text-3xl: 1.875rem;
   --sp-text-4xl: 2.25rem;
+
+  /* ── Line-height scale ──────────────────────────────────────── */
+  --sp-leading-none: 1;
+  --sp-leading-tight: 1.25;
+  --sp-leading-snug: 1.375;
+  --sp-leading-normal: 1.5;
+  --sp-leading-relaxed: 1.625;
+  --sp-leading-loose: 2;
 
   /* ── Motion scale ──────────────────────────────────────────── */
   --sp-duration-0: 0ms;
@@ -185,6 +210,21 @@
   --fg-disabled: var(--sp-gray-600);
   --fg-on-accent: oklch(0.98 0 0);
 
+  /* Control surfaces (switches, sliders, scrollbars) */
+  --surface-control: var(--sp-gray-600);
+  --surface-control-hover: var(--sp-gray-400);
+
+  /* Inverted surfaces (tooltips) */
+  --surface-inverted: var(--sp-gray-800);
+  --fg-on-inverted: var(--sp-gray-50);
+
+  /* Loading states (skeleton) */
+  --surface-loading: var(--sp-gray-700);
+  --surface-loading-shine: var(--sp-gray-600);
+
+  /* Scrim overlay */
+  --surface-scrim: oklch(0 0 0 / 50%);
+
   /* Border */
   --border-subtle: var(--sp-gray-800);
   --border-default: var(--sp-gray-700);
@@ -219,6 +259,14 @@
   --type-body: var(--sp-text-base);
   --type-label: var(--sp-text-sm);
   --type-caption: var(--sp-text-xs);
+
+  /* Typography — line-height */
+  --type-display-leading: var(--sp-leading-tight);
+  --type-title-leading: var(--sp-leading-tight);
+  --type-heading-leading: var(--sp-leading-snug);
+  --type-body-leading: var(--sp-leading-normal);
+  --type-label-leading: var(--sp-leading-normal);
+  --type-caption-leading: var(--sp-leading-normal);
 
   /* Focus — accessible ring (WCAG 2.2 AA: 3:1 against adjacents) */
   --focus-ring-color: var(--sp-blue-500);
@@ -288,6 +336,14 @@
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
 
   --focus-ring-color: var(--sp-blue-600);
+
+  --surface-control: var(--sp-gray-300);
+  --surface-control-hover: var(--sp-gray-500);
+  --surface-inverted: var(--sp-gray-800);
+  --fg-on-inverted: var(--sp-gray-50);
+  --surface-loading: var(--sp-gray-200);
+  --surface-loading-shine: var(--sp-gray-300);
+  --surface-scrim: oklch(0 0 0 / 30%);
 }
 
 /* ── Theme: Blue → purple accent (dark) ────────────────────── */
@@ -394,7 +450,7 @@
   --input-fg: var(--fg-default);
   --input-placeholder: var(--fg-subtle);
   --input-radius: var(--sp-radius-md);
-  --input-ring: oklch(0.62 0.21 260 / 25%);
+  --input-ring: color-mix(in oklch, var(--focus-ring-color) 25%, transparent);
 
   /* ── Badge ─────────────────────────────────────────────────── */
   --badge-radius: var(--sp-radius-full);
@@ -423,12 +479,16 @@
   --dialog-border: var(--border-subtle);
   --dialog-radius: var(--sp-radius-xl);
   --dialog-shadow: var(--shadow-lg);
-  --overlay-bg: oklch(0 0 0 / 50%);
+  --dialog-duration: var(--motion-duration-entrance);
+  --dialog-ease: var(--motion-ease-spring);
+  --overlay-bg: var(--surface-scrim);
 
   /* ── Tooltip ───────────────────────────────────────────────── */
-  --tooltip-bg: var(--sp-gray-800);
-  --tooltip-fg: var(--sp-gray-50);
+  --tooltip-bg: var(--surface-inverted);
+  --tooltip-fg: var(--fg-on-inverted);
   --tooltip-radius: var(--sp-radius-sm);
+  --tooltip-duration: var(--motion-duration-fast);
+  --tooltip-ease: var(--motion-ease-spring);
 
   /* ── Tabs ──────────────────────────────────────────────────── */
   --tabs-border: var(--border-subtle);
@@ -446,17 +506,17 @@
   --menu-shadow: var(--shadow-md);
 
   /* ── Switch ──────────────────────────────────────────────── */
-  --switch-bg: var(--sp-gray-600);
+  --switch-bg: var(--surface-control);
   --switch-bg-checked: var(--color-interactive);
-  --switch-thumb: var(--sp-gray-50);
+  --switch-thumb: var(--fg-on-accent);
 
   /* ── Slider ──────────────────────────────────────────────── */
-  --slider-track: var(--sp-gray-700);
+  --slider-track: var(--surface-control);
   --slider-range: var(--color-interactive);
-  --slider-thumb: var(--sp-gray-50);
+  --slider-thumb: var(--fg-on-accent);
 
   /* ── ProgressBar ─────────────────────────────────────────── */
-  --progress-track: var(--sp-gray-700);
+  --progress-track: var(--surface-control);
   --progress-bar: var(--color-interactive);
 
   /* ── Card ────────────────────────────────────────────────── */
@@ -471,7 +531,7 @@
   --checkbox-bg-checked: var(--color-interactive);
   --checkbox-border: var(--border-default);
   --checkbox-border-checked: var(--color-interactive);
-  --checkbox-fg: var(--sp-gray-50);
+  --checkbox-fg: var(--fg-on-accent);
   --checkbox-radius: var(--sp-radius-sm);
 
   /* ── Select ────────────────────────────────────────────── */
@@ -494,15 +554,15 @@
   --alert-radius: var(--sp-radius-md);
 
   /* ── Skeleton ──────────────────────────────────────────── */
-  --skeleton-bg: var(--sp-gray-700);
-  --skeleton-shine: var(--sp-gray-600);
+  --skeleton-bg: var(--surface-loading);
+  --skeleton-shine: var(--surface-loading-shine);
 
   /* ── RadioGroup ────────────────────────────────────────── */
   /* Reuses checkbox tokens */
 
   /* ── ScrollArea ──────────────────────────────────────── */
-  --scrollarea-thumb: var(--sp-gray-500);
-  --scrollarea-thumb-hover: var(--sp-gray-400);
+  --scrollarea-thumb: var(--surface-control);
+  --scrollarea-thumb-hover: var(--surface-control-hover);
   --scrollarea-track: transparent;
 
   /* ── ContextMenu ─────────────────────────────────────── */
@@ -522,6 +582,10 @@
   --collapsible-duration: var(--motion-duration-normal);
   --collapsible-ease: var(--motion-ease);
 
+  /* ── Accordion ──────────────────────────────────────── */
+  --accordion-duration: var(--motion-duration-normal);
+  --accordion-ease: var(--motion-ease-spring);
+
   /* ── NavigationMenu ──────────────────────────────────── */
   /* Reuses --menu-* tokens */
 
@@ -533,6 +597,8 @@
 
   /* ── Sheet ───────────────────────────────────────────── */
   /* Reuses --dialog-* and --overlay-bg tokens */
+  --sheet-duration: var(--motion-duration-slow);
+  --sheet-ease: var(--motion-ease-spring);
 
   /* ── Pagination ──────────────────────────────────────── */
   /* Reuses --btn-* tokens */
@@ -753,6 +819,27 @@ Primary interactive element for triggering actions, with variant styling, loadin
 - `--btn-touch-target` — minimum touch target size (WCAG 2.5.8)
 - `--border-interactive` — (L2) focus ring color source
 
+## Props
+
+| prop       | type                                          | default   | description                          |
+| ---------- | --------------------------------------------- | --------- | ------------------------------------ |
+| variant    | `'solid' \| 'ghost' \| 'outline' \| 'danger'` | `'solid'` | Visual variant                       |
+| size       | `'sm' \| 'md' \| 'lg' \| 'icon'`              | `'md'`    | Size variant                         |
+| fullWidth  | `boolean`                                     | `false`   | Stretch to fill parent width         |
+| loading    | `boolean`                                     | `false`   | Show spinner and disable interaction |
+| asChild    | `boolean`                                     | `false`   | Delegate rendering to child via Slot |
+| classNames | `{ spinner?: string }`                        | —         | Granular sub-element class overrides |
+| className  | `string`                                      | —         | Root element class override          |
+
+## Data Attributes
+
+| attribute      | value           | purpose                     |
+| -------------- | --------------- | --------------------------- |
+| `data-slot`    | `"button"`      | Structural CSS targeting    |
+| `data-variant` | variant name    | Variant-based CSS overrides |
+| `data-size`    | size name       | Size-based CSS overrides    |
+| `data-loading` | `"true"` / none | Loading state CSS overrides |
+
 ## Constraints
 
 - `loading` prop disables the button and shows a `Spinner` before children
@@ -783,10 +870,41 @@ Primary interactive element for triggering actions, with variant styling, loadin
 | lg   | 44px                 | Primary CTAs, mobile-friendly    |
 | icon | density-aware square | Icon-only buttons, toolbars      |
 
+## Override Patterns
+
+### Token override (scoped via data attributes)
+
+```css
+[data-slot='button'][data-variant='solid'] {
+  --btn-solid-bg: var(--sp-green-500);
+  --btn-solid-bg-hover: var(--sp-green-400);
+}
+```
+
+### Sub-element styling via classNames
+
+```tsx
+<Button loading classNames={{ spinner: 'opacity-50' }}>
+  Saving
+</Button>
+```
+
+### Extending with buttonVariants
+
+```tsx
+import { buttonVariants } from '@siwon-dev-npm/strata';
+const customClass = buttonVariants({
+  variant: 'solid',
+  size: 'lg',
+  fullWidth: true,
+});
+```
+
 ## History
 
 - Sprint 1: Initial implementation
 - MAINTAIN 10-cycle: Token foundation (active/focus/disabled), focus ring alignment, active states, keyboard tests, variant override tests, touch targets, icon-only support, ARIA tests, type="button" default, density stories, documentation
+- DX optimization: Data attributes, classNames prop, fullWidth variant, export structure, visual evaluation tooling
 
 ---
 

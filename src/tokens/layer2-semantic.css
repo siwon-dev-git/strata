@@ -42,6 +42,29 @@
   --fg-disabled: var(--sp-gray-600);
   --fg-on-accent: oklch(0.98 0 0);
 
+  /* Control surfaces (switches, sliders, scrollbars) */
+  --surface-control: var(--sp-gray-600);
+  --surface-control-hover: var(--sp-gray-400);
+
+  /* Inverted surfaces (tooltips) */
+  --surface-inverted: var(--sp-gray-800);
+  --fg-on-inverted: var(--sp-gray-50);
+
+  /* Loading states (skeleton) */
+  --surface-loading: var(--sp-gray-700);
+  --surface-loading-shine: var(--sp-gray-600);
+
+  /* Scrim overlay */
+  --surface-scrim: oklch(0 0 0 / 50%);
+
+  /* Radius */
+  --radius-none: var(--sp-radius-none);
+  --radius-sm: var(--sp-radius-sm);
+  --radius-md: var(--sp-radius-md);
+  --radius-lg: var(--sp-radius-lg);
+  --radius-xl: var(--sp-radius-xl);
+  --radius-full: var(--sp-radius-full);
+
   /* Border */
   --border-subtle: var(--sp-gray-800);
   --border-default: var(--sp-gray-700);
@@ -76,6 +99,14 @@
   --type-body: var(--sp-text-base);
   --type-label: var(--sp-text-sm);
   --type-caption: var(--sp-text-xs);
+
+  /* Typography — line-height */
+  --type-display-leading: var(--sp-leading-tight);
+  --type-title-leading: var(--sp-leading-tight);
+  --type-heading-leading: var(--sp-leading-snug);
+  --type-body-leading: var(--sp-leading-normal);
+  --type-label-leading: var(--sp-leading-normal);
+  --type-caption-leading: var(--sp-leading-normal);
 
   /* Focus — accessible ring (WCAG 2.2 AA: 3:1 against adjacents) */
   --focus-ring-color: var(--sp-blue-500);
@@ -145,6 +176,14 @@
   --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.15);
 
   --focus-ring-color: var(--sp-blue-600);
+
+  --surface-control: var(--sp-gray-300);
+  --surface-control-hover: var(--sp-gray-500);
+  --surface-inverted: var(--sp-gray-800);
+  --fg-on-inverted: var(--sp-gray-50);
+  --surface-loading: var(--sp-gray-200);
+  --surface-loading-shine: var(--sp-gray-300);
+  --surface-scrim: oklch(0 0 0 / 30%);
 }
 
 /* ── Theme: Blue → purple accent (dark) ────────────────────── */

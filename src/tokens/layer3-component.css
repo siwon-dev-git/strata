@@ -25,7 +25,7 @@
   --btn-focus-ring-offset: var(--focus-ring-offset);
   --btn-disabled-opacity: 0.4;
   --btn-touch-target: 2.75rem;
-  --btn-radius: var(--sp-radius-md);
+  --btn-radius: var(--radius-md);
 
   /* ── Input ─────────────────────────────────────────────────── */
   --input-bg: var(--surface-inset);
@@ -34,14 +34,14 @@
   --input-border-error: var(--border-danger);
   --input-fg: var(--fg-default);
   --input-placeholder: var(--fg-subtle);
-  --input-radius: var(--sp-radius-md);
-  --input-ring: oklch(0.62 0.21 260 / 25%);
+  --input-radius: var(--radius-md);
+  --input-ring: color-mix(in oklch, var(--focus-ring-color) 25%, transparent);
 
   /* ── Badge ─────────────────────────────────────────────────── */
-  --badge-radius: var(--sp-radius-full);
+  --badge-radius: var(--radius-full);
 
   /* ── Avatar ────────────────────────────────────────────────── */
-  --avatar-radius: var(--sp-radius-full);
+  --avatar-radius: var(--radius-full);
   --avatar-bg: var(--color-interactive-subtle);
   --avatar-fg: var(--color-interactive);
 
@@ -62,14 +62,18 @@
   /* ── Dialog ────────────────────────────────────────────────── */
   --dialog-bg: var(--surface-overlay);
   --dialog-border: var(--border-subtle);
-  --dialog-radius: var(--sp-radius-xl);
+  --dialog-radius: var(--radius-xl);
   --dialog-shadow: var(--shadow-lg);
-  --overlay-bg: oklch(0 0 0 / 50%);
+  --dialog-duration: var(--motion-duration-entrance);
+  --dialog-ease: var(--motion-ease-spring);
+  --overlay-bg: var(--surface-scrim);
 
   /* ── Tooltip ───────────────────────────────────────────────── */
-  --tooltip-bg: var(--sp-gray-800);
-  --tooltip-fg: var(--sp-gray-50);
-  --tooltip-radius: var(--sp-radius-sm);
+  --tooltip-bg: var(--surface-inverted);
+  --tooltip-fg: var(--fg-on-inverted);
+  --tooltip-radius: var(--radius-sm);
+  --tooltip-duration: var(--motion-duration-fast);
+  --tooltip-ease: var(--motion-ease-spring);
 
   /* ── Tabs ──────────────────────────────────────────────────── */
   --tabs-border: var(--border-subtle);
@@ -81,23 +85,23 @@
   /* ── DropdownMenu ──────────────────────────────────────────── */
   --menu-bg: var(--surface-overlay);
   --menu-border: var(--border-subtle);
-  --menu-radius: var(--sp-radius-lg);
+  --menu-radius: var(--radius-lg);
   --menu-item-hover: var(--color-interactive-subtle);
   --menu-item-fg: var(--fg-default);
   --menu-shadow: var(--shadow-md);
 
   /* ── Switch ──────────────────────────────────────────────── */
-  --switch-bg: var(--sp-gray-600);
+  --switch-bg: var(--surface-control);
   --switch-bg-checked: var(--color-interactive);
-  --switch-thumb: var(--sp-gray-50);
+  --switch-thumb: var(--fg-on-accent);
 
   /* ── Slider ──────────────────────────────────────────────── */
-  --slider-track: var(--sp-gray-700);
+  --slider-track: var(--surface-control);
   --slider-range: var(--color-interactive);
-  --slider-thumb: var(--sp-gray-50);
+  --slider-thumb: var(--fg-on-accent);
 
   /* ── ProgressBar ─────────────────────────────────────────── */
-  --progress-track: var(--sp-gray-700);
+  --progress-track: var(--surface-control);
   --progress-bar: var(--color-interactive);
 
   /* ── Card ────────────────────────────────────────────────── */
@@ -105,15 +109,15 @@
   --card-bg-hover: var(--surface-overlay);
   --card-border: var(--border-subtle);
   --card-border-hover: var(--border-default);
-  --card-radius: var(--sp-radius-lg);
+  --card-radius: var(--radius-lg);
 
   /* ── Checkbox ──────────────────────────────────────────── */
   --checkbox-bg: transparent;
   --checkbox-bg-checked: var(--color-interactive);
   --checkbox-border: var(--border-default);
   --checkbox-border-checked: var(--color-interactive);
-  --checkbox-fg: var(--sp-gray-50);
-  --checkbox-radius: var(--sp-radius-sm);
+  --checkbox-fg: var(--fg-on-accent);
+  --checkbox-radius: var(--radius-sm);
 
   /* ── Select ────────────────────────────────────────────── */
   --select-bg: var(--surface-inset);
@@ -121,29 +125,29 @@
   --select-border-focus: var(--border-interactive);
   --select-fg: var(--fg-default);
   --select-placeholder: var(--fg-subtle);
-  --select-radius: var(--sp-radius-md);
+  --select-radius: var(--radius-md);
   --select-content-bg: var(--surface-overlay);
   --select-item-hover: var(--color-interactive-subtle);
 
   /* ── Toast ─────────────────────────────────────────────── */
   --toast-bg: var(--surface-overlay);
   --toast-border: var(--border-subtle);
-  --toast-radius: var(--sp-radius-lg);
+  --toast-radius: var(--radius-lg);
   --toast-shadow: var(--shadow-lg);
 
   /* ── Alert ─────────────────────────────────────────────── */
-  --alert-radius: var(--sp-radius-md);
+  --alert-radius: var(--radius-md);
 
   /* ── Skeleton ──────────────────────────────────────────── */
-  --skeleton-bg: var(--sp-gray-700);
-  --skeleton-shine: var(--sp-gray-600);
+  --skeleton-bg: var(--surface-loading);
+  --skeleton-shine: var(--surface-loading-shine);
 
   /* ── RadioGroup ────────────────────────────────────────── */
   /* Reuses checkbox tokens */
 
   /* ── ScrollArea ──────────────────────────────────────── */
-  --scrollarea-thumb: var(--sp-gray-500);
-  --scrollarea-thumb-hover: var(--sp-gray-400);
+  --scrollarea-thumb: var(--surface-control);
+  --scrollarea-thumb-hover: var(--surface-control-hover);
   --scrollarea-track: transparent;
 
   /* ── ContextMenu ─────────────────────────────────────── */
@@ -154,7 +158,7 @@
   --toggle-active-bg: var(--color-interactive-subtle);
   --toggle-active-fg: var(--color-interactive);
   --toggle-border: var(--border-default);
-  --toggle-radius: var(--sp-radius-md);
+  --toggle-radius: var(--radius-md);
 
   /* ── HoverCard ────────────────────────────────────────── */
   /* Reuses --menu-* tokens */
@@ -162,6 +166,10 @@
   /* ── Collapsible ──────────────────────────────────────── */
   --collapsible-duration: var(--motion-duration-normal);
   --collapsible-ease: var(--motion-ease);
+
+  /* ── Accordion ──────────────────────────────────────── */
+  --accordion-duration: var(--motion-duration-normal);
+  --accordion-ease: var(--motion-ease-spring);
 
   /* ── NavigationMenu ──────────────────────────────────── */
   /* Reuses --menu-* tokens */
@@ -174,6 +182,8 @@
 
   /* ── Sheet ───────────────────────────────────────────── */
   /* Reuses --dialog-* and --overlay-bg tokens */
+  --sheet-duration: var(--motion-duration-slow);
+  --sheet-ease: var(--motion-ease-spring);
 
   /* ── Pagination ──────────────────────────────────────── */
   /* Reuses --btn-* tokens */

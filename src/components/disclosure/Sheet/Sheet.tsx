@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
 import { IconX } from '@/components/primitives/Icon/Icon';

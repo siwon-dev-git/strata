@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadixMenubar from '@radix-ui/react-menubar';
 import { cn } from '@/lib/utils';
 import type {

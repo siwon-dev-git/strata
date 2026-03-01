@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 import { useState } from 'react';
 
 import { Slider } from './Slider';
@@ -18,6 +19,12 @@ export const Default: Story = {
     defaultValue: [50],
     max: 100,
     step: 1,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const slider = canvas.getByRole('slider');
+    await expect(slider).toBeInTheDocument();
+    await expect(slider).toHaveAttribute('aria-valuenow', '50');
   },
 };
 

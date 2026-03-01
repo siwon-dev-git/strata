@@ -271,11 +271,11 @@ export const DensityModes: Story = {
 export const FullWidth: Story = {
   render: () => (
     <div className="w-80 space-y-2">
-      <Button className="w-full">Full Width Solid</Button>
-      <Button className="w-full" variant="outline">
+      <Button fullWidth>Full Width Solid</Button>
+      <Button fullWidth variant="outline">
         Full Width Outline
       </Button>
-      <Button className="w-full" variant="danger">
+      <Button fullWidth variant="danger">
         Full Width Danger
       </Button>
     </div>
@@ -284,6 +284,56 @@ export const FullWidth: Story = {
     const canvas = within(canvasElement);
     const buttons = canvas.getAllByRole('button');
     await expect(buttons).toHaveLength(3);
+    for (const btn of buttons) {
+      await expect(btn).toHaveClass('w-full');
+    }
+  },
+};
+
+export const DataAttributeOverride: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="text-xs text-[--fg-muted]">
+        Solid button overridden via data-attribute CSS selectors
+      </p>
+      <style>{`
+        [data-slot="button"][data-variant="solid"].demo-green {
+          --btn-solid-bg: var(--sp-green-500);
+          --btn-solid-bg-hover: var(--sp-green-400);
+          --btn-solid-bg-active: var(--sp-green-600);
+        }
+      `}</style>
+      <div className="flex items-center gap-4">
+        <Button variant="solid" className="demo-green">
+          Overridden
+        </Button>
+        <Button variant="solid">Default</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="outline">Outline</Button>
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const overridden = canvas.getByRole('button', { name: 'Overridden' });
+    await expect(overridden).toHaveAttribute('data-slot', 'button');
+    await expect(overridden).toHaveAttribute('data-variant', 'solid');
+  },
+};
+
+export const SpinnerCustomization: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Button loading>Default Spinner</Button>
+      <Button loading classNames={{ spinner: 'opacity-50' }}>
+        Subtle Spinner
+      </Button>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const spinners = canvas.getAllByRole('status');
+    await expect(spinners).toHaveLength(2);
   },
 };
 

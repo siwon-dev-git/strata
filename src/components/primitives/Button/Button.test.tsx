@@ -212,4 +212,73 @@ describe('Button', () => {
     render(<Button loading>Saving</Button>);
     expect(screen.getByRole('status')).toBeInTheDocument();
   });
+
+  // ── Data attributes ───────────────────────────────────────────────
+
+  it('renders data-slot="button" on the root element', () => {
+    render(<Button>Click</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-slot', 'button');
+  });
+
+  it('renders data-variant matching the variant prop', () => {
+    const { rerender } = render(<Button variant="solid">S</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-variant', 'solid');
+
+    rerender(<Button variant="danger">D</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute(
+      'data-variant',
+      'danger',
+    );
+  });
+
+  it('renders data-size matching the size prop', () => {
+    const { rerender } = render(<Button size="sm">S</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-size', 'sm');
+
+    rerender(<Button size="lg">L</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-size', 'lg');
+  });
+
+  it('renders data-loading only when loading is true', () => {
+    const { rerender } = render(<Button>Normal</Button>);
+    expect(screen.getByRole('button')).not.toHaveAttribute('data-loading');
+
+    rerender(<Button loading>Saving</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-loading', 'true');
+  });
+
+  // ── fullWidth variant ─────────────────────────────────────────────
+
+  it('applies w-full class when fullWidth is true', () => {
+    render(<Button fullWidth>Wide</Button>);
+    expect(screen.getByRole('button')).toHaveClass('w-full');
+  });
+
+  it('does not apply w-full class by default', () => {
+    render(<Button>Normal</Button>);
+    expect(screen.getByRole('button')).not.toHaveClass('w-full');
+  });
+
+  // ── classNames prop ───────────────────────────────────────────────
+
+  it('applies classNames.spinner to the loading spinner', () => {
+    render(
+      <Button loading classNames={{ spinner: 'text-red-500' }}>
+        Saving
+      </Button>,
+    );
+    const spinner = screen.getByRole('status');
+    expect(spinner).toHaveClass('text-red-500');
+  });
+
+  it('preserves default spinner classes when classNames.spinner is provided', () => {
+    render(
+      <Button loading classNames={{ spinner: 'opacity-50' }}>
+        Saving
+      </Button>,
+    );
+    const spinner = screen.getByRole('status');
+    expect(spinner).toHaveClass('shrink-0');
+    expect(spinner).toHaveClass('opacity-50');
+  });
 });

@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import * as RadixHoverCard from '@radix-ui/react-hover-card';
 import { cn } from '@/lib/utils';

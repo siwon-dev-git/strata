@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import {
   Breadcrumb,
@@ -35,6 +36,14 @@ export const Default: Story = {
         </BreadcrumbItem>
       </BreadcrumbList>
     ),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nav = canvas.getByRole('navigation', { name: /breadcrumb/i });
+    await expect(nav).toBeInTheDocument();
+
+    const links = canvas.getAllByRole('link');
+    await expect(links).toHaveLength(2);
   },
 };
 

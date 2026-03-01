@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within, userEvent } from 'storybook/test';
 import { useState } from 'react';
 
 import { Switch } from './Switch';
@@ -16,6 +17,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     defaultChecked: false,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch');
+    await expect(toggle).not.toBeChecked();
+
+    await userEvent.click(toggle);
+    await expect(toggle).toBeChecked();
   },
 };
 

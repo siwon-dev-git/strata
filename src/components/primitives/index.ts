@@ -1,4 +1,8 @@
-export { Button } from './Button/Button';
+export { Button, type ButtonProps } from './Button/Button';
+export {
+  buttonVariants,
+  type ButtonVariantProps,
+} from './Button/Button.variant';
 export { Text } from './Text/Text';
 export { Avatar } from './Avatar/Avatar';
 export { Badge } from './Badge/Badge';

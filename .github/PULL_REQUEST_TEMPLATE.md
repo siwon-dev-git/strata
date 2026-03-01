@@ -1,25 +1,25 @@
 ## Summary
 
-<!-- Brief description of changes (1-3 sentences) -->
+<!-- Brief description of changes -->
 
-## Changes
+## Type
 
-<!-- Bulleted list of what changed -->
-
--
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Enhancement
+- [ ] Refactor
+- [ ] Documentation
+- [ ] Test
 
 ## Checklist
 
-- [ ] `pnpm typecheck` passes
-- [ ] `pnpm test:ci` passes (including failure scenario tests)
-- [ ] `pnpm build` passes
-- [ ] New components follow tier convention
-- [ ] Semantic tokens used (no hardcoded colors)
-- [ ] ARIA attributes included for accessibility
-- [ ] `pnpm generate:llms` run if components added/removed
+- [ ] Token compliance: no hardcoded colors, L3→L2→L1 chain respected
+- [ ] Tests: new/modified components have adequate test coverage
+- [ ] Stories: Storybook stories added/updated
+- [ ] Types: TypeScript types are correct and exported
+- [ ] Docs: GLOSSARY.md updated if new tokens added
+- [ ] `pnpm typecheck && pnpm test:ci && pnpm build` passes
 
-## Test Plan
+## Screenshots
 
-<!-- How to verify these changes work correctly -->
-
--
+<!-- Before/after if visual changes -->

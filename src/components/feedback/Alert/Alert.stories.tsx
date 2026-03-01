@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import { Alert } from './Alert';
 
@@ -16,6 +17,12 @@ export const Info: Story = {
     variant: 'info',
     title: 'Information',
     children: 'This is an informational alert message.',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const alert = canvas.getByRole('alert');
+    await expect(alert).toBeInTheDocument();
+    await expect(canvas.getByText('Information')).toBeVisible();
   },
 };
 

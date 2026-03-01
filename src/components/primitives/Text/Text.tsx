@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentPropsWithRef, ElementType } from 'react';
 import { cn } from '@/lib/utils';
 
