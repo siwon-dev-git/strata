@@ -225,14 +225,6 @@
   /* Scrim overlay */
   --surface-scrim: oklch(0 0 0 / 50%);
 
-  /* Radius */
-  --radius-none: var(--sp-radius-none);
-  --radius-sm: var(--sp-radius-sm);
-  --radius-md: var(--sp-radius-md);
-  --radius-lg: var(--sp-radius-lg);
-  --radius-xl: var(--sp-radius-xl);
-  --radius-full: var(--sp-radius-full);
-
   /* Border */
   --border-subtle: var(--sp-gray-800);
   --border-default: var(--sp-gray-700);
@@ -448,7 +440,7 @@
   --btn-focus-ring-offset: var(--focus-ring-offset);
   --btn-disabled-opacity: 0.4;
   --btn-touch-target: 2.75rem;
-  --btn-radius: var(--radius-md);
+  --btn-radius: var(--sp-radius-md);
 
   /* ── Input ─────────────────────────────────────────────────── */
   --input-bg: var(--surface-inset);
@@ -457,14 +449,14 @@
   --input-border-error: var(--border-danger);
   --input-fg: var(--fg-default);
   --input-placeholder: var(--fg-subtle);
-  --input-radius: var(--radius-md);
+  --input-radius: var(--sp-radius-md);
   --input-ring: color-mix(in oklch, var(--focus-ring-color) 25%, transparent);
 
   /* ── Badge ─────────────────────────────────────────────────── */
-  --badge-radius: var(--radius-full);
+  --badge-radius: var(--sp-radius-full);
 
   /* ── Avatar ────────────────────────────────────────────────── */
-  --avatar-radius: var(--radius-full);
+  --avatar-radius: var(--sp-radius-full);
   --avatar-bg: var(--color-interactive-subtle);
   --avatar-fg: var(--color-interactive);
 
@@ -485,7 +477,7 @@
   /* ── Dialog ────────────────────────────────────────────────── */
   --dialog-bg: var(--surface-overlay);
   --dialog-border: var(--border-subtle);
-  --dialog-radius: var(--radius-xl);
+  --dialog-radius: var(--sp-radius-xl);
   --dialog-shadow: var(--shadow-lg);
   --dialog-duration: var(--motion-duration-entrance);
   --dialog-ease: var(--motion-ease-spring);
@@ -494,7 +486,7 @@
   /* ── Tooltip ───────────────────────────────────────────────── */
   --tooltip-bg: var(--surface-inverted);
   --tooltip-fg: var(--fg-on-inverted);
-  --tooltip-radius: var(--radius-sm);
+  --tooltip-radius: var(--sp-radius-sm);
   --tooltip-duration: var(--motion-duration-fast);
   --tooltip-ease: var(--motion-ease-spring);
 
@@ -508,7 +500,7 @@
   /* ── DropdownMenu ──────────────────────────────────────────── */
   --menu-bg: var(--surface-overlay);
   --menu-border: var(--border-subtle);
-  --menu-radius: var(--radius-lg);
+  --menu-radius: var(--sp-radius-lg);
   --menu-item-hover: var(--color-interactive-subtle);
   --menu-item-fg: var(--fg-default);
   --menu-shadow: var(--shadow-md);
@@ -532,7 +524,7 @@
   --card-bg-hover: var(--surface-overlay);
   --card-border: var(--border-subtle);
   --card-border-hover: var(--border-default);
-  --card-radius: var(--radius-lg);
+  --card-radius: var(--sp-radius-lg);
 
   /* ── Checkbox ──────────────────────────────────────────── */
   --checkbox-bg: transparent;
@@ -540,7 +532,7 @@
   --checkbox-border: var(--border-default);
   --checkbox-border-checked: var(--color-interactive);
   --checkbox-fg: var(--fg-on-accent);
-  --checkbox-radius: var(--radius-sm);
+  --checkbox-radius: var(--sp-radius-sm);
 
   /* ── Select ────────────────────────────────────────────── */
   --select-bg: var(--surface-inset);
@@ -548,18 +540,18 @@
   --select-border-focus: var(--border-interactive);
   --select-fg: var(--fg-default);
   --select-placeholder: var(--fg-subtle);
-  --select-radius: var(--radius-md);
+  --select-radius: var(--sp-radius-md);
   --select-content-bg: var(--surface-overlay);
   --select-item-hover: var(--color-interactive-subtle);
 
   /* ── Toast ─────────────────────────────────────────────── */
   --toast-bg: var(--surface-overlay);
   --toast-border: var(--border-subtle);
-  --toast-radius: var(--radius-lg);
+  --toast-radius: var(--sp-radius-lg);
   --toast-shadow: var(--shadow-lg);
 
   /* ── Alert ─────────────────────────────────────────────── */
-  --alert-radius: var(--radius-md);
+  --alert-radius: var(--sp-radius-md);
 
   /* ── Skeleton ──────────────────────────────────────────── */
   --skeleton-bg: var(--surface-loading);
@@ -581,7 +573,7 @@
   --toggle-active-bg: var(--color-interactive-subtle);
   --toggle-active-fg: var(--color-interactive);
   --toggle-border: var(--border-default);
-  --toggle-radius: var(--radius-md);
+  --toggle-radius: var(--sp-radius-md);
 
   /* ── HoverCard ────────────────────────────────────────── */
   /* Reuses --menu-* tokens */
