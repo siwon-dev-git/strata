@@ -36,6 +36,3 @@ blob-report/
 
 # Research output (working files)
 output/
-
-# OMC runtime state
-.omc/
